@@ -89,7 +89,7 @@ function BlogPage() {
 }
 
 function ReportsViewer() {
-  const [active, setActive] = useState(reports[0]);
+  const [active, setActive] = useState<(typeof reports)[number]>(reports[0]);
 
   return (
     <div className="grid gap-6 lg:grid-cols-12">
