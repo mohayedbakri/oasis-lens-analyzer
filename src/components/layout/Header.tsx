@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { nav, site } from "@/lib/site";
+import logoAsset from "@/assets/rsic-logo.png.asset.json";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -10,9 +11,7 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-2 font-display text-lg font-bold text-primary">
-          <span className="grid h-9 w-9 place-items-center rounded-md bg-primary text-primary-foreground">
-            R
-          </span>
+          <img src={logoAsset.url} alt={site.nameShort} className="h-10 w-auto" />
           <span className="hidden sm:inline">{site.nameShort}</span>
         </Link>
 
