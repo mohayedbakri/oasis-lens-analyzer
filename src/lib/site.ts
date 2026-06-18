@@ -19,8 +19,18 @@ export const nav = [
   { to: "/impact", label: "الأثر المتوقع" },
   { to: "/governance", label: "الحوكمة والتمويل" },
   { to: "/blog", label: "المدونة" },
+  { to: "/poc", label: "لوحة المشروع", live: true },
   { to: "/contact", label: "تواصل معنا" },
 ] as const;
+
+// Phase-1 PoC dashboard config. Replace sheetCsvUrl with a "Publish to web → CSV" link
+// once the field team's Google Sheet is ready. The page falls back to bundled JSON.
+export const pocConfig = {
+  localityNameAr: "محلية البرقيق",
+  stateAr: "الولاية الشمالية",
+  sheetCsvUrl: import.meta.env.VITE_POC_SHEET_CSV_URL ?? "",
+  refreshIntervalMs: 60_000,
+} as const;
 
 // الأركان الستة للمجمع الصناعي الريفي المجتمعي
 export const pillars = [

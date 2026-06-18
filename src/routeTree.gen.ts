@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as PocRouteImport } from './routes/poc'
 import { Route as ImpactRouteImport } from './routes/impact'
 import { Route as GovernanceRouteImport } from './routes/governance'
 import { Route as DonateRouteImport } from './routes/donate'
@@ -21,6 +22,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const ProjectsRoute = ProjectsRouteImport.update({
   id: '/projects',
   path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PocRoute = PocRouteImport.update({
+  id: '/poc',
+  path: '/poc',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ImpactRoute = ImpactRouteImport.update({
@@ -67,6 +73,7 @@ export interface FileRoutesByFullPath {
   '/donate': typeof DonateRoute
   '/governance': typeof GovernanceRoute
   '/impact': typeof ImpactRoute
+  '/poc': typeof PocRoute
   '/projects': typeof ProjectsRoute
 }
 export interface FileRoutesByTo {
@@ -77,6 +84,7 @@ export interface FileRoutesByTo {
   '/donate': typeof DonateRoute
   '/governance': typeof GovernanceRoute
   '/impact': typeof ImpactRoute
+  '/poc': typeof PocRoute
   '/projects': typeof ProjectsRoute
 }
 export interface FileRoutesById {
@@ -88,6 +96,7 @@ export interface FileRoutesById {
   '/donate': typeof DonateRoute
   '/governance': typeof GovernanceRoute
   '/impact': typeof ImpactRoute
+  '/poc': typeof PocRoute
   '/projects': typeof ProjectsRoute
 }
 export interface FileRouteTypes {
@@ -100,6 +109,7 @@ export interface FileRouteTypes {
     | '/donate'
     | '/governance'
     | '/impact'
+    | '/poc'
     | '/projects'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -110,6 +120,7 @@ export interface FileRouteTypes {
     | '/donate'
     | '/governance'
     | '/impact'
+    | '/poc'
     | '/projects'
   id:
     | '__root__'
@@ -120,6 +131,7 @@ export interface FileRouteTypes {
     | '/donate'
     | '/governance'
     | '/impact'
+    | '/poc'
     | '/projects'
   fileRoutesById: FileRoutesById
 }
@@ -131,6 +143,7 @@ export interface RootRouteChildren {
   DonateRoute: typeof DonateRoute
   GovernanceRoute: typeof GovernanceRoute
   ImpactRoute: typeof ImpactRoute
+  PocRoute: typeof PocRoute
   ProjectsRoute: typeof ProjectsRoute
 }
 
@@ -141,6 +154,13 @@ declare module '@tanstack/react-router' {
       path: '/projects'
       fullPath: '/projects'
       preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/poc': {
+      id: '/poc'
+      path: '/poc'
+      fullPath: '/poc'
+      preLoaderRoute: typeof PocRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/impact': {
@@ -203,18 +223,9 @@ const rootRouteChildren: RootRouteChildren = {
   DonateRoute: DonateRoute,
   GovernanceRoute: GovernanceRoute,
   ImpactRoute: ImpactRoute,
+  PocRoute: PocRoute,
   ProjectsRoute: ProjectsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
