@@ -1,0 +1,38 @@
+{
+  "lastUpdated": "2026-06-15T10:00:00Z",
+  "units": [
+    { "id": "mill",      "name_ar": "وحدة الطحن والمعالجة", "type": "mill",      "status": "in_progress", "x": -4, "y": 0, "z": -2 },
+    { "id": "silo",      "name_ar": "صوامع التخزين",        "type": "silo",      "status": "done",        "x":  0, "y": 0, "z": -4 },
+    { "id": "packaging", "name_ar": "خط التعبئة والتغليف",  "type": "packaging", "status": "in_progress", "x":  4, "y": 0, "z": -2 },
+    { "id": "admin",     "name_ar": "المبنى الإداري",       "type": "admin",     "status": "in_progress", "x": -3, "y": 0, "z":  3 },
+    { "id": "training",  "name_ar": "مركز التدريب",         "type": "training",  "status": "planned",     "x":  3, "y": 0, "z":  3 },
+    { "id": "energy",    "name_ar": "محطة الطاقة الشمسية",  "type": "energy",    "status": "planned",     "x":  0, "y": 0, "z":  5 }
+  ],
+  "work_packages": [
+    { "id": "wp1", "unit_id": "admin",     "name_ar": "اتفاقية تخصيص الأرض",             "category": "agreement",    "status": "done",        "progress_pct": 100, "planned_start": "2026-01-01", "planned_end": "2026-02-15", "actual_start": "2026-01-05", "actual_end": "2026-02-10", "doc_url": "#" },
+    { "id": "wp2", "unit_id": "admin",     "name_ar": "العناية الواجبة الفنية والمالية", "category": "due_diligence","status": "done",        "progress_pct": 100, "planned_start": "2026-02-01", "planned_end": "2026-03-20", "actual_start": "2026-02-05", "actual_end": "2026-03-25", "doc_url": "#" },
+    { "id": "wp3", "unit_id": "admin",     "name_ar": "مذكرة تفاهم مع السلطة المحلية",    "category": "mou",          "status": "done",        "progress_pct": 100, "planned_start": "2026-02-15", "planned_end": "2026-03-15", "actual_start": "2026-02-20", "actual_end": "2026-03-18", "doc_url": "#" },
+    { "id": "wp4", "unit_id": "mill",      "name_ar": "توريد معدات الطحن",                "category": "procurement",  "status": "in_progress", "progress_pct": 55,  "planned_start": "2026-03-01", "planned_end": "2026-07-30", "actual_start": "2026-03-10", "actual_end": null,         "doc_url": "#" },
+    { "id": "wp5", "unit_id": "silo",      "name_ar": "إنشاء صوامع التخزين",             "category": "civil",        "status": "done",        "progress_pct": 100, "planned_start": "2026-03-01", "planned_end": "2026-05-30", "actual_start": "2026-03-05", "actual_end": "2026-05-28", "doc_url": "#" },
+    { "id": "wp6", "unit_id": "packaging", "name_ar": "تركيب خط التعبئة",                 "category": "procurement",  "status": "in_progress", "progress_pct": 35,  "planned_start": "2026-04-01", "planned_end": "2026-08-30", "actual_start": "2026-04-20", "actual_end": null,         "doc_url": "#" },
+    { "id": "wp7", "unit_id": "training",  "name_ar": "برنامج تدريب الكوادر المحلية",    "category": "training",     "status": "planned",     "progress_pct": 0,   "planned_start": "2026-07-01", "planned_end": "2026-09-30", "actual_start": null,          "actual_end": null,         "doc_url": "#" },
+    { "id": "wp8", "unit_id": "energy",    "name_ar": "أعمال الطاقة الشمسية",            "category": "civil",        "status": "planned",     "progress_pct": 0,   "planned_start": "2026-08-01", "planned_end": "2026-10-15", "actual_start": null,          "actual_end": null,         "doc_url": "#" }
+  ],
+  "funding": [
+    { "work_package_id": "wp1", "allocated_usd":  15000, "received_usd":  15000 },
+    { "work_package_id": "wp2", "allocated_usd":  25000, "received_usd":  25000 },
+    { "work_package_id": "wp3", "allocated_usd":  10000, "received_usd":  10000 },
+    { "work_package_id": "wp4", "allocated_usd": 420000, "received_usd": 230000 },
+    { "work_package_id": "wp5", "allocated_usd": 180000, "received_usd": 180000 },
+    { "work_package_id": "wp6", "allocated_usd": 310000, "received_usd": 110000 },
+    { "work_package_id": "wp7", "allocated_usd":  45000, "received_usd":   8000 },
+    { "work_package_id": "wp8", "allocated_usd": 220000, "received_usd":      0 }
+  ],
+  "documents": [
+    { "id": "d1", "title_ar": "اتفاقية تخصيص الأرض",            "type": "agreement",  "url": "#", "work_package_id": "wp1" },
+    { "id": "d2", "title_ar": "تقرير العناية الواجبة الفنية",   "type": "report",     "url": "#", "work_package_id": "wp2" },
+    { "id": "d3", "title_ar": "مذكرة تفاهم السلطة المحلية",     "type": "mou",        "url": "#", "work_package_id": "wp3" },
+    { "id": "d4", "title_ar": "عقد توريد معدات الطحن",          "type": "procurement","url": "#", "work_package_id": "wp4" },
+    { "id": "d5", "title_ar": "محضر تسليم الصوامع",             "type": "handover",   "url": "#", "work_package_id": "wp5" }
+  ]
+}
