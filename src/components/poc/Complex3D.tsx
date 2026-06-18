@@ -1,4 +1,4 @@
-import { Suspense, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Html } from "@react-three/drei";
 import type { Mesh } from "three";
@@ -119,9 +119,15 @@ export function Complex3D({
   units: Unit[];
   onSelect: (u: Unit) => void;
 }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   return (
     <div className="relative h-[480px] w-full overflow-hidden rounded-xl border border-border bg-card">
+      {!mounted ? (
+        <Fallback2D units={units} onClick={onSelect} />
+      ) : (
       <Suspense fallback={<Fallback2D units={units} onClick={onSelect} />}>
+
         <Canvas
           shadows
           camera={{ position: [8, 8, 10], fov: 45 }}
