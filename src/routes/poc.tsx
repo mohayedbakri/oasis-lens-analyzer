@@ -1,9 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { zodValidator, fallback } from "@tanstack/zod-adapter";
+import { z } from "zod";
 import { RefreshCw, Radio } from "lucide-react";
 import { PageShell, PageHeader } from "@/components/layout/PageShell";
-import { pocQueryOptions, type Unit } from "@/lib/poc-data";
+import { pocQueryOptions, type PocSnapshot, type Unit } from "@/lib/poc-data";
 import { pocConfig } from "@/lib/site";
 import { KpiStrip } from "@/components/poc/KpiStrip";
 import { FundingPanel } from "@/components/poc/FundingPanel";
@@ -12,8 +14,22 @@ import { TimelinePanel } from "@/components/poc/TimelinePanel";
 import { DocumentsPanel } from "@/components/poc/DocumentsPanel";
 import { Complex3D } from "@/components/poc/Complex3D";
 import { UnitDetailDrawer } from "@/components/poc/UnitDetailDrawer";
+import { WorkPackageFilters } from "@/components/poc/WorkPackageFilters";
+
+const pocSearchSchema = z.object({
+  q: fallback(z.string().optional(), undefined),
+  category: fallback(
+    z.enum(["agreement", "due_diligence", "mou", "procurement", "civil", "training"]).optional(),
+    undefined,
+  ),
+  status: fallback(
+    z.enum(["planned", "in_progress", "done", "blocked"]).optional(),
+    undefined,
+  ),
+});
 
 export const Route = createFileRoute("/poc")({
+  validateSearch: zodValidator(pocSearchSchema),
   head: () => ({
     meta: [
       { title: "لوحة تحكم مشروع إثبات المفهوم — البرقيق | RSIC" },
@@ -35,9 +51,54 @@ export const Route = createFileRoute("/poc")({
   component: PocPage,
 });
 
+function applyFilters(
+  data: PocSnapshot,
+  q: string,
+  category: string | undefined,
+  status: string | undefined,
+): PocSnapshot {
+  const needle = q.trim().toLowerCase();
+  const wps = data.work_packages.filter((w) => {
+    if (category && w.category !== category) return false;
+    if (status && w.status !== status) return false;
+    if (needle) {
+      const hay = `${w.name_ar} ${w.id} ${w.category} ${w.status}`.toLowerCase();
+      if (!hay.includes(needle)) return false;
+    }
+    return true;
+  });
+  const wpIds = new Set(wps.map((w) => w.id));
+  const docs = data.documents.filter((d) => {
+    if (!wpIds.has(d.work_package_id)) return false;
+    if (needle && !`${d.title_ar} ${d.type}`.toLowerCase().includes(needle)) {
+      // keep doc if its WP matched even when needle doesn't hit doc text
+      return wpIds.has(d.work_package_id);
+    }
+    return true;
+  });
+  return {
+    ...data,
+    work_packages: wps,
+    funding: data.funding.filter((f) => wpIds.has(f.work_package_id)),
+    documents: docs,
+  };
+}
+
 function PocPage() {
   const { data, refetch, isFetching, dataUpdatedAt } = useSuspenseQuery(pocQueryOptions);
+  const search = Route.useSearch();
+  const q = search.q ?? "";
+  const category = search.category ?? "all";
+  const status = search.status ?? "all";
   const [selected, setSelected] = useState<Unit | null>(null);
+
+  const filtered = useMemo(
+    () => applyFilters(data, q, search.category, search.status),
+    [data, q, search.category, search.status],
+  );
+
+  const isFiltered = !!(q || search.category || search.status);
+  const matchCount = filtered.work_packages.length;
 
   return (
     <PageShell>
@@ -82,18 +143,26 @@ function PocPage() {
             </p>
             <Complex3D units={data.units} onSelect={setSelected} />
           </div>
-          <div className="lg:col-span-2">
-            <MilestonesPanel data={data} />
+          <div className="lg:col-span-2 space-y-4">
+            <WorkPackageFilters q={q} category={category} status={status} />
+            {isFiltered && (
+              <p className="text-xs text-muted-foreground">
+                {matchCount === 0
+                  ? "لا توجد نتائج مطابقة."
+                  : `عرض ${matchCount} من ${data.work_packages.length} حزمة عمل.`}
+              </p>
+            )}
+            <MilestonesPanel data={filtered} />
           </div>
         </div>
 
-        <TimelinePanel data={data} />
+        <TimelinePanel data={filtered} />
 
         <div className="grid gap-6 lg:grid-cols-3">
           <div className="lg:col-span-2">
-            <FundingPanel data={data} />
+            <FundingPanel data={filtered} />
           </div>
-          <DocumentsPanel data={data} />
+          <DocumentsPanel data={filtered} />
         </div>
       </section>
 
