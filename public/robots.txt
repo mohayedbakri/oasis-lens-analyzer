@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://oasis-lens-analyzer.lovable.app/sitemap.xml

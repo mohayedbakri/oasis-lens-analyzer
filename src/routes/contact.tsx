@@ -57,13 +57,13 @@ function ContactPage() {
       <section className="mx-auto grid max-w-5xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-3 lg:px-8">
         <aside className="space-y-4 lg:col-span-1">
           <div>
-            <h3 className="text-sm font-bold uppercase text-muted-foreground">الهاتف</h3>
+            <h2 className="text-sm font-bold uppercase text-muted-foreground">الهاتف</h2>
             <a href={`tel:${site.phone.replace(/\s+/g, "")}`} dir="ltr" className="mt-1 block text-lg text-primary">
               {site.phone}
             </a>
           </div>
           <div>
-            <h3 className="text-sm font-bold uppercase text-muted-foreground">البريد</h3>
+            <h2 className="text-sm font-bold uppercase text-muted-foreground">البريد</h2>
             <a href={`mailto:${site.email}`} dir="ltr" className="mt-1 block text-lg text-primary">
               {site.email}
             </a>

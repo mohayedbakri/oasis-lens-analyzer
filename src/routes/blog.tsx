@@ -18,6 +18,26 @@ export const Route = createFileRoute("/blog")({
       { property: "og:url", content: "/blog" },
     ],
     links: [{ rel: "canonical", href: "/blog" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          name: "مدونة RSIC",
+          description:
+            "مقالات وتقارير وأخبار مبادرة المجمعات الصناعية الريفية المجتمعية.",
+          inLanguage: "ar",
+          blogPost: articles.map((a) => ({
+            "@type": "BlogPosting",
+            headline: a.title,
+            datePublished: a.date,
+            author: { "@type": "Person", name: a.author },
+            description: a.excerpt,
+          })),
+        }),
+      },
+    ],
   }),
   component: BlogPage,
 });

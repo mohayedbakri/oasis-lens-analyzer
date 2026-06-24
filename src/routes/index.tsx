@@ -9,7 +9,7 @@ const pillarIcons = [Factory, Zap, Truck, FlaskConical, Users, Leaf];
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: `${site.nameAr} (RSIC) — ${site.tagline}` },
+      { title: "RSIC — نهضة صناعية ريفية مجتمعية في السودان" },
       { name: "description", content: site.description },
       { property: "og:title", content: site.nameAr },
       { property: "og:description", content: site.description },

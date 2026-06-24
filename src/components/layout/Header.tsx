@@ -11,7 +11,11 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-2 font-display text-lg font-bold text-primary">
-          <img src={logoAsset.url} alt={site.nameShort} className="h-10 w-auto" />
+          <img
+            src={logoAsset.url}
+            alt="RSIC — شعار المجمعات الصناعية الريفية المجتمعية"
+            className="h-10 w-auto"
+          />
           <span className="hidden sm:inline">{site.nameShort}</span>
         </Link>
 

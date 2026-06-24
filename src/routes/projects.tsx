@@ -19,6 +19,32 @@ export const Route = createFileRoute("/projects")({
       { property: "og:url", content: "/projects" },
     ],
     links: [{ rel: "canonical", href: "/projects" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "المصانع الرائدة — RSIC",
+          description:
+            "المصانع الرائدة للنموذج الأولي في محلية البرقيق بالولاية الشمالية.",
+          itemListElement: pilotFactories.map((p) => ({
+            "@type": "ListItem",
+            position: p.rank,
+            item: {
+              "@type": "Project",
+              name: p.name,
+              alternateName: p.nameEn,
+              description: p.note,
+              location: {
+                "@type": "Place",
+                name: "محلية البرقيق، الولاية الشمالية، السودان",
+              },
+            },
+          })),
+        }),
+      },
+    ],
   }),
   component: ProjectsPage,
 });
