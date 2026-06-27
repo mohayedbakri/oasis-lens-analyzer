@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { Newspaper, X } from "lucide-react";
 import { news } from "@/lib/content";
 
@@ -24,14 +25,22 @@ export function NewsFloating() {
           </div>
           <ul className="max-h-96 divide-y divide-border overflow-y-auto">
             {news.map((n) => (
-              <li key={n.id} className="p-4 hover:bg-secondary/40">
-                <div className="text-xs text-muted-foreground" dir="ltr">
-                  {n.date}
-                </div>
-                <h4 className="mt-1 text-sm font-bold text-foreground">{n.title}</h4>
-                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                  {n.excerpt}
-                </p>
+              <li key={n.id}>
+                <Link
+                  to="/blog"
+                  search={{ tab: "news" }}
+                  hash={`news-${n.id}`}
+                  onClick={() => setOpen(false)}
+                  className="block p-4 text-right transition-colors hover:bg-secondary/40"
+                >
+                  <div className="text-xs text-muted-foreground" dir="ltr">
+                    {n.date}
+                  </div>
+                  <h4 className="mt-1 text-sm font-bold text-foreground">{n.title}</h4>
+                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                    {n.excerpt}
+                  </p>
+                </Link>
               </li>
             ))}
           </ul>

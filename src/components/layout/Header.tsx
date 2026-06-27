@@ -1,11 +1,15 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, Languages } from "lucide-react";
 import { nav, site } from "@/lib/site";
+import { useI18n } from "@/lib/i18n";
 import logoAsset from "@/assets/rsic-logo-color.png.asset.json";
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const { lang, setLang, t } = useI18n();
+
+  const toggleLang = () => setLang(lang === "ar" ? "en" : "ar");
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
@@ -28,16 +32,26 @@ export function Header() {
               activeProps={{ className: "text-primary bg-secondary" }}
               activeOptions={{ exact: item.to === "/" }}
             >
-              {item.label}
+              {t(`nav.${item.to}`)}
             </Link>
           ))}
         </nav>
 
         <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={toggleLang}
+            aria-label={t("lang.aria")}
+            title={t("lang.aria")}
+            className="inline-flex items-center gap-1 rounded-md border border-border px-2.5 py-1.5 text-xs font-bold text-foreground/80 transition-colors hover:bg-secondary hover:text-primary"
+          >
+            <Languages className="h-4 w-4" />
+            <span>{t("lang.toggle")}</span>
+          </button>
           <a
             href={`tel:${site.phone.replace(/\s+/g, "")}`}
             className="hidden items-center gap-1.5 text-sm text-muted-foreground hover:text-primary md:flex"
-            aria-label="اتصل بنا"
+            aria-label={t("cta.call")}
           >
             <Phone className="h-4 w-4" />
             <span dir="ltr">{site.phone}</span>
@@ -46,13 +60,13 @@ export function Header() {
             to="/donate"
             className="hidden rounded-md bg-accent px-4 py-2 text-sm font-bold text-accent-foreground transition-transform hover:scale-[1.02] md:inline-flex"
           >
-            {site.donateCta}
+            {t("cta.donate")}
           </Link>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
             className="grid h-10 w-10 place-items-center rounded-md border border-border lg:hidden"
-            aria-label={open ? "إغلاق القائمة" : "فتح القائمة"}
+            aria-label={open ? t("menu.close") : t("menu.open")}
             aria-expanded={open}
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -72,7 +86,7 @@ export function Header() {
                 activeProps={{ className: "text-primary bg-secondary" }}
                 activeOptions={{ exact: item.to === "/" }}
               >
-                {item.label}
+                {t(`nav.${item.to}`)}
               </Link>
             ))}
             <Link
@@ -80,7 +94,7 @@ export function Header() {
               onClick={() => setOpen(false)}
               className="mt-2 rounded-md bg-accent px-3 py-3 text-center text-base font-bold text-accent-foreground"
             >
-              {site.donateCta}
+              {t("cta.donate")}
             </Link>
           </nav>
         </div>
