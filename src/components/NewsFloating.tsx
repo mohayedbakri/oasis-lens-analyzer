@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Newspaper, X } from "lucide-react";
-import { news } from "@/lib/content";
+import { newsByLang } from "@/lib/content";
+import { useI18n } from "@/lib/i18n";
 
 export function NewsFloating() {
+  const { lang, t } = useI18n();
+  const news = newsByLang[lang];
   const [open, setOpen] = useState(false);
 
   return (
@@ -13,11 +16,11 @@ export function NewsFloating() {
           <div className="flex items-center justify-between border-b border-border bg-primary px-4 py-3 text-primary-foreground">
             <div className="flex items-center gap-2 font-display font-bold">
               <Newspaper className="h-4 w-4" />
-              آخر الأخبار
+              {t("news.floating.title")}
             </div>
             <button
               onClick={() => setOpen(false)}
-              aria-label="إغلاق"
+              aria-label={t("news.close")}
               className="rounded p-1 hover:bg-primary-foreground/10"
             >
               <X className="h-4 w-4" />
@@ -31,7 +34,7 @@ export function NewsFloating() {
                   search={{ tab: "news" }}
                   hash={`news-${n.id}`}
                   onClick={() => setOpen(false)}
-                  className="block p-4 text-right transition-colors hover:bg-secondary/40"
+                  className="block p-4 text-start transition-colors hover:bg-secondary/40"
                 >
                   <div className="text-xs text-muted-foreground" dir="ltr">
                     {n.date}
@@ -53,7 +56,7 @@ export function NewsFloating() {
         aria-expanded={open}
       >
         <Newspaper className="h-5 w-5" />
-        <span>الأخبار</span>
+        <span>{t("news.button")}</span>
         <span className="grid h-6 min-w-6 place-items-center rounded-full bg-primary px-2 text-xs text-primary-foreground">
           {news.length}
         </span>

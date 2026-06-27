@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
-import { nav, site } from "@/lib/site";
+import { nav, site, siteI18n } from "@/lib/site";
+import { useI18n } from "@/lib/i18n";
 import logoAsset from "@/assets/rsic-logo-white.png.asset.json";
 
 const socials = [
@@ -29,6 +30,7 @@ function TikTokIcon(props: React.SVGProps<SVGSVGElement>) {
 }
 
 export function Footer() {
+  const { lang, t } = useI18n();
   return (
     <footer className="grain mt-20 bg-primary text-primary-foreground">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-4 lg:px-8">
@@ -36,25 +38,25 @@ export function Footer() {
           <div className="flex items-center gap-3 font-display text-xl font-bold">
             <img
               src={logoAsset.url}
-              alt="RSIC — شعار المجمعات الصناعية الريفية المجتمعية"
+              alt="RSIC — Rural Social Industrial Complexes"
               className="h-12 w-auto"
             />
-            {site.nameAr}
+            {siteI18n.name[lang]}
           </div>
           <p className="mt-4 max-w-md text-sm leading-loose text-primary-foreground/80">
-            {site.description}
+            {siteI18n.description[lang]}
           </p>
         </div>
 
         <div>
           <h3 className="font-display text-sm font-bold uppercase tracking-wider text-accent">
-            روابط
+            {t("footer.links")}
           </h3>
           <ul className="mt-4 space-y-2 text-sm">
             {nav.map((item) => (
               <li key={item.to}>
                 <Link to={item.to} className="text-primary-foreground/80 hover:text-accent">
-                  {item.label}
+                  {t(`nav.${item.to}`)}
                 </Link>
               </li>
             ))}
@@ -63,7 +65,7 @@ export function Footer() {
 
         <div>
           <h3 className="font-display text-sm font-bold uppercase tracking-wider text-accent">
-            تواصل
+            {t("footer.contact")}
           </h3>
           <ul className="mt-4 space-y-2 text-sm text-primary-foreground/80">
             <li>
@@ -97,8 +99,8 @@ export function Footer() {
             ))}
           </div>
           <div className="flex w-full flex-col items-center justify-between gap-2 text-xs text-primary-foreground/60 sm:flex-row">
-            <span>© {new Date().getFullYear()} {site.nameShort}. جميع الحقوق محفوظة.</span>
-            <span>{site.tagline}</span>
+            <span>© {new Date().getFullYear()} {site.nameShort}. {t("footer.rights")}</span>
+            <span>{siteI18n.tagline[lang]}</span>
           </div>
         </div>
       </div>

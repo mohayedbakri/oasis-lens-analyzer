@@ -1,17 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHeader } from "@/components/layout/PageShell";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/governance")({
   head: () => ({
     meta: [
-      { title: "الحوكمة والتمويل — RSIC" },
-      {
-        name: "description",
-        content:
-          "نموذج الملكية المجتمعية والشركة المجتمعية (Community Enterprise) واستراتيجية التمويل المختلط في مبادرة RSIC.",
-      },
-      { property: "og:title", content: "الحوكمة والتمويل — RSIC" },
-      { property: "og:description", content: "ملكية مجتمعية وتمويل مختلط وحوكمة شفافة." },
+      { title: "Governance & Funding — RSIC" },
+      { name: "description", content: "The community-ownership model, Community Enterprise structure, and blended-finance strategy of the RSIC initiative." },
+      { property: "og:title", content: "Governance & Funding — RSIC" },
+      { property: "og:description", content: "Community ownership, blended finance, and transparent governance." },
       { property: "og:url", content: "/governance" },
     ],
     links: [{ rel: "canonical", href: "/governance" }],
@@ -20,30 +17,17 @@ export const Route = createFileRoute("/governance")({
 });
 
 function GovernancePage() {
+  const { t } = useI18n();
   return (
     <PageShell>
-      <PageHeader
-        eyebrow="الحوكمة والتمويل"
-        title="ملكية مجتمعية وشفافية مؤسسية"
-        description="نموذج الملكية المجتمعية هو صمام الأمان الفلسفي للمبادرة — ينقل القوة المالية من يد الأفراد إلى كيان مجتمعي مؤسسي مستدام."
-      />
+      <PageHeader eyebrow={t("gov.eyebrow")} title={t("gov.title")} description={t("gov.desc")} />
 
       <section className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="section-number text-sm">الكيان القانوني</p>
-        <h2 className="mt-3 text-2xl font-bold text-primary sm:text-3xl">
-          الشركة المجتمعية (Community Enterprise)
-        </h2>
-        <p className="mt-4 leading-loose text-foreground/85">
-          تدمج بين مبادئ الرأسمالية (الربحية والكفاءة) ومبادئ الاشتراكية (التركيز على مصلحة المجتمع
-          والعدالة في التوزيع)، لتكون أفضل وسيلة قانونية لتمكين المجتمعات من امتلاك القوة المالية بطريقة
-          مؤسسية مستدامة.
-        </p>
+        <p className="section-number text-sm">{t("gov.entity.eyebrow")}</p>
+        <h2 className="mt-3 text-2xl font-bold text-primary sm:text-3xl">{t("gov.entity.title")}</h2>
+        <p className="mt-4 leading-loose text-foreground/85">{t("gov.entity.body")}</p>
         <div className="mt-8 grid gap-4 md:grid-cols-3">
-          {[
-            "المزارعون والمنتجون المحليون",
-            "الشباب والخريجون",
-            "الجهات الشريكة والمساهمون الاجتماعيون",
-          ].map((s) => (
+          {[t("gov.member1"), t("gov.member2"), t("gov.member3")].map((s) => (
             <div key={s} className="rounded-lg border border-border bg-card p-5 text-center">
               <p className="font-semibold text-foreground">{s}</p>
             </div>
@@ -54,35 +38,26 @@ function GovernancePage() {
       <section className="border-y border-border bg-secondary/40">
         <div className="mx-auto grid max-w-5xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8">
           <article>
-            <p className="section-number text-sm">آلية الحوكمة</p>
-            <h2 className="mt-3 text-xl font-bold text-primary">مجلس مجتمعي متخصص</h2>
-            <p className="mt-3 leading-loose text-foreground/85">
-              تُدار كل مجمعات الولاية من قبل مجلس مجتمعي متخصص (Community Council) يمثل صمام الأمان
-              لحماية المبادرة من الفساد والصراع على الموارد، مع شفافية مالية كاملة وتقارير دورية للعموم.
-            </p>
+            <p className="section-number text-sm">{t("gov.council.eyebrow")}</p>
+            <h2 className="mt-3 text-xl font-bold text-primary">{t("gov.council.title")}</h2>
+            <p className="mt-3 leading-loose text-foreground/85">{t("gov.council.body")}</p>
           </article>
           <article>
-            <p className="section-number text-sm">توزيع العائد</p>
-            <h2 className="mt-3 text-xl font-bold text-primary">ثلاثة مسارات للأرباح</h2>
+            <p className="section-number text-sm">{t("gov.profits.eyebrow")}</p>
+            <h2 className="mt-3 text-xl font-bold text-primary">{t("gov.profits.title")}</h2>
             <ol className="mt-3 space-y-2 leading-loose text-foreground/85">
-              <li>1. تطوير الخدمات المجتمعية (تعليم وصحة في المحلية).</li>
-              <li>2. نمو المجمع: توسعة المصانع أو بناء مجمعات جديدة.</li>
-              <li>3. عائد عادل للأعضاء المساهمين في الكيان.</li>
+              <li>{t("gov.profits.l1")}</li>
+              <li>{t("gov.profits.l2")}</li>
+              <li>{t("gov.profits.l3")}</li>
             </ol>
           </article>
         </div>
       </section>
 
       <section className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="section-number text-sm">استراتيجية التمويل</p>
-        <h2 className="mt-3 text-2xl font-bold text-primary sm:text-3xl">
-          التمويل المختلط (Blended Finance)
-        </h2>
-        <p className="mt-4 leading-loose text-foreground/85">
-          مزيج من المساهمة المجتمعية (النفير)، والمنح، والتمويل الاجتماعي، والاستثمار المسؤول — مع إعادة
-          استثمار الأرباح داخل المجتمع وفق مبدأ "الدورة المغلقة" لتمويل التوسعات الصناعية وتحديث المعدات
-          (CapEx) ودعم الخدمات المجتمعية.
-        </p>
+        <p className="section-number text-sm">{t("gov.finance.eyebrow")}</p>
+        <h2 className="mt-3 text-2xl font-bold text-primary sm:text-3xl">{t("gov.finance.title")}</h2>
+        <p className="mt-4 leading-loose text-foreground/85">{t("gov.finance.body")}</p>
       </section>
     </PageShell>
   );

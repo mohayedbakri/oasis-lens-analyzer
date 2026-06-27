@@ -3,14 +3,15 @@ import { useState } from "react";
 import { z } from "zod";
 import { PageShell, PageHeader } from "@/components/layout/PageShell";
 import { site } from "@/lib/site";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "تواصل معنا — RSIC" },
-      { name: "description", content: "تواصل مع فريق مبادرة مجمعات التنمية الريفية الصناعية." },
-      { property: "og:title", content: "تواصل معنا — RSIC" },
-      { property: "og:description", content: "نموذج التواصل وبيانات الاتصال." },
+      { title: "Contact — RSIC" },
+      { name: "description", content: "Contact the RSIC initiative team." },
+      { property: "og:title", content: "Contact — RSIC" },
+      { property: "og:description", content: "Contact form and details." },
       { property: "og:url", content: "/contact" },
     ],
     links: [{ rel: "canonical", href: "/contact" }],
@@ -18,15 +19,16 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
-const schema = z.object({
-  name: z.string().trim().min(2, "الاسم قصير جداً").max(100),
-  email: z.string().trim().email("بريد إلكتروني غير صالح").max(255),
-  message: z.string().trim().min(10, "الرسالة قصيرة جداً").max(2000),
-});
-
 function ContactPage() {
+  const { t } = useI18n();
   const [status, setStatus] = useState<"idle" | "sent" | "error">("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const schema = z.object({
+    name: z.string().trim().min(2, t("contact.f.err.name")).max(100),
+    email: z.string().trim().email(t("contact.f.err.email")).max(255),
+    message: z.string().trim().min(10, t("contact.f.err.message")).max(2000),
+  });
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -46,35 +48,34 @@ function ContactPage() {
       return;
     }
     setErrors({});
-    // TODO: send via server function once email provider is wired
     setStatus("sent");
     e.currentTarget.reset();
   }
 
   return (
     <PageShell>
-      <PageHeader eyebrow="تواصل" title="نسعد بتواصلك معنا" />
+      <PageHeader eyebrow={t("contact.eyebrow")} title={t("contact.title")} />
       <section className="mx-auto grid max-w-5xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-3 lg:px-8">
         <aside className="space-y-4 lg:col-span-1">
           <div>
-            <h2 className="text-sm font-bold uppercase text-muted-foreground">الهاتف</h2>
+            <h2 className="text-sm font-bold uppercase text-muted-foreground">{t("contact.phone")}</h2>
             <a href={`tel:${site.phone.replace(/\s+/g, "")}`} dir="ltr" className="mt-1 block text-lg text-primary">
               {site.phone}
             </a>
           </div>
           <div>
-            <h2 className="text-sm font-bold uppercase text-muted-foreground">البريد</h2>
+            <h2 className="text-sm font-bold uppercase text-muted-foreground">{t("contact.email")}</h2>
             <a href={`mailto:${site.email}`} dir="ltr" className="mt-1 block text-lg text-primary">
               {site.email}
             </a>
           </div>
         </aside>
         <form onSubmit={handleSubmit} className="space-y-4 lg:col-span-2" noValidate>
-          <Field label="الاسم" name="name" error={errors.name} />
-          <Field label="البريد الإلكتروني" name="email" type="email" error={errors.email} dir="ltr" />
+          <Field label={t("contact.f.name")} name="name" error={errors.name} />
+          <Field label={t("contact.f.email")} name="email" type="email" error={errors.email} dir="ltr" />
           <div>
             <label htmlFor="message" className="block text-sm font-semibold text-foreground">
-              الرسالة
+              {t("contact.f.message")}
             </label>
             <textarea
               id="message"
@@ -88,11 +89,9 @@ function ContactPage() {
             type="submit"
             className="rounded-md bg-primary px-6 py-2.5 text-sm font-bold text-primary-foreground hover:bg-primary/90"
           >
-            إرسال
+            {t("contact.f.submit")}
           </button>
-          {status === "sent" && (
-            <p className="text-sm text-primary">تم استلام رسالتك، سنعود إليك قريباً.</p>
-          )}
+          {status === "sent" && <p className="text-sm text-primary">{t("contact.f.sent")}</p>}
         </form>
       </section>
     </PageShell>

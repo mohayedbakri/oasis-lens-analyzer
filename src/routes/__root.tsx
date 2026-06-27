@@ -11,7 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { site } from "../lib/site";
+import { site, siteI18n } from "../lib/site";
 import { I18nProvider } from "../lib/i18n";
 
 function NotFoundComponent() {
@@ -19,16 +19,16 @@ function NotFoundComponent() {
     <div className="flex min-h-dvh items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-primary">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">الصفحة غير موجودة</h2>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          الصفحة التي تبحث عنها غير موجودة أو تم نقلها.
+          The page you are looking for doesn't exist or has been moved.
         </p>
         <div className="mt-6">
           <Link
             to="/"
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            العودة للرئيسية
+            Back to home
           </Link>
         </div>
       </div>
@@ -47,10 +47,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     <div className="flex min-h-dvh items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          تعذّر تحميل الصفحة
+          Couldn't load this page
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          حدث خطأ غير متوقع. حاول تحديث الصفحة أو العودة للرئيسية.
+          An unexpected error occurred. Try refreshing the page or returning home.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -60,13 +60,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
             }}
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            إعادة المحاولة
+            Try again
           </button>
           <a
             href="/"
             className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
           >
-            العودة للرئيسية
+            Back to home
           </a>
         </div>
       </div>
@@ -80,9 +80,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "theme-color", content: "#1B4332" },
-      { property: "og:site_name", content: site.nameAr },
+      { property: "og:site_name", content: site.nameShort },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "ar_AR" },
+      { property: "og:locale:alternate", content: "en_US" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
@@ -101,9 +102,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "NGO",
-          name: site.nameAr,
+          name: siteI18n.name.ar,
           alternateName: site.nameShort,
-          description: site.description,
+          description: siteI18n.description.ar,
           email: site.email,
           telephone: site.phone,
         }),

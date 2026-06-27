@@ -1,20 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHeader } from "@/components/layout/PageShell";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "عن المبادرة — RSIC" },
-      {
-        name: "description",
-        content:
-          "مبادرة المجمعات الصناعية الريفية المجتمعية (RSIC): الرؤية والرسالة والإطار الفكري لنهضة صناعية يقودها المجتمع في السودان.",
-      },
-      { property: "og:title", content: "عن المبادرة — RSIC" },
-      {
-        property: "og:description",
-        content: "الرؤية والرسالة والإطار الفكري لمبادرة RSIC.",
-      },
+      { title: "About — RSIC" },
+      { name: "description", content: "About the RSIC initiative: vision, mission, and intellectual framework for a community-led industrial renaissance in Sudan." },
+      { property: "og:title", content: "About — RSIC" },
+      { property: "og:description", content: "Vision, mission, and framework of the RSIC initiative." },
       { property: "og:url", content: "/about" },
     ],
     links: [{ rel: "canonical", href: "/about" }],
@@ -23,28 +17,26 @@ export const Route = createFileRoute("/about")({
 });
 
 function AboutPage() {
+  const { t } = useI18n();
   return (
     <PageShell>
-      <PageHeader
-        eyebrow="عن المبادرة"
-        title="نهضة صناعية شاملة يقودها المجتمع"
-        description="مبادرة وطنية رائدة لإحداث تحول صناعي شامل عبر إنشاء مجمعات صناعية متكاملة في الولايات والمحليات، تُحوّل الموارد المحلية إلى منتجات ذات قيمة مضافة عالية."
-      />
+      <PageHeader eyebrow={t("about.eyebrow")} title={t("about.title")} description={t("about.desc")} />
 
       <section className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="section-number text-sm">المرتكزات</p>
-        <h2 className="mt-3 text-2xl font-bold text-primary sm:text-3xl">
-          رؤية جديدة لبناء الاقتصاد السوداني
-        </h2>
+        <p className="section-number text-sm">{t("about.pillars.eyebrow")}</p>
+        <h2 className="mt-3 text-2xl font-bold text-primary sm:text-3xl">{t("about.pillars.title")}</h2>
         <ul className="mt-6 space-y-4 text-foreground/85">
           <li className="rounded-lg border border-border bg-card p-5 leading-loose">
-            <strong className="text-primary">الاعتماد على الذات</strong> بدلاً من التبعية للاستيراد والمساعدات.
+            <strong className="text-primary">{t("about.found1.k")}</strong>
+            {t("about.found1.v")}
           </li>
           <li className="rounded-lg border border-border bg-card p-5 leading-loose">
-            <strong className="text-primary">الملكية المجتمعية</strong> بدلاً من الاحتكار الفردي أو النخبوي.
+            <strong className="text-primary">{t("about.found2.k")}</strong>
+            {t("about.found2.v")}
           </li>
           <li className="rounded-lg border border-border bg-card p-5 leading-loose">
-            <strong className="text-primary">تكامل العلم والتقنية مع الإنتاج المحلي والإرث المعرفي</strong> بدلاً من الفصل بينهما.
+            <strong className="text-primary">{t("about.found3.k")}</strong>
+            {t("about.found3.v")}
           </li>
         </ul>
       </section>
@@ -52,40 +44,27 @@ function AboutPage() {
       <section className="border-y border-border bg-secondary/50">
         <div className="mx-auto grid max-w-5xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8">
           <article>
-            <p className="section-number text-sm">الرؤية</p>
-            <h2 className="mt-3 text-2xl font-bold text-primary">سودانٌ مزدهر</h2>
-            <p className="mt-4 leading-loose text-foreground/85">
-              "سودانٌ مزدهر، قائمٌ على اقتصادٍ صناعي متين تراحمي ومسؤول ومستدام، تقوده المجتمعات المحلية بالمعرفة
-              والتكافل والإبداع، ويرتكز على الأخلاق الفضيلة وحب الخير."
-            </p>
+            <p className="section-number text-sm">{t("about.vision.eyebrow")}</p>
+            <h2 className="mt-3 text-2xl font-bold text-primary">{t("about.vision.title")}</h2>
+            <p className="mt-4 leading-loose text-foreground/85">{t("about.vision.body")}</p>
           </article>
           <article>
-            <p className="section-number text-sm">الرسالة</p>
-            <h2 className="mt-3 text-2xl font-bold text-primary">تمكين المجتمعات</h2>
-            <p className="mt-4 leading-loose text-foreground/85">
-              "تمكين المجتمعات السودانية من بناء وتشغيل مجمعات صناعية ريفية مجتمعية (RSICs) تستخدم وتطور مواردها
-              المحلية بكفاءة وتميز تنافسي عالمي، وتحقق الأمن الغذائي والاكتفاء الذاتي، وتخلق فرص عمل حقيقية
-              ونوعية، وتعيد الثقة بين المواطن والدولة من خلال نموذج اقتصادي عادل وشفاف ومستدام."
-            </p>
+            <p className="section-number text-sm">{t("about.mission.eyebrow")}</p>
+            <h2 className="mt-3 text-2xl font-bold text-primary">{t("about.mission.title")}</h2>
+            <p className="mt-4 leading-loose text-foreground/85">{t("about.mission.body")}</p>
           </article>
         </div>
       </section>
 
       <section className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="section-number text-sm">الفكرة الجوهرية</p>
-        <h2 className="mt-3 text-2xl font-bold text-primary sm:text-3xl">
-          إعادة تموضع الصناعة داخل الريف
-        </h2>
+        <p className="section-number text-sm">{t("about.core.eyebrow")}</p>
+        <h2 className="mt-3 text-2xl font-bold text-primary sm:text-3xl">{t("about.core.title")}</h2>
         <p className="mt-6 text-xl leading-loose text-foreground/90">
-          بدلاً من أن يهاجر الإنسان إلى الصناعة،
+          {t("about.core.l1")}
           <br />
-          <span className="font-bold text-accent">ننقل الصناعة إلى حيث الإنسان والأرض.</span>
+          <span className="font-bold text-accent">{t("about.core.l2")}</span>
         </p>
-        <p className="mt-6 leading-loose text-foreground/80">
-          كل مجمع صناعي ريفي هو منظومة إنتاج متكاملة تتكون من 40–50 مصنعاً متخصصاً، وخدمات مركزية مشتركة
-          (طاقة – مياه – مختبرات – لوجستيات – تدريب – صيانة)، وإدارة تشغيل احترافية موحدة، وشراكة مجتمعية تعزز
-          الملكية المحلية والمساءلة.
-        </p>
+        <p className="mt-6 leading-loose text-foreground/80">{t("about.core.body")}</p>
       </section>
     </PageShell>
   );

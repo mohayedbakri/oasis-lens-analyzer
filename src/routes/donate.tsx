@@ -1,14 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { PageShell, PageHeader } from "@/components/layout/PageShell";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/donate")({
   head: () => ({
     meta: [
-      { title: "تبرع الآن — RSIC" },
-      { name: "description", content: "ادعم مبادرة مجمعات التنمية الريفية الصناعية بتبرع آمن وشفاف." },
-      { property: "og:title", content: "تبرع الآن — RSIC" },
-      { property: "og:description", content: "تبرع آمن وشفاف عبر بوابة دفع موثوقة." },
+      { title: "Donate — RSIC" },
+      { name: "description", content: "Support the RSIC initiative with a secure, transparent donation." },
+      { property: "og:title", content: "Donate — RSIC" },
+      { property: "og:description", content: "Secure, transparent donation via a trusted payment gateway." },
       { property: "og:url", content: "/donate" },
     ],
     links: [{ rel: "canonical", href: "/donate" }],
@@ -19,6 +20,7 @@ export const Route = createFileRoute("/donate")({
 const presets = [100, 250, 500, 1000, 2500];
 
 function DonatePage() {
+  const { t } = useI18n();
   const [amount, setAmount] = useState<number>(250);
   const [custom, setCustom] = useState<string>("");
   const [recurring, setRecurring] = useState<"once" | "monthly">("once");
@@ -27,15 +29,11 @@ function DonatePage() {
 
   return (
     <PageShell>
-      <PageHeader
-        eyebrow="التبرع"
-        title="ساهم في بناء مجمع كامل"
-        description="كل مساهمة موثقة وتذهب لمشروع محدد بنتائج قابلة للقياس."
-      />
+      <PageHeader eyebrow={t("donate.eyebrow")} title={t("donate.title")} description={t("donate.desc")} />
       <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="rounded-lg border border-border bg-card p-6 shadow-sm sm:p-8">
           <fieldset>
-            <legend className="text-sm font-bold text-foreground">نوع التبرع</legend>
+            <legend className="text-sm font-bold text-foreground">{t("donate.type")}</legend>
             <div className="mt-3 inline-flex rounded-md border border-border p-1">
               {(["once", "monthly"] as const).map((k) => (
                 <button
@@ -48,14 +46,14 @@ function DonatePage() {
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
-                  {k === "once" ? "مرة واحدة" : "شهري"}
+                  {k === "once" ? t("donate.once") : t("donate.monthly")}
                 </button>
               ))}
             </div>
           </fieldset>
 
           <fieldset className="mt-6">
-            <legend className="text-sm font-bold text-foreground">المبلغ (جنيه مصري)</legend>
+            <legend className="text-sm font-bold text-foreground">{t("donate.amount")}</legend>
             <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-5">
               {presets.map((p) => (
                 <button
@@ -77,7 +75,7 @@ function DonatePage() {
             </div>
             <div className="mt-3">
               <label htmlFor="custom" className="block text-sm font-semibold text-foreground">
-                أو أدخل مبلغاً مخصصاً
+                {t("donate.custom.label")}
               </label>
               <input
                 id="custom"
@@ -92,8 +90,10 @@ function DonatePage() {
           </fieldset>
 
           <div className="mt-8 rounded-md bg-secondary p-4 text-sm text-foreground">
-            ستتبرع بمبلغ <span className="font-bold text-primary">{final || 0}</span> جنيه{" "}
-            {recurring === "monthly" ? "شهرياً" : "كدفعة واحدة"}.
+            {t("donate.summary")}{" "}
+            <span className="font-bold text-primary">{final || 0}</span>{" "}
+            {t("donate.summary.currency")}{" "}
+            {recurring === "monthly" ? t("donate.summary.monthly") : t("donate.summary.once")}.
           </div>
 
           <button
@@ -101,11 +101,9 @@ function DonatePage() {
             disabled={!final || final < 10}
             className="mt-6 w-full rounded-md bg-accent px-6 py-3.5 text-base font-bold text-accent-foreground transition-transform hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-50"
           >
-            متابعة الدفع الآمن
+            {t("donate.continue")}
           </button>
-          <p className="mt-3 text-center text-xs text-muted-foreground">
-            بوابة الدفع ستفعّل عند ربط Stripe — يتطلب موافقتك ضمن المرحلة التالية.
-          </p>
+          <p className="mt-3 text-center text-xs text-muted-foreground">{t("donate.note")}</p>
         </div>
       </section>
     </PageShell>
