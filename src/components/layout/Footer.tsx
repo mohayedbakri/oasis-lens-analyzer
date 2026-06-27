@@ -33,10 +33,12 @@ export function Footer() {
     <footer className="grain mt-20 bg-primary text-primary-foreground">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-4 lg:px-8">
         <div className="lg:col-span-2">
-          <div className="flex items-center gap-2 font-display text-xl font-bold">
-            <span className="grid h-10 w-10 place-items-center rounded-md bg-accent text-accent-foreground">
-              R
-            </span>
+          <div className="flex items-center gap-3 font-display text-xl font-bold">
+            <img
+              src={logoAsset.url}
+              alt="RSIC — شعار المجمعات الصناعية الريفية المجتمعية"
+              className="h-12 w-auto"
+            />
             {site.nameAr}
           </div>
           <p className="mt-4 max-w-md text-sm leading-loose text-primary-foreground/80">
