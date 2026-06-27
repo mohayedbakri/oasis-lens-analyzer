@@ -49,6 +49,23 @@ export const Route = createFileRoute("/blog")({
 });
 
 function BlogPage() {
+  const { tab } = Route.useSearch();
+  const navigate = Route.useNavigate();
+  const activeTab = tab ?? "articles";
+
+  useEffect(() => {
+    if (activeTab !== "news") return;
+    const hash = typeof window !== "undefined" ? window.location.hash.slice(1) : "";
+    if (!hash) return;
+    const el = document.getElementById(hash);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      el.classList.add("ring-2", "ring-accent");
+      const timeout = setTimeout(() => el.classList.remove("ring-2", "ring-accent"), 2400);
+      return () => clearTimeout(timeout);
+    }
+  }, [activeTab]);
+
   return (
     <PageShell>
       <PageHeader
@@ -57,7 +74,13 @@ function BlogPage() {
         description="محتوى المبادرة من تحليلات ودراسات وتحديثات ميدانية."
       />
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <Tabs defaultValue="articles" className="w-full">
+        <Tabs
+          value={activeTab}
+          onValueChange={(v) =>
+            navigate({ search: { tab: v as "articles" | "reports" | "news" }, replace: true })
+          }
+          className="w-full"
+        >
           <TabsList className="grid w-full max-w-xl grid-cols-3">
             <TabsTrigger value="articles">المقالات</TabsTrigger>
             <TabsTrigger value="reports">التقارير</TabsTrigger>
@@ -96,8 +119,9 @@ function BlogPage() {
             <div className="space-y-4">
               {news.map((n) => (
                 <article
+                  id={`news-${n.id}`}
                   key={n.id}
-                  className="rounded-lg border border-border bg-card p-6"
+                  className="scroll-mt-24 rounded-lg border border-border bg-card p-6 transition-shadow"
                 >
                   <div className="text-xs text-muted-foreground" dir="ltr">
                     {n.date}
