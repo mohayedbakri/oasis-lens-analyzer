@@ -1,130 +1,58 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { useMemo, useState } from "react";
-import { zodValidator, fallback } from "@tanstack/zod-adapter";
-import { z } from "zod";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell } from "@/components/layout/PageShell";
-import { catalog, inBucket, type CatalogPiece, type PriceBucketId } from "@/lib/catalog";
-import { pocQueryOptions } from "@/lib/poc-data";
 import { useI18n } from "@/lib/i18n";
-import { CatalogHero } from "@/components/donate/CatalogHero";
-import { CatalogFilters } from "@/components/donate/CatalogFilters";
-import { CatalogCard } from "@/components/donate/CatalogCard";
-import { BackDrawer } from "@/components/donate/BackDrawer";
-import { TierLadder } from "@/components/donate/TierLadder";
-
-const searchSchema = z.object({
-  q: fallback(z.string().optional(), undefined),
-  category: fallback(
-    z.enum(["equipment", "infrastructure", "training", "named"]).optional(),
-    undefined,
-  ),
-  price: fallback(z.enum(["u100", "u1k", "u10k", "any"]).optional(), undefined),
-});
-
-// Static launch target — mirrors the Nafeer reference until wired to a data source.
-const LAUNCH_DATE = new Date("2027-03-01T00:00:00Z");
-const HERO_GOAL_USD = 7_000_000;
-const HERO_BACKERS = 1861;
+import { HeartHandshake, ArrowLeft } from "lucide-react";
 
 export const Route = createFileRoute("/donate")({
-  validateSearch: zodValidator(searchSchema),
   head: () => ({
     meta: [
-      { title: "Fund a factory, one piece at a time — RSIC" },
+      { title: "ادعم المبادرة — RSIC" },
       {
         name: "description",
         content:
-          "Back a specific machine, panel, or training seat. Every dollar is tied to a real piece of the Al-Burgig pilot complex.",
+          "نشكر اهتمامك بدعم التحول الصناعي، نعمل حالياً على بوابة الدفع.",
       },
-      { property: "og:title", content: "Fund a factory, one piece at a time — RSIC" },
+      { property: "og:title", content: "ادعم المبادرة — RSIC" },
       {
         property: "og:description",
-        content: "Nafeer-style crowdfund catalog for Sudan's first community-owned industrial complex.",
+        content: "بوابة الدفع قيد التطوير — تابعنا قريباً.",
       },
       { property: "og:url", content: "/donate" },
     ],
     links: [{ rel: "canonical", href: "/donate" }],
   }),
-  loader: ({ context }) => context.queryClient.ensureQueryData(pocQueryOptions),
   component: DonatePage,
 });
 
 function DonatePage() {
-  const { t } = useI18n();
-  const { data } = useSuspenseQuery(pocQueryOptions);
-  const search = Route.useSearch();
-  const navigate = Route.useNavigate();
-
-  const [selected, setSelected] = useState<CatalogPiece | null>(null);
-  const [searchInput, setSearchInput] = useState<string>(search.q ?? "");
-
-  // Debounce search into URL
-  const setSearch = (v: string) => {
-    setSearchInput(v);
-    navigate({
-      search: (prev: Record<string, unknown>) => ({ ...prev, q: v || undefined }),
-      replace: true,
-    });
-  };
-
-  const raised = data.funding.reduce((s, f) => s + f.received_usd, 0);
-  const daysLeft = Math.max(
-    0,
-    Math.ceil((LAUNCH_DATE.getTime() - Date.now()) / (1000 * 60 * 60 * 24)),
-  );
-
-  const q = (search.q ?? "").trim().toLowerCase();
-  const category = (search.category ?? "all") as "all" | CatalogPiece["category"];
-  const price = (search.price ?? "any") as PriceBucketId;
-
-  const filtered = useMemo(() => {
-    return catalog.filter((p) => {
-      if (category !== "all" && p.category !== category) return false;
-      if (!inBucket(p.price_usd, price)) return false;
-      if (q) {
-        const hay = `${p.name.ar} ${p.name.en} ${p.code.ar} ${p.code.en} ${p.quote.ar} ${p.quote.en}`.toLowerCase();
-        if (!hay.includes(q)) return false;
-      }
-      return true;
-    });
-  }, [q, category, price]);
+  const { lang, t } = useI18n();
 
   return (
     <PageShell>
-      <CatalogHero
-        stats={{
-          raised,
-          goal: HERO_GOAL_USD,
-          backers: HERO_BACKERS,
-          daysLeft,
-        }}
-      />
+      <section
+        className="mx-auto flex max-w-3xl flex-col items-center justify-center px-4 py-24 text-center sm:px-6 lg:px-8"
+        dir={lang === "ar" ? "rtl" : "ltr"}
+      >
+        <div className="rounded-full bg-primary/10 p-5">
+          <HeartHandshake className="h-12 w-12 text-primary" />
+        </div>
 
-      <CatalogFilters
-        q={searchInput}
-        category={category}
-        price={price}
-        onSearch={setSearch}
-      />
+        <h1 className="mt-8 font-display text-4xl font-bold text-foreground sm:text-5xl">
+          {t("donate.comingSoon.title")}
+        </h1>
 
-      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        {filtered.length === 0 ? (
-          <p className="rounded-lg border border-dashed border-border bg-card p-10 text-center text-muted-foreground">
-            {t("donate.empty")}
-          </p>
-        ) : (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((p) => (
-              <CatalogCard key={p.id} piece={p} onBack={setSelected} />
-            ))}
-          </div>
-        )}
+        <p className="mt-5 text-lg leading-relaxed text-muted-foreground sm:text-xl">
+          {t("donate.comingSoon.body")}
+        </p>
+
+        <Link
+          to="/"
+          className="mt-10 inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 text-base font-bold text-primary-foreground transition-transform hover:scale-[1.02]"
+        >
+          <ArrowLeft className="h-5 w-5" />
+          {t("common.backToHome")}
+        </Link>
       </section>
-
-      <TierLadder />
-
-      <BackDrawer piece={selected} onOpenChange={(o) => !o && setSelected(null)} />
     </PageShell>
   );
 }
