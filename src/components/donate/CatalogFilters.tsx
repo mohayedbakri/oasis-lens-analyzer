@@ -47,7 +47,7 @@ export function CatalogFilters({
             return (
               <Link
                 key={c.id}
-                to="/donate"
+                from="/donate" to="/donate"
                 search={(prev) => ({
                   ...prev,
                   category: c.id === "all" ? undefined : c.id,
@@ -73,7 +73,7 @@ export function CatalogFilters({
             return (
               <Link
                 key={p.id}
-                to="/donate"
+                from="/donate" to="/donate"
                 search={(prev) => ({
                   ...prev,
                   price: p.id === "any" ? undefined : p.id,
