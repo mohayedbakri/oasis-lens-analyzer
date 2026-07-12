@@ -63,7 +63,7 @@ function DonatePage() {
   const setSearch = (v: string) => {
     setSearchInput(v);
     navigate({
-      search: (prev) => ({ ...prev, q: v || undefined }),
+      search: (prev: Record<string, unknown>) => ({ ...prev, q: v || undefined }),
       replace: true,
     });
   };
