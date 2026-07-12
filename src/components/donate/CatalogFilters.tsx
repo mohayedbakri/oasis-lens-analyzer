@@ -48,7 +48,7 @@ export function CatalogFilters({
               <Link
                 key={c.id}
                 from="/donate" to="/donate"
-                search={(prev) => ({
+                search={(prev: Record<string, unknown>) => ({
                   ...prev,
                   category: c.id === "all" ? undefined : c.id,
                 })}
@@ -74,7 +74,7 @@ export function CatalogFilters({
               <Link
                 key={p.id}
                 from="/donate" to="/donate"
-                search={(prev) => ({
+                search={(prev: Record<string, unknown>) => ({
                   ...prev,
                   price: p.id === "any" ? undefined : p.id,
                 })}
