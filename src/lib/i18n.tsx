@@ -218,21 +218,95 @@ const dict: Dict = {
   "contact.f.err.email": { ar: "بريد إلكتروني غير صالح", en: "Invalid email address" },
   "contact.f.err.message": { ar: "الرسالة قصيرة جداً", en: "Message is too short" },
 
-  // Donate
-  "donate.eyebrow": { ar: "التبرع", en: "Donate" },
-  "donate.title": { ar: "ساهم في بناء مجمع كامل", en: "Help fund an entire complex" },
-  "donate.desc": { ar: "كل مساهمة موثقة وتذهب لمشروع محدد بنتائج قابلة للقياس.", en: "Every contribution is documented and goes to a specific project with measurable results." },
-  "donate.type": { ar: "نوع التبرع", en: "Donation type" },
+  // Donate — hero
+  "donate.hero.eyebrow": { ar: "نفير عالمي", en: "Nafeer Global" },
+  "donate.hero.title": {
+    ar: "موّل مصنعاً... قطعةً بقطعة",
+    en: "Fund a factory, one piece at a time",
+  },
+  "donate.hero.lede": {
+    ar: "كل دولار مرتبط بآلة محددة. كل آلة تُشغّل خطاً إنتاجياً. كل خط يُنتج منتجات حقيقية للحياة.",
+    en: "Every dollar is tied to a specific machine. Every machine powers a production line. Every line brings real products to life.",
+  },
+  "donate.hero.raisedOf": { ar: "من هدف", en: "raised of" },
+  "donate.hero.backers": { ar: "مساهم حول العالم", en: "backers worldwide" },
+  "donate.hero.daysLeft": { ar: "يوماً للإطلاق", en: "days left to launch" },
+
+  // Donate — filters
+  "donate.filter.show": { ar: "اعرض:", en: "Show:" },
+  "donate.filter.under": { ar: "بأقل من:", en: "Under:" },
+  "donate.filter.all": { ar: "كل العناصر", en: "All items" },
+  "donate.filter.equipment": { ar: "معدات", en: "Equipment" },
+  "donate.filter.infrastructure": { ar: "بنية تحتية", en: "Infrastructure" },
+  "donate.filter.training": { ar: "تدريب", en: "Training" },
+  "donate.filter.named": { ar: "شراكات باسمك", en: "Named partnerships" },
+  "donate.filter.search": { ar: "ابحث في العناصر...", en: "Search items..." },
+  "donate.price.u100": { ar: "أقل من $100", en: "$100" },
+  "donate.price.u1k": { ar: "أقل من $1K", en: "$1K" },
+  "donate.price.u10k": { ar: "أقل من $10K", en: "$10K" },
+  "donate.price.any": { ar: "أي مبلغ", en: "Any" },
+
+  // Donate — card / drawer
+  "donate.back": { ar: "ادعم هذا العنصر", en: "Back this" },
+  "donate.empty": {
+    ar: "لا توجد عناصر مطابقة لهذه الفلاتر.",
+    en: "No items match these filters.",
+  },
+  "donate.type": { ar: "نوع الدعم", en: "Support type" },
   "donate.once": { ar: "مرة واحدة", en: "One-time" },
   "donate.monthly": { ar: "شهري", en: "Monthly" },
-  "donate.amount": { ar: "المبلغ (جنيه مصري)", en: "Amount (EGP)" },
-  "donate.custom.label": { ar: "أو أدخل مبلغاً مخصصاً", en: "Or enter a custom amount" },
-  "donate.summary": { ar: "ستتبرع بمبلغ", en: "You'll donate" },
-  "donate.summary.currency": { ar: "جنيه", en: "EGP" },
+  "donate.drawer.perUnit": { ar: "للوحدة", en: "per unit" },
+  "donate.drawer.units": { ar: "عدد الوحدات", en: "Number of units" },
+  "donate.custom.label": { ar: "أو أدخل مبلغاً مخصصاً بالدولار", en: "Or enter a custom amount in USD" },
+  "donate.summary": { ar: "ستدعم بمبلغ", en: "You'll back with" },
   "donate.summary.monthly": { ar: "شهرياً", en: "monthly" },
-  "donate.summary.once": { ar: "كدفعة واحدة", en: "as a one-time payment" },
+  "donate.summary.once": { ar: "كدفعة واحدة", en: "as a one-time contribution" },
   "donate.continue": { ar: "متابعة الدفع الآمن", en: "Continue to secure payment" },
-  "donate.note": { ar: "بوابة الدفع ستفعّل عند ربط Stripe — يتطلب موافقتك ضمن المرحلة التالية.", en: "Payment gateway activates once Stripe is connected — requires your approval in the next step." },
+  "donate.note": {
+    ar: "بوابة الدفع ستفعّل عند ربط Stripe — يتطلب موافقتك ضمن المرحلة التالية.",
+    en: "Payment gateway activates once Stripe is connected — requires your approval in the next step.",
+  },
+
+  // Donate — tier ladder
+  "donate.tier.eyebrow": { ar: "مستوى النفير", en: "Your Nafeer tier" },
+  "donate.tier.title": {
+    ar: "ما يمنحك إياه مستواك في الدعم",
+    en: "What your level of backing earns you in return",
+  },
+  "donate.tier.lede": {
+    ar: "كل مستوى يقابله تقدير دائم متناسب مع حجم المساهمة.",
+    en: "Each level earns lasting recognition proportional to the contribution.",
+  },
+  "donate.tier.t1.name": { ar: "مساهم نفير", en: "Nafeer Contributor" },
+  "donate.tier.t1.desc": {
+    ar: "أنت واحد من آلاف. مساهمتك طوبة أو قالب أو أداة — تجتمع مع الآلاف لتصبح مصنعاً.",
+    en: "You are one of thousands. Your contribution is a brick, a mold, a tool. Combined with thousands of others, it becomes a factory.",
+  },
+  "donate.tier.t1.reward": { ar: "اسم في السجل", en: "Named in registry" },
+  "donate.tier.t2.name": { ar: "صانع", en: "Maker" },
+  "donate.tier.t2.desc": {
+    ar: "موّلت مكوّناً بعينه في آلة. تصلك صورته وهو مُركّب، وتستلم أول منتج صنعه.",
+    en: "You funded a specific machine component. A photo of it installed will be sent to you. You receive the first product it makes.",
+  },
+  "donate.tier.t2.reward": { ar: "صورة + أول منتج", en: "Photo + first product" },
+  "donate.tier.t3.name": { ar: "بانٍ", en: "Builder" },
+  "donate.tier.t3.desc": {
+    ar: "موّلت وحدة إنتاجية. اسمك على جدار المصنع، وتحديثات ربع سنوية عمّا تنتجه وحدتك.",
+    en: "You funded a production module. Your name is on the factory wall. Quarterly updates on what your module is producing and earning.",
+  },
+  "donate.tier.t3.reward": { ar: "لوحة + تحديثات", en: "Wall plaque + updates" },
+  "donate.tier.t4.name": { ar: "شريك مصنع", en: "Factory partner" },
+  "donate.tier.t4.desc": {
+    ar: "شاركت في تأسيس مصنع. تقرير أثر سنوي: إنتاج مصنعك، فرص العمل، أثره على المجتمع.",
+    en: "You co-founded a factory. Annual impact report: your factory's output, jobs created, community benefit.",
+  },
+  "donate.tier.t4.reward": { ar: "تقرير أثر سنوي", en: "Annual impact report" },
+  "donate.tier.t5.name": { ar: "مؤسس RSIC", en: "RSIC founder" },
+  "donate.tier.t5.desc": {
+    ar: "شريك مؤسس لمجمع البرقيق. مقعد في مجلس المبادرة الاستشاري. اسمك على مدخل المجمع. إرث دائم.",
+    en: "You are a founding partner of Al-Burgig. Seat on the Programme Advisory Board. Your name at the complex entrance. Permanent legacy.",
+  },
+  "donate.tier.t5.reward": { ar: "مقعد استشاري", en: "Advisory board seat" },
 
   // PoC
   "poc.eyebrow": { ar: "شفافية لحظية", en: "Live transparency" },

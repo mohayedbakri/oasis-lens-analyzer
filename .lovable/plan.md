@@ -1,36 +1,116 @@
-## Goal
+## Redesign `/donate` as a Nafeer-style crowdfund catalog
 
-Add the uploaded aerial image of the RSIC complex as a wide banner at the top of every page (just like the reference site puts a full-width photo at the top of its article).
+Match the uploaded Nafeer Global reference: a dashboard header with global funding stats, filter chips, a dense grid of granular fundable pieces (each with a realistic photo, price, short story quote, and "Back this" CTA), plus a backer-tier ladder below.
 
-## Approach
+### Page layout
 
-1. **Upload the image as a CDN asset** via `lovable-assets`:
-   - `src/assets/rsic-banner.jpg.asset.json` (from `/mnt/user-uploads/image.png`, saved as `rsic-banner.jpg`).
+```
+┌─────────────────────────────────────────────────────────────┐
+│  Hero: "Fund a factory, one piece at a time"                │
+│  $raised of $goal · backers · days-left                     │
+│  Secondary stats: factories · jobs · products · people      │
+├─────────────────────────────────────────────────────────────┤
+│  Filter chips:  All | Equipment | Infrastructure |          │
+│                 Training | Named partnership                │
+│  Price chips:   Under $100 | <$1K | <$10K | Any             │
+│  Search input (right-aligned)                               │
+├─────────────────────────────────────────────────────────────┤
+│  Catalog grid (1 / 2 / 3 columns responsive)                │
+│  ┌──────────────┐  each card:                               │
+│  │ [photo 4:3]  │   • WP code · line name (e.g. "A01 · Mill")│
+│  │              │   • Icon + English piece name              │
+│  │ A01 · Mill   │   • Arabic name (secondary line)           │
+│  │ Roller seg.  │   • Price (large)                          │
+│  │ قطعة أسطوانة │   • Story quote (2–3 lines, italic)        │
+│  │ $800         │   • [Back this ↗] button                   │
+│  │ "This …"     │                                            │
+│  │ [Back this↗] │                                            │
+│  └──────────────┘                                            │
+├─────────────────────────────────────────────────────────────┤
+│  "Your Nafeer tier" — 5-column ladder                       │
+│  $10–500 Contributor · $500–5K Maker · $5K–25K Builder      │
+│  · $25K–100K Factory partner · $100K+ RSIC founder          │
+└─────────────────────────────────────────────────────────────┘
+```
 
-2. **Extend `PageHeader`** in `src/components/layout/PageShell.tsx` to optionally render a full-width banner image above the title block:
-   - New optional prop `banner?: string` (image URL).
-   - When provided, render a responsive `<img>` (full width, ~220–280px tall on desktop, ~140px on mobile, `object-cover`) above the existing eyebrow/title/description block.
-   - Keep current behavior unchanged when `banner` is not passed.
-   - Add proper `alt` text (bilingual via `useI18n`, e.g. "RSIC pilot complex — Al-Burgig" / "مجمع برقيق النموذجي").
+Clicking "Back this" opens a Sheet drawer with amount presets, custom amount, once/monthly toggle (existing donate form logic), pre-filled with the piece price and its parent work package id.
 
-3. **Wire the banner into every inner page** that uses `PageHeader`:
-   - `src/routes/about.tsx`
-   - `src/routes/projects.tsx`
-   - `src/routes/impact.tsx`
-   - `src/routes/governance.tsx`
-   - `src/routes/blog.tsx`
-   - `src/routes/contact.tsx`
-   - `src/routes/donate.tsx`
-   - `src/routes/poc.tsx` (if it uses PageHeader; otherwise add the banner directly above its page content)
+### Catalog data model
 
-4. **Homepage (`/`)**: it already has a full hero section, so adding the banner above the hero would be redundant. Two options:
-   - **A (default)**: leave the homepage hero as-is, no banner.
-   - **B**: also add the banner above the homepage hero.
+New file `src/lib/catalog.ts` exporting an array of `CatalogPiece`:
 
-   I'll go with **A** unless you say otherwise.
+```ts
+type CatalogPiece = {
+  id: string;                      // "wp4-roller"
+  work_package_id: string;         // links to PoC data
+  code: string;                    // "A01 · Wheat & flour mill"
+  name: { ar: string; en: string };
+  price_usd: number;
+  category: "equipment" | "infrastructure" | "training" | "named";
+  quote: { ar: string; en: string };
+  image: { url: string; alt: string };
+};
+```
 
-## Notes
+Seed with ~15 pieces derived from the 8 PoC work packages (examples):
+- **wp4 mill** → Flour mill roller segment $800; Sieve mesh $250
+- **wp5 silo** → Silo panel section $600; Silo ladder & rail $300
+- **wp6 packaging** → Heat-seal film roll $75; Heat sealer jaw set $400; Bag conveyor motor $1,200
+- **wp8 solar** → Solar panel 400W $1,200; Battery module $2,500
+- **wp7 training** → 10-seat training room $2,000; Trainee toolkit $150
+- **civil** → Factory floor 1 m² $25; Factory entrance door $300; 50 community bricks $50
+- **named** → Named factory wing $25,000; Central service co-founder $50,000
 
-- Image is served from the Lovable CDN — no repo bloat.
-- Uses one shared `PageHeader` change so future pages get the banner for free by passing the `banner` prop.
-- No business-logic or content changes; presentation only.
+Categories map to the filter chips. Prices bucket into the price chips.
+
+### Global KPIs (top strip)
+
+Computed from PoC funding data + catalog:
+- **raised** = sum of `funding.received_usd`
+- **goal** = sum of `funding.allocated_usd`
+- **backers** = static placeholder now, later from a `backers` field
+- **days_left** = countdown to a launch date in `site.ts`
+- Secondary row (factories / jobs / products / people) from `site.ts` stats.
+
+### Components (new)
+
+- `src/components/donate/CatalogHero.tsx` — title, big raised/goal counter, progress bar, backer + days stats, secondary stat row.
+- `src/components/donate/CatalogFilters.tsx` — chip row for category + price bucket + search, all bound to URL search params via zod (matching PoC pattern).
+- `src/components/donate/CatalogCard.tsx` — image, code tag, EN + AR names, price, italic quote, Back-this button.
+- `src/components/donate/BackDrawer.tsx` — shadcn Sheet wrapping the existing preset/monthly/custom form, pre-filled with `piece.price_usd`.
+- `src/components/donate/TierLadder.tsx` — 5 columns, tier name, range, description, reward line.
+
+### Route rewrite
+
+`src/routes/donate.tsx`:
+- `validateSearch` with zod for `q | category | price`.
+- Loader `ensureQueryData(pocQueryOptions)` so global KPIs stay live.
+- Composition: `CatalogHero` → `CatalogFilters` → filtered grid of `CatalogCard` → `TierLadder`.
+- Uses `PageShell` + `PageHeader` for banner consistency; hero replaces the old form.
+
+### Realistic imagery
+
+Generate 15 photorealistic images at 1024×768 via `imagegen--generate_image` (standard tier), saved to `src/assets/catalog/*.jpg` and uploaded through `lovable-assets` to CDN pointers. Prompts describe: industrial context, Sudanese rural setting where relevant, natural daylight, no text overlay. Examples:
+- Flour mill roller segment: "close-up photo of a stainless-steel industrial roller mill segment on a factory workbench, natural window light, photorealistic"
+- Silo: "row of galvanized grain storage silos under clear blue sky, small industrial complex, wide shot"
+- Solar panel: "single 400W photovoltaic panel installed in an arid rural setting, sunset light"
+- Community bricks: "stack of red community-made clay bricks on a pallet at a rural brickyard"
+- Named factory wing: "modern factory wing exterior with clean white walls and a small commemorative plaque near the entrance"
+- Training room: "training classroom with 10 workstations, adults learning industrial operations, daylight"
+- Factory floor: "polished concrete factory floor with light industrial ceiling, one-point perspective"
+(Full list stored inline in the plan-execution step, one prompt per piece.)
+
+### i18n
+
+Extend `src/lib/i18n.tsx` with keys under `donate.*` for hero copy, chip labels ("All / Equipment / Infrastructure / Training / Named partnership"), price buckets, "Back this", drawer labels, tier ladder titles, and CTA fallbacks. Piece names, codes, and quotes live in `catalog.ts` as per-language objects.
+
+### RTL
+
+Cards use `dir="rtl"` for Arabic block, chip row uses `start/end` utilities. Numbers stay LTR with `dir="ltr"`. Existing header language toggle drives everything.
+
+### Out of scope
+
+- No payments integration — "Back this" still hands off to the existing (placeholder) continue flow inside the drawer.
+- No backend for real backer counts; static placeholder now with a clear TODO.
+- PoC dashboard, header, footer, other routes untouched.
+- Business logic unchanged; this is a presentation-layer rebuild plus a new catalog data file.

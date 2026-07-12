@@ -1,111 +1,130 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { PageShell, PageHeader } from "@/components/layout/PageShell";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { useMemo, useState } from "react";
+import { zodValidator, fallback } from "@tanstack/zod-adapter";
+import { z } from "zod";
+import { PageShell } from "@/components/layout/PageShell";
+import { catalog, inBucket, type CatalogPiece, type PriceBucketId } from "@/lib/catalog";
+import { pocQueryOptions } from "@/lib/poc-data";
 import { useI18n } from "@/lib/i18n";
+import { CatalogHero } from "@/components/donate/CatalogHero";
+import { CatalogFilters } from "@/components/donate/CatalogFilters";
+import { CatalogCard } from "@/components/donate/CatalogCard";
+import { BackDrawer } from "@/components/donate/BackDrawer";
+import { TierLadder } from "@/components/donate/TierLadder";
+
+const searchSchema = z.object({
+  q: fallback(z.string().optional(), undefined),
+  category: fallback(
+    z.enum(["equipment", "infrastructure", "training", "named"]).optional(),
+    undefined,
+  ),
+  price: fallback(z.enum(["u100", "u1k", "u10k", "any"]).optional(), undefined),
+});
+
+// Static launch target — mirrors the Nafeer reference until wired to a data source.
+const LAUNCH_DATE = new Date("2027-03-01T00:00:00Z");
+const HERO_GOAL_USD = 7_000_000;
+const HERO_BACKERS = 1861;
 
 export const Route = createFileRoute("/donate")({
+  validateSearch: zodValidator(searchSchema),
   head: () => ({
     meta: [
-      { title: "Donate — RSIC" },
-      { name: "description", content: "Support the RSIC initiative with a secure, transparent donation." },
-      { property: "og:title", content: "Donate — RSIC" },
-      { property: "og:description", content: "Secure, transparent donation via a trusted payment gateway." },
+      { title: "Fund a factory, one piece at a time — RSIC" },
+      {
+        name: "description",
+        content:
+          "Back a specific machine, panel, or training seat. Every dollar is tied to a real piece of the Al-Burgig pilot complex.",
+      },
+      { property: "og:title", content: "Fund a factory, one piece at a time — RSIC" },
+      {
+        property: "og:description",
+        content: "Nafeer-style crowdfund catalog for Sudan's first community-owned industrial complex.",
+      },
       { property: "og:url", content: "/donate" },
     ],
     links: [{ rel: "canonical", href: "/donate" }],
   }),
+  loader: ({ context }) => context.queryClient.ensureQueryData(pocQueryOptions),
   component: DonatePage,
 });
 
-const presets = [100, 250, 500, 1000, 2500];
-
 function DonatePage() {
   const { t } = useI18n();
-  const [amount, setAmount] = useState<number>(250);
-  const [custom, setCustom] = useState<string>("");
-  const [recurring, setRecurring] = useState<"once" | "monthly">("once");
+  const { data } = useSuspenseQuery(pocQueryOptions);
+  const search = Route.useSearch();
+  const navigate = Route.useNavigate();
 
-  const final = custom ? Number(custom) : amount;
+  const [selected, setSelected] = useState<CatalogPiece | null>(null);
+  const [searchInput, setSearchInput] = useState<string>(search.q ?? "");
+
+  // Debounce search into URL
+  const setSearch = (v: string) => {
+    setSearchInput(v);
+    navigate({
+      search: (prev: Record<string, unknown>) => ({ ...prev, q: v || undefined }),
+      replace: true,
+    });
+  };
+
+  const raised = data.funding.reduce((s, f) => s + f.received_usd, 0);
+  const daysLeft = Math.max(
+    0,
+    Math.ceil((LAUNCH_DATE.getTime() - Date.now()) / (1000 * 60 * 60 * 24)),
+  );
+
+  const q = (search.q ?? "").trim().toLowerCase();
+  const category = (search.category ?? "all") as "all" | CatalogPiece["category"];
+  const price = (search.price ?? "any") as PriceBucketId;
+
+  const filtered = useMemo(() => {
+    return catalog.filter((p) => {
+      if (category !== "all" && p.category !== category) return false;
+      if (!inBucket(p.price_usd, price)) return false;
+      if (q) {
+        const hay = `${p.name.ar} ${p.name.en} ${p.code.ar} ${p.code.en} ${p.quote.ar} ${p.quote.en}`.toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    });
+  }, [q, category, price]);
 
   return (
     <PageShell>
-      <PageHeader eyebrow={t("donate.eyebrow")} title={t("donate.title")} description={t("donate.desc")} />
-      <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="rounded-lg border border-border bg-card p-6 shadow-sm sm:p-8">
-          <fieldset>
-            <legend className="text-sm font-bold text-foreground">{t("donate.type")}</legend>
-            <div className="mt-3 inline-flex rounded-md border border-border p-1">
-              {(["once", "monthly"] as const).map((k) => (
-                <button
-                  key={k}
-                  type="button"
-                  onClick={() => setRecurring(k)}
-                  className={`rounded px-4 py-2 text-sm font-semibold transition-colors ${
-                    recurring === k
-                      ? "bg-primary text-primary-foreground"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {k === "once" ? t("donate.once") : t("donate.monthly")}
-                </button>
-              ))}
-            </div>
-          </fieldset>
+      <CatalogHero
+        stats={{
+          raised,
+          goal: HERO_GOAL_USD,
+          backers: HERO_BACKERS,
+          daysLeft,
+        }}
+      />
 
-          <fieldset className="mt-6">
-            <legend className="text-sm font-bold text-foreground">{t("donate.amount")}</legend>
-            <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-5">
-              {presets.map((p) => (
-                <button
-                  key={p}
-                  type="button"
-                  onClick={() => {
-                    setAmount(p);
-                    setCustom("");
-                  }}
-                  className={`rounded-md border px-3 py-3 text-base font-bold transition-colors ${
-                    amount === p && !custom
-                      ? "border-accent bg-accent text-accent-foreground"
-                      : "border-border bg-background text-foreground hover:border-accent"
-                  }`}
-                >
-                  {p}
-                </button>
-              ))}
-            </div>
-            <div className="mt-3">
-              <label htmlFor="custom" className="block text-sm font-semibold text-foreground">
-                {t("donate.custom.label")}
-              </label>
-              <input
-                id="custom"
-                type="number"
-                min={10}
-                value={custom}
-                onChange={(e) => setCustom(e.target.value)}
-                placeholder="0"
-                className="mt-1 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:border-ring focus:outline-none"
-              />
-            </div>
-          </fieldset>
+      <CatalogFilters
+        q={searchInput}
+        category={category}
+        price={price}
+        onSearch={setSearch}
+      />
 
-          <div className="mt-8 rounded-md bg-secondary p-4 text-sm text-foreground">
-            {t("donate.summary")}{" "}
-            <span className="font-bold text-primary">{final || 0}</span>{" "}
-            {t("donate.summary.currency")}{" "}
-            {recurring === "monthly" ? t("donate.summary.monthly") : t("donate.summary.once")}.
+      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+        {filtered.length === 0 ? (
+          <p className="rounded-lg border border-dashed border-border bg-card p-10 text-center text-muted-foreground">
+            {t("donate.empty")}
+          </p>
+        ) : (
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {filtered.map((p) => (
+              <CatalogCard key={p.id} piece={p} onBack={setSelected} />
+            ))}
           </div>
-
-          <button
-            type="button"
-            disabled={!final || final < 10}
-            className="mt-6 w-full rounded-md bg-accent px-6 py-3.5 text-base font-bold text-accent-foreground transition-transform hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            {t("donate.continue")}
-          </button>
-          <p className="mt-3 text-center text-xs text-muted-foreground">{t("donate.note")}</p>
-        </div>
+        )}
       </section>
+
+      <TierLadder />
+
+      <BackDrawer piece={selected} onOpenChange={(o) => !o && setSelected(null)} />
     </PageShell>
   );
 }
