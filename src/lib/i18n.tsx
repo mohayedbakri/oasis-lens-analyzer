@@ -308,6 +308,13 @@ const dict: Dict = {
   },
   "donate.tier.t5.reward": { ar: "مقعد استشاري", en: "Advisory board seat" },
 
+  // Donate — coming soon
+  "donate.comingSoon.title": { ar: "قريباً", en: "Coming Soon" },
+  "donate.comingSoon.body": {
+    ar: "نشكر اهتمامك بدعم التحول الصناعي، نعمل حالياً على بوابة الدفع.",
+    en: "Thank you for your interest in supporting industrial transformation. We are currently working on the payment gateway.",
+  },
+
   // PoC
   "poc.eyebrow": { ar: "شفافية لحظية", en: "Live transparency" },
   "poc.title": { ar: "لوحة تحكم مشروع إثبات المفهوم", en: "Proof-of-Concept Dashboard" },
