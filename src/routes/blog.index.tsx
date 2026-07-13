@@ -81,8 +81,21 @@ function BlogPage() {
                   key={a.id}
                   to="/blog/articles/$id"
                   params={{ id: a.id }}
-                  className="group block rounded-lg border border-border bg-card p-6 transition-all hover:border-accent hover:shadow-lg"
+                  className="group block overflow-hidden rounded-lg border border-border bg-card transition-all hover:border-accent hover:shadow-lg"
                 >
+                  {postImages[a.id] && (
+                    <div className="aspect-[16/9] w-full overflow-hidden bg-muted">
+                      <img
+                        src={postImages[a.id]}
+                        alt={a.title}
+                        loading="lazy"
+                        width={1280}
+                        height={720}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                  )}
+                  <div className="p-6">
                   <div className="flex items-center gap-3 text-xs text-muted-foreground">
                     <span className="inline-flex items-center gap-1" dir="ltr">
                       <Calendar className="h-3 w-3" />
