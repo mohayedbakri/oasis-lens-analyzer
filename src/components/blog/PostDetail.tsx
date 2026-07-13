@@ -6,6 +6,7 @@ import { useI18n } from "@/lib/i18n";
 import { MetricChips } from "@/components/blog/MetricChips";
 import { CommentsSection } from "@/components/blog/CommentsSection";
 import { useMetrics } from "@/lib/metrics";
+import { postImages } from "@/lib/content";
 
 type Props = {
   kind: "news" | "articles";
