@@ -1,9 +1,25 @@
-# Pin Related Sidebar to the Left
+# Add gradient overlay to page banners
 
-In `src/components/blog/PostDetail.tsx`, the article body and the "Latest News/Articles" sidebar currently sit in a 3-column grid where the sidebar naturally lands on the right in LTR and on the right in RTL.
+## Goal
+Add a dark-to-teal gradient layer on top of the page banner image for all internal pages, with opacity ramping from 40% on the dark side to 60% on the teal side. The homepage banner remains unchanged.
 
-## Change
-- Reorder the grid so the sidebar is always on the **left** regardless of language direction.
-- Implementation: give the sidebar `lg:order-first` (or swap to `lg:col-start-1` + move article to `lg:col-start-2 lg:col-span-2`) so it renders in the left column in both LTR and RTL layouts.
-- Keep the sticky positioning, teal styling, and dynamic heading (Latest News / Latest Articles) unchanged.
-- No other files touched.
+## Changes
+
+### 1. `src/components/layout/PageShell.tsx`
+- Extend `PageBanner` with an optional `overlay` prop (default `false`).
+- When `overlay={true}`, render an absolutely positioned div over the `<img>` using a left-to-right `linear-gradient`:
+  - Left stop: `rgba(0,0,0,0.4)` (dark at 40% opacity)
+  - Right stop: `color-mix(in srgb, var(--primary) 60%, transparent)` (teal at 60% opacity)
+- Keep the existing image and alt text untouched.
+
+### 2. Internal route pages
+- Update routes that currently render `<PageBanner />` or `<PageHeader banner />` to pass the overlay flag, e.g.:
+  - `/blog/articles/$id`
+  - `/blog/news/$id`
+  - `/about`, `/projects`, `/impact`, `/governance`, `/blog`, `/poc`, `/contact`, `/donate`, `/support`
+- Leave the homepage (`/`) banner as-is.
+
+## Notes
+- The gradient direction will follow the reference image: dark on the left, teal on the right.
+- Uses existing CSS tokens (`--primary`) so it stays consistent with the RSIC teal brand color.
+- No new dependencies required.
