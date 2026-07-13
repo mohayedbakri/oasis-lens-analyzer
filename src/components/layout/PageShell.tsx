@@ -22,6 +22,8 @@ export function PageBanner({ overlay = false }: { overlay?: boolean }) {
       ? "مجمع برقيق الصناعي الريفي النموذجي"
       : "RSIC pilot industrial complex — Al-Burgig";
   const isRtl = lang === "ar";
+  // Dark side + logo: left in Arabic, right in English
+  const darkOnLeft = isRtl;
   return (
     <div className="relative w-full overflow-hidden border-b border-border bg-secondary">
       <img
@@ -35,15 +37,15 @@ export function PageBanner({ overlay = false }: { overlay?: boolean }) {
           <div
             className="pointer-events-none absolute inset-0"
             style={{
-              background: isRtl
-                ? "linear-gradient(to left, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.55) 35%, color-mix(in srgb, var(--primary) 60%, transparent) 75%, color-mix(in srgb, var(--primary) 40%, transparent) 100%)"
-                : "linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.55) 35%, color-mix(in srgb, var(--primary) 60%, transparent) 75%, color-mix(in srgb, var(--primary) 40%, transparent) 100%)",
+              background: darkOnLeft
+                ? "linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.55) 35%, color-mix(in srgb, var(--primary) 60%, transparent) 75%, color-mix(in srgb, var(--primary) 40%, transparent) 100%)"
+                : "linear-gradient(to left, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.55) 35%, color-mix(in srgb, var(--primary) 60%, transparent) 75%, color-mix(in srgb, var(--primary) 40%, transparent) 100%)",
             }}
             aria-hidden="true"
           />
           <div
             className={`pointer-events-none absolute inset-y-0 flex items-center ${
-              isRtl ? "right-0 pr-6 sm:pr-10 lg:pr-16" : "left-0 pl-6 sm:pl-10 lg:pl-16"
+              darkOnLeft ? "left-0 pl-6 sm:pl-10 lg:pl-16" : "right-0 pr-6 sm:pr-10 lg:pr-16"
             }`}
           >
             <img
