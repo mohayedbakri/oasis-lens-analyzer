@@ -277,16 +277,6 @@ export const STATE_DATA: Record<string, StateData> = {
     opportunitiesEn: ["Community mills"],
     targetComplexes: 14, activeFactories: 0, smeIndex: 15,
   },
-  abyei_pca: {
-    stage: "feasibility",
-    maturity: 0.1,
-    resources: ["livestock"],
-    activitiesAr: ["الرعي"],
-    activitiesEn: ["Pastoralism"],
-    opportunitiesAr: ["دراسات أولية"],
-    opportunitiesEn: ["Initial assessments"],
-    targetComplexes: 4, activeFactories: 0, smeIndex: 10,
-  },
 };
 
 // ─── Per-state indicator overrides (Data Complex Indicators) ───
@@ -368,10 +358,6 @@ const INDICATOR_OVERRIDES: Partial<Record<string, StateIndicators>> = {
   central_darfur: {
     selfSuff: { dietaryAr: "حبوب، بقوليات", dietaryEn: "Grains, legumes", clothingAr: "أقمشة تقليدية", clothingEn: "Traditional fabrics", constructionAr: "طين وقش", constructionEn: "Mud and thatch" },
     global: { rawAr: "زراعية: حبوب، بقوليات", rawEn: "Agricultural: grains, legumes", starterAr: "مطاحن مجتمعية، تعبئة بقوليات", starterEn: "Community mills, legume packaging" },
-  },
-  abyei_pca: {
-    selfSuff: { dietaryAr: "ألبان ولحوم رعوية", dietaryEn: "Pastoral dairy and meat", clothingAr: "مستورد", clothingEn: "Imported", constructionAr: "قش وطين", constructionEn: "Thatch and mud" },
-    global: { rawAr: "حيوانية: ماشية رعوية", rawEn: "Animal: pastoral livestock", starterAr: "دراسات جدوى أولية للمراعي", starterEn: "Initial pastoral feasibility studies" },
   },
 };
 
