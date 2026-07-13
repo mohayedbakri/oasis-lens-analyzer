@@ -47,24 +47,13 @@ export const Route = createFileRoute("/blog")({
 
 function BlogPage() {
   const { lang, t } = useI18n();
+  const isRtl = lang === "ar";
+  const ReadIcon = isRtl ? ArrowLeft : ArrowRight;
   const articles = articlesByLang[lang];
   const news = newsByLang[lang];
   const { tab } = Route.useSearch();
   const navigate = Route.useNavigate();
   const activeTab = tab ?? "articles";
-
-  useEffect(() => {
-    if (activeTab !== "news") return;
-    const hash = typeof window !== "undefined" ? window.location.hash.slice(1) : "";
-    if (!hash) return;
-    const el = document.getElementById(hash);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "center" });
-      el.classList.add("ring-2", "ring-accent");
-      const timeout = setTimeout(() => el.classList.remove("ring-2", "ring-accent"), 2400);
-      return () => clearTimeout(timeout);
-    }
-  }, [activeTab]);
 
   return (
     <PageShell>
@@ -86,9 +75,11 @@ function BlogPage() {
           <TabsContent value="articles" className="mt-8">
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {articles.map((a) => (
-                <article
+                <Link
                   key={a.id}
-                  className="rounded-lg border border-border bg-card p-6 transition-all hover:border-accent hover:shadow-lg"
+                  to="/blog/articles/$id"
+                  params={{ id: a.id }}
+                  className="group block rounded-lg border border-border bg-card p-6 transition-all hover:border-accent hover:shadow-lg"
                 >
                   <div className="flex items-center gap-3 text-xs text-muted-foreground">
                     <span className="inline-flex items-center gap-1" dir="ltr">
@@ -100,9 +91,14 @@ function BlogPage() {
                       {a.author}
                     </span>
                   </div>
-                  <h3 className="mt-3 text-lg font-bold text-foreground">{a.title}</h3>
+                  <h3 className="mt-3 text-lg font-bold text-foreground group-hover:text-accent">
+                    {a.title}
+                  </h3>
                   <p className="mt-2 text-sm leading-loose text-muted-foreground">{a.excerpt}</p>
-                </article>
+                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-accent">
+                    {t("blog.readMore")} <ReadIcon className="h-3 w-3" />
+                  </span>
+                </Link>
               ))}
             </div>
           </TabsContent>
@@ -114,17 +110,23 @@ function BlogPage() {
           <TabsContent value="news" className="mt-8">
             <div className="space-y-4">
               {news.map((n) => (
-                <article
-                  id={`news-${n.id}`}
+                <Link
                   key={n.id}
-                  className="scroll-mt-24 rounded-lg border border-border bg-card p-6 transition-shadow"
+                  to="/blog/news/$id"
+                  params={{ id: n.id }}
+                  className="group block rounded-lg border border-border bg-card p-6 transition-all hover:border-accent hover:shadow-md"
                 >
                   <div className="text-xs text-muted-foreground" dir="ltr">
                     {n.date}
                   </div>
-                  <h3 className="mt-2 text-lg font-bold text-foreground">{n.title}</h3>
+                  <h3 className="mt-2 text-lg font-bold text-foreground group-hover:text-accent">
+                    {n.title}
+                  </h3>
                   <p className="mt-2 text-sm leading-loose text-muted-foreground">{n.excerpt}</p>
-                </article>
+                  <span className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-accent">
+                    {t("blog.readMore")} <ReadIcon className="h-3 w-3" />
+                  </span>
+                </Link>
               ))}
             </div>
           </TabsContent>
