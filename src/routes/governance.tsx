@@ -20,7 +20,7 @@ function GovernancePage() {
   const { t } = useI18n();
   return (
     <PageShell>
-      <PageHeader eyebrow={t("gov.eyebrow")} title={t("gov.title")} description={t("gov.desc")} />
+      <PageHeader eyebrow={t("gov.eyebrow")} title={t("gov.title")} description={t("gov.desc")} overlay />
 
       <section className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
         <p className="section-number text-sm">{t("gov.entity.eyebrow")}</p>
