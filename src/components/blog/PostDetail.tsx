@@ -38,101 +38,125 @@ export function PostDetail({ kind, id, date, title, author, body, related = [] }
   };
 
 
+  const relatedTitle =
+    kind === "news" ? t("blog.related.news") : t("blog.related.articles");
+
   return (
     <>
       <PageBanner />
-      <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
-        {/* Breadcrumb */}
-        <nav
-          className="mb-6 flex flex-wrap items-center gap-2 text-sm text-muted-foreground"
-          aria-label="Breadcrumb"
-        >
-          <Link to="/" className="hover:text-accent">
-            {t("blog.crumb.home")}
-          </Link>
-          <ChevronLeft className={`h-3 w-3 ${isRtl ? "" : "rotate-180"}`} />
-          <Link to="/blog" search={{ tab: tabKey }} className="hover:text-accent">
-            {t("blog.eyebrow")}
-          </Link>
-          <ChevronLeft className={`h-3 w-3 ${isRtl ? "" : "rotate-180"}`} />
-          <Link to="/blog" search={{ tab: tabKey }} className="hover:text-accent">
-            {crumbLabel}
-          </Link>
-        </nav>
+      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="grid gap-8 lg:grid-cols-3">
+          <article className="lg:col-span-2">
+            {/* Breadcrumb */}
+            <nav
+              className="mb-6 flex flex-wrap items-center gap-2 text-sm text-muted-foreground"
+              aria-label="Breadcrumb"
+            >
+              <Link to="/" className="hover:text-accent">
+                {t("blog.crumb.home")}
+              </Link>
+              <ChevronLeft className={`h-3 w-3 ${isRtl ? "" : "rotate-180"}`} />
+              <Link to="/blog" search={{ tab: tabKey }} className="hover:text-accent">
+                {t("blog.eyebrow")}
+              </Link>
+              <ChevronLeft className={`h-3 w-3 ${isRtl ? "" : "rotate-180"}`} />
+              <Link to="/blog" search={{ tab: tabKey }} className="hover:text-accent">
+                {crumbLabel}
+              </Link>
+            </nav>
 
-        <h1 className="text-3xl font-bold leading-tight text-primary sm:text-4xl">{title}</h1>
+            <h1 className="text-3xl font-bold leading-tight text-primary sm:text-4xl">{title}</h1>
 
-        {postImages[id] && (
-          <div className="mt-6 aspect-[16/9] w-full overflow-hidden rounded-lg bg-muted">
-            <img
-              src={postImages[id]}
-              alt={title}
-              width={1280}
-              height={720}
-              className="h-full w-full object-cover"
-            />
-          </div>
-        )}
-
-        <div className="mt-4 flex flex-wrap items-center justify-between gap-4 border-b border-border pb-6 text-sm text-muted-foreground">
-          <div className="flex flex-wrap items-center gap-4">
-            <span className="inline-flex items-center gap-2" dir="ltr">
-              <Calendar className="h-4 w-4" />
-              {date}
-            </span>
-            {author && (
-              <span className="inline-flex items-center gap-2">
-                <User className="h-4 w-4" />
-                {t("blog.by")} {author}
-              </span>
+            {postImages[id] && (
+              <div className="mt-6 aspect-[16/9] w-full overflow-hidden rounded-lg bg-muted">
+                <img
+                  src={postImages[id]}
+                  alt={title}
+                  width={1280}
+                  height={720}
+                  className="h-full w-full object-cover"
+                />
+              </div>
             )}
-          </div>
-          <MetricChips kind={kind} id={id} interactive size="md" onCommentClick={scrollToComments} />
-        </div>
 
-        <div className="prose prose-lg mt-8 max-w-none space-y-5 text-lg leading-loose text-foreground">
-          {body.map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
-        </div>
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-4 border-b border-border pb-6 text-sm text-muted-foreground">
+              <div className="flex flex-wrap items-center gap-4">
+                <span className="inline-flex items-center gap-2" dir="ltr">
+                  <Calendar className="h-4 w-4" />
+                  {date}
+                </span>
+                {author && (
+                  <span className="inline-flex items-center gap-2">
+                    <User className="h-4 w-4" />
+                    {t("blog.by")} {author}
+                  </span>
+                )}
+              </div>
+              <MetricChips kind={kind} id={id} interactive size="md" onCommentClick={scrollToComments} />
+            </div>
 
-        <div className="mt-12 border-t border-border pt-6">
-          <Link
-            to="/blog"
-            search={{ tab: tabKey }}
-            className="inline-flex items-center gap-2 rounded-md bg-secondary px-4 py-2 text-sm font-bold text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
-          >
-            <BackIcon className="h-4 w-4" />
-            {t("blog.backToBlog")}
-          </Link>
-        </div>
-
-        {related.length > 0 && (
-          <section className="mt-16">
-            <h2 className="mb-4 text-xl font-bold text-primary">{t("blog.related")}</h2>
-            <ul className="grid gap-4 sm:grid-cols-2">
-              {related.map((r) => (
-                <li key={r.id}>
-                  <Link
-                    to={kind === "news" ? "/blog/news/$id" : "/blog/articles/$id"}
-                    params={{ id: r.id }}
-                    className="block rounded-lg border border-border bg-card p-4 transition-all hover:border-accent hover:shadow-md"
-                  >
-                    <div className="text-xs text-muted-foreground" dir="ltr">
-                      {r.date}
-                    </div>
-                    <h3 className="mt-1 font-bold text-foreground">{r.title}</h3>
-                  </Link>
-                </li>
+            <div className="prose prose-lg mt-8 max-w-none space-y-5 text-lg leading-loose text-foreground">
+              {body.map((p, i) => (
+                <p key={i}>{p}</p>
               ))}
-            </ul>
-          </section>
-        )}
+            </div>
 
-        <div ref={commentsRef}>
-          <CommentsSection kind={kind} id={id} />
+            <div className="mt-12 border-t border-border pt-6">
+              <Link
+                to="/blog"
+                search={{ tab: tabKey }}
+                className="inline-flex items-center gap-2 rounded-md bg-secondary px-4 py-2 text-sm font-bold text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+              >
+                <BackIcon className="h-4 w-4" />
+                {t("blog.backToBlog")}
+              </Link>
+            </div>
+
+            <div ref={commentsRef}>
+              <CommentsSection kind={kind} id={id} />
+            </div>
+          </article>
+
+          {related.length > 0 && (
+            <aside className="lg:col-span-1">
+              <div className="rounded-lg bg-primary p-5 text-primary-foreground lg:sticky lg:top-24">
+                <h2 className="mb-4 border-b border-primary-foreground/20 pb-3 text-xl font-bold">
+                  {relatedTitle}
+                </h2>
+                <ul className="divide-y divide-primary-foreground/15">
+                  {related.map((r) => (
+                    <li key={r.id}>
+                      <Link
+                        to={kind === "news" ? "/blog/news/$id" : "/blog/articles/$id"}
+                        params={{ id: r.id }}
+                        className="group flex gap-3 py-3 transition-opacity hover:opacity-80"
+                      >
+                        {postImages[r.id] && (
+                          <div className="h-16 w-20 shrink-0 overflow-hidden rounded bg-primary-foreground/10">
+                            <img
+                              src={postImages[r.id]}
+                              alt=""
+                              className="h-full w-full object-cover"
+                            />
+                          </div>
+                        )}
+                        <div className="min-w-0 flex-1">
+                          <h3 className="line-clamp-3 text-sm font-bold leading-snug group-hover:underline">
+                            {r.title}
+                          </h3>
+                          <div className="mt-1 text-xs text-primary-foreground/70" dir="ltr">
+                            {r.date}
+                          </div>
+                        </div>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </aside>
+          )}
         </div>
-      </article>
+      </div>
     </>
   );
 }
