@@ -6,6 +6,7 @@ import { useI18n } from "@/lib/i18n";
 import { MetricChips } from "@/components/blog/MetricChips";
 import { CommentsSection } from "@/components/blog/CommentsSection";
 import { useMetrics } from "@/lib/metrics";
+import { postImages } from "@/lib/content";
 
 type Props = {
   kind: "news" | "articles";
@@ -60,6 +61,18 @@ export function PostDetail({ kind, id, date, title, author, body, related = [] }
         </nav>
 
         <h1 className="text-3xl font-bold leading-tight text-primary sm:text-4xl">{title}</h1>
+
+        {postImages[id] && (
+          <div className="mt-6 aspect-[16/9] w-full overflow-hidden rounded-lg bg-muted">
+            <img
+              src={postImages[id]}
+              alt={title}
+              width={1280}
+              height={720}
+              className="h-full w-full object-cover"
+            />
+          </div>
+        )}
 
         <div className="mt-4 flex flex-wrap items-center justify-between gap-4 border-b border-border pb-6 text-sm text-muted-foreground">
           <div className="flex flex-wrap items-center gap-4">
