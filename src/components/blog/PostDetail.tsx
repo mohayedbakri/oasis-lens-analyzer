@@ -115,6 +115,10 @@ export function PostDetail({ kind, id, date, title, author, body, related = [] }
             </ul>
           </section>
         )}
+
+        <div ref={commentsRef}>
+          <CommentsSection kind={kind} id={id} />
+        </div>
       </article>
     </>
   );
