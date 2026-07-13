@@ -29,7 +29,7 @@ export function WorkPackageFilters({
   category: WpCategory | "all";
   status: WpStatus | "all";
 }) {
-  const navigate = useNavigate({ from: "/poc" });
+  const navigate = useNavigate({ from: "/poc/burgig" });
   const { category: catLabel, status: statusLabel } = useStatusLabels();
   const { t } = useI18n();
   const hasActive = q || category !== "all" || status !== "all";

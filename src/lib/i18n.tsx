@@ -375,6 +375,56 @@ const dict: Dict = {
   "poc.drawer.wps.empty": { ar: "لا توجد حزم عمل مرتبطة.", en: "No linked work packages." },
   "poc.drawer.docs": { ar: "الوثائق", en: "Documents" },
 
+  // Oasis Lens Analyzer (national dashboard)
+  "oasis.top.eyebrow": { ar: "لوحة المشروع الوطنية", en: "National Project Dashboard" },
+  "oasis.top.title": { ar: "عدسة الواحة — اللوحة الوطنية", en: "Oasis Lens Analyzer" },
+  "oasis.top.desc": {
+    ar: "خريطة السودان التفاعلية، خارطة طريق إنشاء المجمعات، والمهام القابلة للقياس — في مشهد واحد مترابط.",
+    en: "The interactive Sudan map, the RSIC roadmap, and measurable running tasks — in one linked view.",
+  },
+  "oasis.top.viewSwitch": { ar: "تبديل العرض", en: "View switch" },
+  "oasis.top.national": { ar: "العرض الوطني", en: "National" },
+  "oasis.top.burgig": { ar: "البرقيق (النموذج)", en: "Al-Burgig PoC" },
+
+  "oasis.map.title": { ar: "خريطة السودان التفاعلية", en: "Interactive Sudan Map" },
+  "oasis.map.hint": {
+    ar: "مرّر لعرض المؤشرات، وانقر على الولاية لفتح التفاصيل. يعكس التلوين نضج التحول الصناعي.",
+    en: "Hover for KPIs, click a state to open its detail panel. Color reflects industrial-transformation maturity.",
+  },
+  "oasis.map.legend.low": { ar: "منخفض", en: "Low" },
+  "oasis.map.legend.high": { ar: "مرتفع", en: "High" },
+  "oasis.map.tt.complexes": { ar: "المجمعات المستهدفة", en: "Target complexes" },
+  "oasis.map.tt.factories": { ar: "مصانع نشطة", en: "Active factories" },
+  "oasis.map.tt.sme": { ar: "مؤشر الشركات الصغيرة", en: "SME index" },
+
+  "oasis.roadmap.title": { ar: "خارطة طريق إنشاء المجمع", en: "RSIC Roadmap" },
+  "oasis.roadmap.clear": { ar: "مسح", en: "Clear" },
+
+  "oasis.tasks.title": { ar: "المهام القابلة للقياس", en: "Measurable & Running Tasks" },
+  "oasis.tasks.hint": {
+    ar: "المهام مرتبطة بالخريطة وخارطة الطريق — اختيار مرحلة أو ولاية يُصفّي القائمة تلقائياً.",
+    en: "Tasks are linked to the map and roadmap — selecting a stage or state filters the list automatically.",
+  },
+  "oasis.tasks.search": { ar: "ابحث في المهام...", en: "Search tasks..." },
+  "oasis.tasks.allStatuses": { ar: "كل الحالات", en: "All statuses" },
+  "oasis.tasks.clear": { ar: "مسح الفلاتر", en: "Clear filters" },
+  "oasis.tasks.empty": { ar: "لا توجد مهام مطابقة.", en: "No matching tasks." },
+  "oasis.tasks.progress": { ar: "الإنجاز", en: "Progress" },
+  "oasis.tasks.status.planned": { ar: "مخطط", en: "Planned" },
+  "oasis.tasks.status.running": { ar: "قيد التنفيذ", en: "Running" },
+  "oasis.tasks.status.done": { ar: "مكتمل", en: "Done" },
+  "oasis.tasks.status.blocked": { ar: "متعثر", en: "Blocked" },
+
+  "oasis.drawer.state": { ar: "الولاية", en: "State" },
+  "oasis.drawer.close": { ar: "إغلاق", en: "Close" },
+  "oasis.drawer.currentStage": { ar: "المرحلة الحالية", en: "Current stage" },
+  "oasis.drawer.kpi.target": { ar: "مجمعات مستهدفة", en: "Target" },
+  "oasis.drawer.kpi.active": { ar: "مصانع نشطة", en: "Active" },
+  "oasis.drawer.kpi.sme": { ar: "مؤشر SME", en: "SME idx" },
+  "oasis.drawer.resources": { ar: "الموارد الرئيسية", en: "Main resources" },
+  "oasis.drawer.activities": { ar: "الأنشطة الصناعية الحالية", en: "Current industrial activity" },
+  "oasis.drawer.opportunities": { ar: "الفرص الصناعية", en: "Industrial opportunities" },
+
   // Common
   "common.backToHome": { ar: "العودة للرئيسية", en: "Back to home" },
 };
