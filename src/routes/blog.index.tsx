@@ -133,8 +133,21 @@ function BlogPage() {
                   key={n.id}
                   to="/blog/news/$id"
                   params={{ id: n.id }}
-                  className="group block rounded-lg border border-border bg-card p-6 transition-all hover:border-accent hover:shadow-md"
+                  className="group flex flex-col overflow-hidden rounded-lg border border-border bg-card transition-all hover:border-accent hover:shadow-md sm:flex-row"
                 >
+                  {postImages[n.id] && (
+                    <div className="aspect-[16/9] w-full overflow-hidden bg-muted sm:aspect-auto sm:w-56 sm:flex-shrink-0">
+                      <img
+                        src={postImages[n.id]}
+                        alt={n.title}
+                        loading="lazy"
+                        width={1280}
+                        height={720}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                  )}
+                  <div className="flex-1 p-6">
                   <div className="text-xs text-muted-foreground" dir="ltr">
                     {n.date}
                   </div>
@@ -147,6 +160,7 @@ function BlogPage() {
                       {t("blog.readMore")} <ReadIcon className="h-3 w-3" />
                     </span>
                     <MetricChips kind="news" id={n.id} />
+                  </div>
                   </div>
                 </Link>
               ))}
