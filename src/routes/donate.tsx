@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { z } from "zod";
-import { PageShell, PageHeader } from "@/components/layout/PageShell";
+import { PageShell } from "@/components/layout/PageShell";
 import { CatalogHero } from "@/components/donate/CatalogHero";
 import { CatalogFilters } from "@/components/donate/CatalogFilters";
 import { CatalogCard } from "@/components/donate/CatalogCard";
@@ -70,18 +70,13 @@ function DonatePage() {
 
   return (
     <PageShell>
-      <PageHeader
-        eyebrow={t("donate.hero.eyebrow")}
-        title={t("donate.hero.title")}
-        lede={t("donate.hero.lede")}
-      />
       <CatalogHero stats={{ raised, goal, backers: 0, daysLeft }} />
       <CatalogFilters
         q={search.q ?? ""}
         category={search.category ?? "all"}
         price={search.price ?? "any"}
         onSearch={(v) =>
-          navigate({ search: (prev) => ({ ...prev, q: v || undefined }) })
+          navigate({ search: (prev: z.infer<typeof searchSchema>) => ({ ...prev, q: v || undefined }) })
         }
       />
 
