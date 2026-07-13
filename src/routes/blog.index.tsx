@@ -116,6 +116,7 @@ function BlogPage() {
                     </span>
                     <MetricChips kind="articles" id={a.id} />
                   </div>
+                  </div>
                 </Link>
               ))}
             </div>
