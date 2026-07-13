@@ -1,7 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { z } from "zod";
-import { FileText, Download, Calendar, User } from "lucide-react";
+import { FileText, Download, Calendar, User, ArrowLeft, ArrowRight } from "lucide-react";
 import { PageShell, PageHeader } from "@/components/layout/PageShell";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { articlesByLang, reportsByLang, newsByLang } from "@/lib/content";
