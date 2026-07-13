@@ -35,10 +35,9 @@ export function SudanMap({ selectedStateId, filterStage, onSelect }: Props) {
               const isSelected = selectedStateId === s.id;
               const isDimmed = filterStage ? d?.stage !== filterStage : false;
               const maturity = d?.maturity ?? 0;
-              // teal fill (--primary token) mixed with card bg by maturity
-              const fill = `color-mix(in oklab, hsl(var(--primary-hsl, 178 89% 25%)) ${Math.round(
-                20 + maturity * 60,
-              )}%, hsl(var(--card-hsl, 40 8% 96%)) )`;
+              const fill = `color-mix(in oklab, var(--primary) ${Math.round(
+                15 + maturity * 65,
+              )}%, var(--card))`;
               return (
                 <path
                   key={s.id}
@@ -48,8 +47,8 @@ export function SudanMap({ selectedStateId, filterStage, onSelect }: Props) {
                     const rect = (e.currentTarget.ownerSVGElement as SVGSVGElement).getBoundingClientRect();
                     setHover({
                       s,
-                      x: ((s.cx / 1000) * rect.width),
-                      y: ((s.cy / 1000) * rect.height),
+                      x: (s.cx / 1000) * rect.width,
+                      y: (s.cy / 1000) * rect.height,
                     });
                   }}
                   onMouseLeave={() => setHover(null)}
@@ -57,12 +56,10 @@ export function SudanMap({ selectedStateId, filterStage, onSelect }: Props) {
                   aria-label={pickState(s, lang)}
                   className="cursor-pointer outline-none transition-opacity"
                   style={{
-                    fill: isDimmed ? "hsl(var(--muted-hsl, 40 8% 90%))" : fill,
-                    stroke: isSelected
-                      ? "hsl(var(--accent-hsl, 38 55% 52%))"
-                      : "hsl(var(--border-hsl, 40 6% 82%))",
+                    fill: isDimmed ? "var(--muted)" : fill,
+                    stroke: isSelected ? "var(--accent)" : "var(--border)",
                     strokeWidth: isSelected ? 2.5 : 0.8,
-                    opacity: isDimmed ? 0.35 : 1,
+                    opacity: isDimmed ? 0.4 : 1,
                   }}
                 />
               );
