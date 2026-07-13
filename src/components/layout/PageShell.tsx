@@ -47,15 +47,17 @@ export function PageHeader({
   title,
   description,
   banner = true,
+  overlay = false,
 }: {
   eyebrow?: string;
   title: string;
   description?: string;
   banner?: boolean;
+  overlay?: boolean;
 }) {
   return (
     <>
-      {banner && <PageBanner />}
+      {banner && <PageBanner overlay={overlay} />}
       <section className="border-b border-border bg-secondary/50">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
           {eyebrow && <p className="section-number mb-3 text-sm">{eyebrow}</p>}
