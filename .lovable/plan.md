@@ -1,13 +1,20 @@
-The user wants the related-news/articles sidebar on the right in Arabic and on the left in English on the blog/news detail page.
+## Plan: Align sidebar top with article cover image
 
-Current behavior (in `src/components/blog/PostDetail.tsx`):
-- Article content is placed on the right in Arabic (`lg:col-start-2`) and on the left in English (`lg:col-start-1`).
-- Sidebar is placed on the left in Arabic (`lg:col-start-1`) and on the right in English (`lg:col-start-3`).
+### Current state
+On the blog/news detail page (`PostDetail.tsx`), the sticky "أحدث الأخبار" / "أحدث المقالات" sidebar currently starts at the top of the content row, aligned with the breadcrumb/title area. The article cover image sits below the title, so the sidebar and image tops are misaligned.
 
-Plan:
-1. In `src/components/blog/PostDetail.tsx`, swap the `lg:col-start-*` classes for the article and the sidebar.
-   - Article: `isRtl ? "lg:col-start-1" : "lg:col-start-2"`
-   - Sidebar: `isRtl ? "lg:col-start-3" : "lg:col-start-1"`
-2. Verify the change in the preview for both `/blog/articles/a2` and a news detail route.
+### Goal
+Move the sidebar down so the top edge of its teal panel aligns horizontally with the top edge of the article cover image.
 
-This is a single-file CSS-grid layout change with no data or logic modifications.
+### Implementation
+1. In `src/components/blog/PostDetail.tsx`, add a top offset to the `<aside>` (or its inner panel) that accounts for the breadcrumb + title height.
+2. Keep the sticky behavior (`lg:sticky lg:top-24`) so it still follows on scroll.
+3. Ensure the offset works in both Arabic (RTL) and English (LTR) since the sidebar flips sides with the language direction.
+4. Verify visually on an article detail page and a news detail page.
+
+### Files to edit
+- `src/components/blog/PostDetail.tsx`
+
+### Verification
+- Open `/blog/articles/a2` and a news detail route.
+- Confirm the sidebar panel top sits at the same vertical level as the cover image top in both Arabic and English.

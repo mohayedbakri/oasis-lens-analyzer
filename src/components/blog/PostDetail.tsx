@@ -46,8 +46,8 @@ export function PostDetail({ kind, id, date, title, author, body, related = [] }
       <PageBanner overlay />
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-3">
-          <article className="lg:col-span-2 lg:row-start-1 lg:col-start-1">
-            {/* Breadcrumb */}
+          {/* Header */}
+          <div className="lg:col-span-3">
             <nav
               className="mb-6 flex flex-wrap items-center gap-2 text-sm text-muted-foreground"
               aria-label="Breadcrumb"
@@ -66,9 +66,12 @@ export function PostDetail({ kind, id, date, title, author, body, related = [] }
             </nav>
 
             <h1 className="text-3xl font-bold leading-tight text-primary sm:text-4xl">{title}</h1>
+          </div>
 
+          {/* Article body */}
+          <article className="lg:col-span-2 lg:col-start-1">
             {postImages[id] && (
-              <div className="mt-6 aspect-[16/9] w-full overflow-hidden rounded-lg bg-muted">
+              <div className="aspect-[16/9] w-full overflow-hidden rounded-lg bg-muted">
                 <img
                   src={postImages[id]}
                   alt={title}
@@ -117,8 +120,9 @@ export function PostDetail({ kind, id, date, title, author, body, related = [] }
             </div>
           </article>
 
+          {/* Sidebar */}
           {related.length > 0 && (
-            <aside className="lg:col-span-1 lg:row-start-1 lg:col-start-3">
+            <aside className="lg:col-span-1 lg:col-start-3">
               <div className="rounded-lg bg-primary p-5 text-primary-foreground lg:sticky lg:top-24">
                 <h2 className="mb-4 border-b border-primary-foreground/20 pb-3 text-xl font-bold">
                   {relatedTitle}
