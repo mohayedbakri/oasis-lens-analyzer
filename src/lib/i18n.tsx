@@ -382,9 +382,6 @@ const dict: Dict = {
     ar: "خريطة السودان التفاعلية، خارطة طريق إنشاء المجمعات، والمهام القابلة للقياس — في مشهد واحد مترابط.",
     en: "The interactive Sudan map, the RSIC roadmap, and measurable running tasks — in one linked view.",
   },
-  "oasis.top.viewSwitch": { ar: "تبديل العرض", en: "View switch" },
-  "oasis.top.national": { ar: "العرض الوطني", en: "National" },
-  "oasis.top.burgig": { ar: "البرقيق (النموذج)", en: "Al-Burgig PoC" },
 
   "oasis.map.title": { ar: "خريطة السودان التفاعلية", en: "Interactive Sudan Map" },
   "oasis.map.hint": {
