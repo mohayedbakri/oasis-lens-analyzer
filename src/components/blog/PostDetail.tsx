@@ -118,7 +118,7 @@ export function PostDetail({ kind, id, date, title, author, body, related = [] }
           </article>
 
           {related.length > 0 && (
-            <aside className="lg:col-span-1 lg:col-start-1 lg:row-start-1">
+            <aside className={`lg:col-span-1 lg:row-start-1 ${isRtl ? "lg:col-start-1" : "lg:col-start-3"}`}>
               <div className="rounded-lg bg-primary p-5 text-primary-foreground lg:sticky lg:top-24">
                 <h2 className="mb-4 border-b border-primary-foreground/20 pb-3 text-xl font-bold">
                   {relatedTitle}
