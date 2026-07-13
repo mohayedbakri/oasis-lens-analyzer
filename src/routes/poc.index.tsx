@@ -177,14 +177,8 @@ function NationalDashboard() {
         )}
 
         <MilestonesPanel data={filtered} />
-        <TimelinePanel data={filtered} />
 
-        <div className="grid gap-6 lg:grid-cols-3">
-          <div className="lg:col-span-2">
-            <FundingPanel data={filtered} />
-          </div>
-          <DocumentsPanel data={filtered} />
-        </div>
+        <FundingPanel data={filtered} />
       </div>
 
       <StateDetailDrawer stateId={drawerId} onClose={() => setDrawerId(null)} />
