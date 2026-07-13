@@ -20,7 +20,9 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PocIndexRouteImport } from './routes/poc.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as PocBurgigRouteImport } from './routes/poc.burgig'
 import { Route as BlogNewsIdRouteImport } from './routes/blog.news.$id'
 import { Route as BlogArticlesIdRouteImport } from './routes/blog.articles.$id'
 
@@ -79,10 +81,20 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PocIndexRoute = PocIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PocRoute,
+} as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => BlogRoute,
+} as any)
+const PocBurgigRoute = PocBurgigRouteImport.update({
+  id: '/burgig',
+  path: '/burgig',
+  getParentRoute: () => PocRoute,
 } as any)
 const BlogNewsIdRoute = BlogNewsIdRouteImport.update({
   id: '/news/$id',
@@ -103,11 +115,13 @@ export interface FileRoutesByFullPath {
   '/donate': typeof DonateRoute
   '/governance': typeof GovernanceRoute
   '/impact': typeof ImpactRoute
-  '/poc': typeof PocRoute
+  '/poc': typeof PocRouteWithChildren
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/support': typeof SupportRoute
+  '/poc/burgig': typeof PocBurgigRoute
   '/blog/': typeof BlogIndexRoute
+  '/poc/': typeof PocIndexRoute
   '/blog/articles/$id': typeof BlogArticlesIdRoute
   '/blog/news/$id': typeof BlogNewsIdRoute
 }
@@ -118,11 +132,12 @@ export interface FileRoutesByTo {
   '/donate': typeof DonateRoute
   '/governance': typeof GovernanceRoute
   '/impact': typeof ImpactRoute
-  '/poc': typeof PocRoute
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/support': typeof SupportRoute
+  '/poc/burgig': typeof PocBurgigRoute
   '/blog': typeof BlogIndexRoute
+  '/poc': typeof PocIndexRoute
   '/blog/articles/$id': typeof BlogArticlesIdRoute
   '/blog/news/$id': typeof BlogNewsIdRoute
 }
@@ -135,11 +150,13 @@ export interface FileRoutesById {
   '/donate': typeof DonateRoute
   '/governance': typeof GovernanceRoute
   '/impact': typeof ImpactRoute
-  '/poc': typeof PocRoute
+  '/poc': typeof PocRouteWithChildren
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/support': typeof SupportRoute
+  '/poc/burgig': typeof PocBurgigRoute
   '/blog/': typeof BlogIndexRoute
+  '/poc/': typeof PocIndexRoute
   '/blog/articles/$id': typeof BlogArticlesIdRoute
   '/blog/news/$id': typeof BlogNewsIdRoute
 }
@@ -157,7 +174,9 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/support'
+    | '/poc/burgig'
     | '/blog/'
+    | '/poc/'
     | '/blog/articles/$id'
     | '/blog/news/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -168,11 +187,12 @@ export interface FileRouteTypes {
     | '/donate'
     | '/governance'
     | '/impact'
-    | '/poc'
     | '/projects'
     | '/sitemap.xml'
     | '/support'
+    | '/poc/burgig'
     | '/blog'
+    | '/poc'
     | '/blog/articles/$id'
     | '/blog/news/$id'
   id:
@@ -188,7 +208,9 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/support'
+    | '/poc/burgig'
     | '/blog/'
+    | '/poc/'
     | '/blog/articles/$id'
     | '/blog/news/$id'
   fileRoutesById: FileRoutesById
@@ -201,7 +223,7 @@ export interface RootRouteChildren {
   DonateRoute: typeof DonateRoute
   GovernanceRoute: typeof GovernanceRoute
   ImpactRoute: typeof ImpactRoute
-  PocRoute: typeof PocRoute
+  PocRoute: typeof PocRouteWithChildren
   ProjectsRoute: typeof ProjectsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SupportRoute: typeof SupportRoute
@@ -286,12 +308,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/poc/': {
+      id: '/poc/'
+      path: '/'
+      fullPath: '/poc/'
+      preLoaderRoute: typeof PocIndexRouteImport
+      parentRoute: typeof PocRoute
+    }
     '/blog/': {
       id: '/blog/'
       path: '/'
       fullPath: '/blog/'
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof BlogRoute
+    }
+    '/poc/burgig': {
+      id: '/poc/burgig'
+      path: '/burgig'
+      fullPath: '/poc/burgig'
+      preLoaderRoute: typeof PocBurgigRouteImport
+      parentRoute: typeof PocRoute
     }
     '/blog/news/$id': {
       id: '/blog/news/$id'
@@ -324,6 +360,18 @@ const BlogRouteChildren: BlogRouteChildren = {
 
 const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
+interface PocRouteChildren {
+  PocBurgigRoute: typeof PocBurgigRoute
+  PocIndexRoute: typeof PocIndexRoute
+}
+
+const PocRouteChildren: PocRouteChildren = {
+  PocBurgigRoute: PocBurgigRoute,
+  PocIndexRoute: PocIndexRoute,
+}
+
+const PocRouteWithChildren = PocRoute._addFileChildren(PocRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -332,7 +380,7 @@ const rootRouteChildren: RootRouteChildren = {
   DonateRoute: DonateRoute,
   GovernanceRoute: GovernanceRoute,
   ImpactRoute: ImpactRoute,
-  PocRoute: PocRoute,
+  PocRoute: PocRouteWithChildren,
   ProjectsRoute: ProjectsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SupportRoute: SupportRoute,
