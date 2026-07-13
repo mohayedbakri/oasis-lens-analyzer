@@ -17,9 +17,9 @@ import { Route as ImpactRouteImport } from './routes/impact'
 import { Route as GovernanceRouteImport } from './routes/governance'
 import { Route as DonateRouteImport } from './routes/donate'
 import { Route as ContactRouteImport } from './routes/contact'
-import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogNewsIdRouteImport } from './routes/blog.news.$id'
 import { Route as BlogArticlesIdRouteImport } from './routes/blog.articles.$id'
 
@@ -63,11 +63,6 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BlogRoute = BlogRouteImport.update({
-  id: '/blog',
-  path: '/blog',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -78,21 +73,25 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogNewsIdRoute = BlogNewsIdRouteImport.update({
-  id: '/news/$id',
-  path: '/news/$id',
-  getParentRoute: () => BlogRoute,
+  id: '/blog/news/$id',
+  path: '/blog/news/$id',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const BlogArticlesIdRoute = BlogArticlesIdRouteImport.update({
-  id: '/articles/$id',
-  path: '/articles/$id',
-  getParentRoute: () => BlogRoute,
+  id: '/blog/articles/$id',
+  path: '/blog/articles/$id',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
   '/governance': typeof GovernanceRoute
@@ -101,13 +100,13 @@ export interface FileRoutesByFullPath {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/support': typeof SupportRoute
+  '/blog/': typeof BlogIndexRoute
   '/blog/articles/$id': typeof BlogArticlesIdRoute
   '/blog/news/$id': typeof BlogNewsIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
   '/governance': typeof GovernanceRoute
@@ -116,6 +115,7 @@ export interface FileRoutesByTo {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/support': typeof SupportRoute
+  '/blog': typeof BlogIndexRoute
   '/blog/articles/$id': typeof BlogArticlesIdRoute
   '/blog/news/$id': typeof BlogNewsIdRoute
 }
@@ -123,7 +123,6 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
   '/governance': typeof GovernanceRoute
@@ -132,6 +131,7 @@ export interface FileRoutesById {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/support': typeof SupportRoute
+  '/blog/': typeof BlogIndexRoute
   '/blog/articles/$id': typeof BlogArticlesIdRoute
   '/blog/news/$id': typeof BlogNewsIdRoute
 }
@@ -140,7 +140,6 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
-    | '/blog'
     | '/contact'
     | '/donate'
     | '/governance'
@@ -149,13 +148,13 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/support'
+    | '/blog/'
     | '/blog/articles/$id'
     | '/blog/news/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
-    | '/blog'
     | '/contact'
     | '/donate'
     | '/governance'
@@ -164,13 +163,13 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/support'
+    | '/blog'
     | '/blog/articles/$id'
     | '/blog/news/$id'
   id:
     | '__root__'
     | '/'
     | '/about'
-    | '/blog'
     | '/contact'
     | '/donate'
     | '/governance'
@@ -179,6 +178,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/support'
+    | '/blog/'
     | '/blog/articles/$id'
     | '/blog/news/$id'
   fileRoutesById: FileRoutesById
@@ -186,7 +186,6 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  BlogRoute: typeof BlogRouteWithChildren
   ContactRoute: typeof ContactRoute
   DonateRoute: typeof DonateRoute
   GovernanceRoute: typeof GovernanceRoute
@@ -195,6 +194,9 @@ export interface RootRouteChildren {
   ProjectsRoute: typeof ProjectsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SupportRoute: typeof SupportRoute
+  BlogIndexRoute: typeof BlogIndexRoute
+  BlogArticlesIdRoute: typeof BlogArticlesIdRoute
+  BlogNewsIdRoute: typeof BlogNewsIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -255,13 +257,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blog': {
-      id: '/blog'
-      path: '/blog'
-      fullPath: '/blog'
-      preLoaderRoute: typeof BlogRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -276,39 +271,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/news/$id': {
       id: '/blog/news/$id'
-      path: '/news/$id'
+      path: '/blog/news/$id'
       fullPath: '/blog/news/$id'
       preLoaderRoute: typeof BlogNewsIdRouteImport
-      parentRoute: typeof BlogRoute
+      parentRoute: typeof rootRouteImport
     }
     '/blog/articles/$id': {
       id: '/blog/articles/$id'
-      path: '/articles/$id'
+      path: '/blog/articles/$id'
       fullPath: '/blog/articles/$id'
       preLoaderRoute: typeof BlogArticlesIdRouteImport
-      parentRoute: typeof BlogRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
 
-interface BlogRouteChildren {
-  BlogArticlesIdRoute: typeof BlogArticlesIdRoute
-  BlogNewsIdRoute: typeof BlogNewsIdRoute
-}
-
-const BlogRouteChildren: BlogRouteChildren = {
-  BlogArticlesIdRoute: BlogArticlesIdRoute,
-  BlogNewsIdRoute: BlogNewsIdRoute,
-}
-
-const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  BlogRoute: BlogRouteWithChildren,
   ContactRoute: ContactRoute,
   DonateRoute: DonateRoute,
   GovernanceRoute: GovernanceRoute,
@@ -317,17 +306,10 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsRoute: ProjectsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SupportRoute: SupportRoute,
+  BlogIndexRoute: BlogIndexRoute,
+  BlogArticlesIdRoute: BlogArticlesIdRoute,
+  BlogNewsIdRoute: BlogNewsIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

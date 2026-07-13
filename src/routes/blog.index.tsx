@@ -12,7 +12,7 @@ const blogSearchSchema = z.object({
   tab: z.enum(["articles", "reports", "news"]).optional(),
 });
 
-export const Route = createFileRoute("/blog")({
+export const Route = createFileRoute("/blog/")({
   validateSearch: blogSearchSchema,
   head: () => ({
     meta: [
