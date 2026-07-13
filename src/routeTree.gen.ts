@@ -22,7 +22,6 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PocIndexRouteImport } from './routes/poc.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
-import { Route as PocBurgigRouteImport } from './routes/poc.burgig'
 import { Route as BlogNewsIdRouteImport } from './routes/blog.news.$id'
 import { Route as BlogArticlesIdRouteImport } from './routes/blog.articles.$id'
 
@@ -91,11 +90,6 @@ const BlogIndexRoute = BlogIndexRouteImport.update({
   path: '/',
   getParentRoute: () => BlogRoute,
 } as any)
-const PocBurgigRoute = PocBurgigRouteImport.update({
-  id: '/burgig',
-  path: '/burgig',
-  getParentRoute: () => PocRoute,
-} as any)
 const BlogNewsIdRoute = BlogNewsIdRouteImport.update({
   id: '/news/$id',
   path: '/news/$id',
@@ -119,7 +113,6 @@ export interface FileRoutesByFullPath {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/support': typeof SupportRoute
-  '/poc/burgig': typeof PocBurgigRoute
   '/blog/': typeof BlogIndexRoute
   '/poc/': typeof PocIndexRoute
   '/blog/articles/$id': typeof BlogArticlesIdRoute
@@ -135,7 +128,6 @@ export interface FileRoutesByTo {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/support': typeof SupportRoute
-  '/poc/burgig': typeof PocBurgigRoute
   '/blog': typeof BlogIndexRoute
   '/poc': typeof PocIndexRoute
   '/blog/articles/$id': typeof BlogArticlesIdRoute
@@ -154,7 +146,6 @@ export interface FileRoutesById {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/support': typeof SupportRoute
-  '/poc/burgig': typeof PocBurgigRoute
   '/blog/': typeof BlogIndexRoute
   '/poc/': typeof PocIndexRoute
   '/blog/articles/$id': typeof BlogArticlesIdRoute
@@ -174,7 +165,6 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/support'
-    | '/poc/burgig'
     | '/blog/'
     | '/poc/'
     | '/blog/articles/$id'
@@ -190,7 +180,6 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/support'
-    | '/poc/burgig'
     | '/blog'
     | '/poc'
     | '/blog/articles/$id'
@@ -208,7 +197,6 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/support'
-    | '/poc/burgig'
     | '/blog/'
     | '/poc/'
     | '/blog/articles/$id'
@@ -322,13 +310,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof BlogRoute
     }
-    '/poc/burgig': {
-      id: '/poc/burgig'
-      path: '/burgig'
-      fullPath: '/poc/burgig'
-      preLoaderRoute: typeof PocBurgigRouteImport
-      parentRoute: typeof PocRoute
-    }
     '/blog/news/$id': {
       id: '/blog/news/$id'
       path: '/news/$id'
@@ -361,12 +342,10 @@ const BlogRouteChildren: BlogRouteChildren = {
 const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
 interface PocRouteChildren {
-  PocBurgigRoute: typeof PocBurgigRoute
   PocIndexRoute: typeof PocIndexRoute
 }
 
 const PocRouteChildren: PocRouteChildren = {
-  PocBurgigRoute: PocBurgigRoute,
   PocIndexRoute: PocIndexRoute,
 }
 
