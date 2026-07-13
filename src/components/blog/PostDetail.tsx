@@ -61,17 +61,20 @@ export function PostDetail({ kind, id, date, title, author, body, related = [] }
 
         <h1 className="text-3xl font-bold leading-tight text-primary sm:text-4xl">{title}</h1>
 
-        <div className="mt-4 flex flex-wrap items-center gap-4 border-b border-border pb-6 text-sm text-muted-foreground">
-          <span className="inline-flex items-center gap-2" dir="ltr">
-            <Calendar className="h-4 w-4" />
-            {date}
-          </span>
-          {author && (
-            <span className="inline-flex items-center gap-2">
-              <User className="h-4 w-4" />
-              {t("blog.by")} {author}
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-4 border-b border-border pb-6 text-sm text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-4">
+            <span className="inline-flex items-center gap-2" dir="ltr">
+              <Calendar className="h-4 w-4" />
+              {date}
             </span>
-          )}
+            {author && (
+              <span className="inline-flex items-center gap-2">
+                <User className="h-4 w-4" />
+                {t("blog.by")} {author}
+              </span>
+            )}
+          </div>
+          <MetricChips kind={kind} id={id} interactive size="md" onCommentClick={scrollToComments} />
         </div>
 
         <div className="prose prose-lg mt-8 max-w-none space-y-5 text-lg leading-loose text-foreground">
