@@ -359,10 +359,6 @@ const INDICATOR_OVERRIDES: Partial<Record<string, StateIndicators>> = {
     selfSuff: { dietaryAr: "حبوب، بقوليات", dietaryEn: "Grains, legumes", clothingAr: "أقمشة تقليدية", clothingEn: "Traditional fabrics", constructionAr: "طين وقش", constructionEn: "Mud and thatch" },
     global: { rawAr: "زراعية: حبوب، بقوليات", rawEn: "Agricultural: grains, legumes", starterAr: "مطاحن مجتمعية، تعبئة بقوليات", starterEn: "Community mills, legume packaging" },
   },
-  abyei_pca: {
-    selfSuff: { dietaryAr: "ألبان ولحوم رعوية", dietaryEn: "Pastoral dairy and meat", clothingAr: "مستورد", clothingEn: "Imported", constructionAr: "قش وطين", constructionEn: "Thatch and mud" },
-    global: { rawAr: "حيوانية: ماشية رعوية", rawEn: "Animal: pastoral livestock", starterAr: "دراسات جدوى أولية للمراعي", starterEn: "Initial pastoral feasibility studies" },
-  },
 };
 
 const RESOURCE_TO_RAW: Record<ResourceKind, { ar: string; en: string }> = {
