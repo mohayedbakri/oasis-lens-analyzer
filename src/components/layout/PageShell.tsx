@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import bannerAsset from "@/assets/rsic-banner.jpg.asset.json";
+import logoWhite from "@/assets/rsic-logo-white.png.asset.json";
 import { useI18n } from "@/lib/i18n";
 
 export function PageShell({ children }: { children: ReactNode }) {
@@ -20,6 +21,7 @@ export function PageBanner({ overlay = false }: { overlay?: boolean }) {
     lang === "ar"
       ? "مجمع برقيق الصناعي الريفي النموذجي"
       : "RSIC pilot industrial complex — Al-Burgig";
+  const isRtl = lang === "ar";
   return (
     <div className="relative w-full overflow-hidden border-b border-border bg-secondary">
       <img
@@ -29,14 +31,28 @@ export function PageBanner({ overlay = false }: { overlay?: boolean }) {
         loading="eager"
       />
       {overlay && (
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(to right, rgba(0,0,0,0.4), color-mix(in srgb, var(--primary) 60%, transparent))",
-          }}
-          aria-hidden="true"
-        />
+        <>
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background: isRtl
+                ? "linear-gradient(to left, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.55) 35%, color-mix(in srgb, var(--primary) 60%, transparent) 75%, color-mix(in srgb, var(--primary) 40%, transparent) 100%)"
+                : "linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.55) 35%, color-mix(in srgb, var(--primary) 60%, transparent) 75%, color-mix(in srgb, var(--primary) 40%, transparent) 100%)",
+            }}
+            aria-hidden="true"
+          />
+          <div
+            className={`pointer-events-none absolute inset-y-0 flex items-center ${
+              isRtl ? "right-0 pr-6 sm:pr-10 lg:pr-16" : "left-0 pl-6 sm:pl-10 lg:pl-16"
+            }`}
+          >
+            <img
+              src={logoWhite.url}
+              alt="RSIC"
+              className="h-20 w-auto opacity-95 sm:h-28 lg:h-36"
+            />
+          </div>
+        </>
       )}
     </div>
   );
