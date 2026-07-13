@@ -53,6 +53,7 @@ function ArticleDetailPage() {
     <PageShell>
       <PostDetail
         kind="articles"
+        id={item.id}
         date={item.date}
         title={item.title}
         author={item.author}

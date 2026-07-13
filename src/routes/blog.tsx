@@ -6,6 +6,7 @@ import { PageShell, PageHeader } from "@/components/layout/PageShell";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { articlesByLang, reportsByLang, newsByLang } from "@/lib/content";
 import { useI18n } from "@/lib/i18n";
+import { MetricChips } from "@/components/blog/MetricChips";
 
 const blogSearchSchema = z.object({
   tab: z.enum(["articles", "reports", "news"]).optional(),
@@ -95,9 +96,12 @@ function BlogPage() {
                     {a.title}
                   </h3>
                   <p className="mt-2 text-sm leading-loose text-muted-foreground">{a.excerpt}</p>
-                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-accent">
-                    {t("blog.readMore")} <ReadIcon className="h-3 w-3" />
-                  </span>
+                  <div className="mt-4 flex items-center justify-between">
+                    <span className="inline-flex items-center gap-1 text-sm font-bold text-accent">
+                      {t("blog.readMore")} <ReadIcon className="h-3 w-3" />
+                    </span>
+                    <MetricChips kind="articles" id={a.id} />
+                  </div>
                 </Link>
               ))}
             </div>
@@ -123,9 +127,12 @@ function BlogPage() {
                     {n.title}
                   </h3>
                   <p className="mt-2 text-sm leading-loose text-muted-foreground">{n.excerpt}</p>
-                  <span className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-accent">
-                    {t("blog.readMore")} <ReadIcon className="h-3 w-3" />
-                  </span>
+                  <div className="mt-3 flex items-center justify-between">
+                    <span className="inline-flex items-center gap-1 text-sm font-bold text-accent">
+                      {t("blog.readMore")} <ReadIcon className="h-3 w-3" />
+                    </span>
+                    <MetricChips kind="news" id={n.id} />
+                  </div>
                 </Link>
               ))}
             </div>

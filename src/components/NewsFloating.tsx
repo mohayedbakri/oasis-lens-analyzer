@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { Newspaper, X } from "lucide-react";
 import { newsByLang } from "@/lib/content";
 import { useI18n } from "@/lib/i18n";
+import { MetricChips } from "@/components/blog/MetricChips";
 
 export function NewsFloating() {
   const { lang, t } = useI18n();
@@ -42,6 +43,9 @@ export function NewsFloating() {
                   <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
                     {n.excerpt}
                   </p>
+                  <div className="mt-2">
+                    <MetricChips kind="news" id={n.id} />
+                  </div>
                 </Link>
               </li>
             ))}

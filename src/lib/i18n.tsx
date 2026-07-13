@@ -212,6 +212,14 @@ const dict: Dict = {
   "blog.notFound.desc": { ar: "لم نعثر على هذا المحتوى، ربما تم نقله أو حذفه.", en: "We couldn't find this content — it may have been moved or removed." },
   "blog.crumb.home": { ar: "الرئيسية", en: "Home" },
   "blog.related": { ar: "محتوى ذو صلة", en: "Related content" },
+  "metrics.views": { ar: "المشاهدات", en: "Views" },
+  "metrics.likes": { ar: "الإعجابات", en: "Likes" },
+  "metrics.comments": { ar: "التعليقات", en: "Comments" },
+  "comments.title": { ar: "التعليقات", en: "Comments" },
+  "comments.empty": { ar: "لا توجد تعليقات بعد. كن أول من يعلق.", en: "No comments yet. Be the first to comment." },
+  "comments.name": { ar: "الاسم (اختياري)", en: "Name (optional)" },
+  "comments.placeholder": { ar: "اكتب تعليقك...", en: "Write your comment..." },
+  "comments.submit": { ar: "نشر التعليق", en: "Post comment" },
 
   // Contact
   "contact.eyebrow": { ar: "تواصل", en: "Contact" },

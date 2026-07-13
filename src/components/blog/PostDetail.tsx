@@ -1,10 +1,15 @@
+import { useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, Calendar, User, ChevronLeft } from "lucide-react";
 import { PageBanner } from "@/components/layout/PageShell";
 import { useI18n } from "@/lib/i18n";
+import { MetricChips } from "@/components/blog/MetricChips";
+import { CommentsSection } from "@/components/blog/CommentsSection";
+import { useMetrics } from "@/lib/metrics";
 
 type Props = {
   kind: "news" | "articles";
+  id: string;
   date: string;
   title: string;
   author?: string;
@@ -12,13 +17,25 @@ type Props = {
   related?: { id: string; title: string; date: string }[];
 };
 
-export function PostDetail({ kind, date, title, author, body, related = [] }: Props) {
+export function PostDetail({ kind, id, date, title, author, body, related = [] }: Props) {
   const { t, lang } = useI18n();
   const isRtl = lang === "ar";
   const BackIcon = isRtl ? ArrowRight : ArrowLeft;
 
   const tabKey = kind === "news" ? "news" : "articles";
   const crumbLabel = kind === "news" ? t("blog.tab.news") : t("blog.tab.articles");
+
+  const { registerView } = useMetrics(kind, id);
+  useEffect(() => {
+    registerView();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [kind, id]);
+
+  const commentsRef = useRef<HTMLDivElement>(null);
+  const scrollToComments = () => {
+    commentsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
 
   return (
     <>
@@ -44,17 +61,20 @@ export function PostDetail({ kind, date, title, author, body, related = [] }: Pr
 
         <h1 className="text-3xl font-bold leading-tight text-primary sm:text-4xl">{title}</h1>
 
-        <div className="mt-4 flex flex-wrap items-center gap-4 border-b border-border pb-6 text-sm text-muted-foreground">
-          <span className="inline-flex items-center gap-2" dir="ltr">
-            <Calendar className="h-4 w-4" />
-            {date}
-          </span>
-          {author && (
-            <span className="inline-flex items-center gap-2">
-              <User className="h-4 w-4" />
-              {t("blog.by")} {author}
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-4 border-b border-border pb-6 text-sm text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-4">
+            <span className="inline-flex items-center gap-2" dir="ltr">
+              <Calendar className="h-4 w-4" />
+              {date}
             </span>
-          )}
+            {author && (
+              <span className="inline-flex items-center gap-2">
+                <User className="h-4 w-4" />
+                {t("blog.by")} {author}
+              </span>
+            )}
+          </div>
+          <MetricChips kind={kind} id={id} interactive size="md" onCommentClick={scrollToComments} />
         </div>
 
         <div className="prose prose-lg mt-8 max-w-none space-y-5 text-lg leading-loose text-foreground">
@@ -95,6 +115,10 @@ export function PostDetail({ kind, date, title, author, body, related = [] }: Pr
             </ul>
           </section>
         )}
+
+        <div ref={commentsRef}>
+          <CommentsSection kind={kind} id={id} />
+        </div>
       </article>
     </>
   );
