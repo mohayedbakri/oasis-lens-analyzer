@@ -14,20 +14,30 @@ export function PageShell({ children }: { children: ReactNode }) {
   );
 }
 
-export function PageBanner() {
+export function PageBanner({ overlay = false }: { overlay?: boolean }) {
   const { lang } = useI18n();
   const alt =
     lang === "ar"
       ? "مجمع برقيق الصناعي الريفي النموذجي"
       : "RSIC pilot industrial complex — Al-Burgig";
   return (
-    <div className="w-full overflow-hidden border-b border-border bg-secondary">
+    <div className="relative w-full overflow-hidden border-b border-border bg-secondary">
       <img
         src={bannerAsset.url}
         alt={alt}
         className="h-40 w-full object-cover sm:h-56 lg:h-72"
         loading="eager"
       />
+      {overlay && (
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to right, rgba(0,0,0,0.4), color-mix(in srgb, var(--primary) 60%, transparent))",
+          }}
+          aria-hidden="true"
+        />
+      )}
     </div>
   );
 }
