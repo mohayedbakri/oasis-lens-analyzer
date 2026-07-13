@@ -212,6 +212,8 @@ const dict: Dict = {
   "blog.notFound.desc": { ar: "لم نعثر على هذا المحتوى، ربما تم نقله أو حذفه.", en: "We couldn't find this content — it may have been moved or removed." },
   "blog.crumb.home": { ar: "الرئيسية", en: "Home" },
   "blog.related": { ar: "محتوى ذو صلة", en: "Related content" },
+  "blog.related.news": { ar: "أحدث الأخبار", en: "Latest News" },
+  "blog.related.articles": { ar: "أحدث المقالات", en: "Latest Articles" },
   "metrics.views": { ar: "المشاهدات", en: "Views" },
   "metrics.likes": { ar: "الإعجابات", en: "Likes" },
   "metrics.comments": { ar: "التعليقات", en: "Comments" },
