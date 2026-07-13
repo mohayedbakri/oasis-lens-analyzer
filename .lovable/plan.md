@@ -1,23 +1,9 @@
-# Sidebar Related List on Post Detail
+# Pin Related Sidebar to the Left
 
-Convert the related-content block on article/news detail pages into a side list rendered next to the article body, matching the reference screenshot.
+In `src/components/blog/PostDetail.tsx`, the article body and the "Latest News/Articles" sidebar currently sit in a 3-column grid where the sidebar naturally lands on the right in LTR and on the right in RTL.
 
-## Changes
-
-**`src/components/blog/PostDetail.tsx`**
-- Widen container from `max-w-3xl` to `max-w-6xl` and switch to a 2-column grid on `lg`: article `lg:col-span-2`, sidebar `lg:col-span-1`. Keep single column on mobile (sidebar drops below).
-- Move the `related` block out of the article into a new `<aside>` on the side (right side in RTL, left in LTR — grid order handles this naturally since the whole page is `dir="rtl"` when Arabic).
-- Style the sidebar to match the reference: dark teal `bg-primary text-primary-foreground` panel, rounded, with a bold heading and vertically stacked items separated by thin dividers. Each item shows small thumbnail (from `postImages[r.id]` when available) + title + date, links to the detail route. `lg:sticky lg:top-24` so it follows scroll.
-- Sidebar title depends on kind:
-  - `kind === "news"` → `blog.related.news` = "أحدث الأخبار" / "Latest News"
-  - `kind === "articles"` → `blog.related.articles` = "أحدث المقالات" / "Latest Articles"
-- Keep breadcrumb, hero image, body, back button, and comments inside the article column (comments span full width below).
-
-**`src/lib/i18n.tsx`**
-- Add two new i18n keys:
-  - `blog.related.news`: ar "أحدث الأخبار", en "Latest News"
-  - `blog.related.articles`: ar "أحدث المقالات", en "Latest Articles"
-- Leave existing `blog.related` key untouched (still used elsewhere if any).
-
-## Out of scope
-No changes to data sources, routing, or the blog index tabs. Comments section behavior unchanged.
+## Change
+- Reorder the grid so the sidebar is always on the **left** regardless of language direction.
+- Implementation: give the sidebar `lg:order-first` (or swap to `lg:col-start-1` + move article to `lg:col-start-2 lg:col-span-2`) so it renders in the left column in both LTR and RTL layouts.
+- Keep the sticky positioning, teal styling, and dynamic heading (Latest News / Latest Articles) unchanged.
+- No other files touched.
