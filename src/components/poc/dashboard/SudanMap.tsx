@@ -113,10 +113,7 @@ function MaturityLegend() {
       <span>{t("oasis.map.legend.low")}</span>
       <div
         className="h-2 w-24 rounded-full"
-        style={{
-          background:
-            "linear-gradient(to right, hsl(var(--muted-hsl, 40 8% 90%)), hsl(var(--primary-hsl, 178 89% 25%)))",
-        }}
+        style={{ background: "linear-gradient(to right, var(--muted), var(--primary))" }}
       />
       <span>{t("oasis.map.legend.high")}</span>
     </div>
