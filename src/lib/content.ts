@@ -1,6 +1,17 @@
 // Placeholder bilingual content for blog/news/reports. Will be replaced by a CMS later.
 
 import type { Lang } from "./i18n";
+import a1Img from "@/assets/blog/a1.jpg";
+import a2Img from "@/assets/blog/a2.jpg";
+import a3Img from "@/assets/blog/a3.jpg";
+import n1Img from "@/assets/blog/n1.jpg";
+import n2Img from "@/assets/blog/n2.jpg";
+import n3Img from "@/assets/blog/n3.jpg";
+
+export const postImages: Record<string, string> = {
+  a1: a1Img, a2: a2Img, a3: a3Img,
+  n1: n1Img, n2: n2Img, n3: n3Img,
+};
 
 type News = { id: string; date: string; title: string; excerpt: string; body: string[] };
 type Article = {
