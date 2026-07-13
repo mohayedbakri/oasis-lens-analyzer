@@ -11,8 +11,6 @@ import { StateDetailDrawer } from "@/components/poc/dashboard/StateDetailDrawer"
 import { KpiStrip } from "@/components/poc/KpiStrip";
 import { FundingPanel } from "@/components/poc/FundingPanel";
 import { MilestonesPanel } from "@/components/poc/MilestonesPanel";
-import { TimelinePanel } from "@/components/poc/TimelinePanel";
-import { DocumentsPanel } from "@/components/poc/DocumentsPanel";
 import { WorkPackageFilters } from "@/components/poc/WorkPackageFilters";
 import { GlobalIndicesStrip } from "@/components/poc/GlobalIndicesStrip";
 import { pocQueryOptions, type PocSnapshot } from "@/lib/poc-data";
