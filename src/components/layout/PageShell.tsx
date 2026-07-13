@@ -56,14 +56,14 @@ export function PageBanner({ overlay = false }: { overlay?: boolean }) {
           />
 
           <div
-            className={`pointer-events-none absolute top-4 m-4 sm:top-6 sm:m-6 lg:top-8 lg:m-8 ${
+            className={`pointer-events-none absolute top-2 m-3 sm:top-3 sm:m-4 lg:top-4 lg:m-5 ${
               darkOnLeft ? "left-0" : "right-0"
             }`}
           >
             <img
               src={logoWhite.url}
               alt="RSIC"
-              className="h-12 w-auto opacity-95 sm:h-16 lg:h-20"
+              className="h-9 w-auto opacity-95 sm:h-10 lg:h-12"
             />
           </div>
         </>
