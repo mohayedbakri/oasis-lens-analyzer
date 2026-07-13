@@ -14,6 +14,7 @@ import { MilestonesPanel } from "@/components/poc/MilestonesPanel";
 import { TimelinePanel } from "@/components/poc/TimelinePanel";
 import { DocumentsPanel } from "@/components/poc/DocumentsPanel";
 import { WorkPackageFilters } from "@/components/poc/WorkPackageFilters";
+import { GlobalIndicesStrip } from "@/components/poc/GlobalIndicesStrip";
 import { pocQueryOptions, type PocSnapshot } from "@/lib/poc-data";
 import { useI18n } from "@/lib/i18n";
 import type { StageId } from "@/lib/oasis-data";
@@ -111,6 +112,7 @@ function NationalDashboard() {
 
   return (
     <section className="mx-auto max-w-7xl space-y-10 px-4 py-8 sm:px-6 lg:px-8">
+      <GlobalIndicesStrip />
       <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
         <div className="order-2 lg:order-1">
           <RoadmapSidebar activeStage={stage} onSelect={setStage} />

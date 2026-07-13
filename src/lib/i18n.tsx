@@ -383,6 +383,21 @@ const dict: Dict = {
     en: "The interactive Sudan map, the RSIC roadmap, and measurable running tasks — in one linked view.",
   },
 
+  "oasis.indices.eyebrow": { ar: "التموضع الخارجي", en: "External Positioning" },
+  "oasis.indices.title": {
+    ar: "موقع السودان على المؤشرات العالمية",
+    en: "Sudan's Standing on Global Indices",
+  },
+  "oasis.indices.subtitle": {
+    ar: "ثلاثة مؤشرات مُحدَّثة تُنتج المناظير الأربعة (عالمي، عربي، أفريقي، إسلامي) عبر الترشيح.",
+    en: "Three current indices produce the four lenses (Global, Arab, African, Islamic) via filtering.",
+  },
+  "oasis.indices.rank": { ar: "الترتيب", en: "Rank" },
+  "oasis.indices.score": { ar: "النتيجة", en: "Score" },
+  "oasis.indices.source": { ar: "المصدر", en: "Source" },
+
+
+
   "oasis.map.title": { ar: "خريطة السودان التفاعلية", en: "Interactive Sudan Map" },
   "oasis.map.hint": {
     ar: "مرّر لعرض المؤشرات، وانقر على الولاية لفتح التفاصيل. يعكس التلوين نضج التحول الصناعي.",
