@@ -7,6 +7,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { articlesByLang, reportsByLang, newsByLang } from "@/lib/content";
 import { useI18n } from "@/lib/i18n";
 import { MetricChips } from "@/components/blog/MetricChips";
+import { postImages } from "@/lib/content";
 
 const blogSearchSchema = z.object({
   tab: z.enum(["articles", "reports", "news"]).optional(),
