@@ -11,8 +11,6 @@ import { StateDetailDrawer } from "@/components/poc/dashboard/StateDetailDrawer"
 import { KpiStrip } from "@/components/poc/KpiStrip";
 import { FundingPanel } from "@/components/poc/FundingPanel";
 import { MilestonesPanel } from "@/components/poc/MilestonesPanel";
-import { TimelinePanel } from "@/components/poc/TimelinePanel";
-import { DocumentsPanel } from "@/components/poc/DocumentsPanel";
 import { WorkPackageFilters } from "@/components/poc/WorkPackageFilters";
 import { GlobalIndicesStrip } from "@/components/poc/GlobalIndicesStrip";
 import { pocQueryOptions, type PocSnapshot } from "@/lib/poc-data";
@@ -177,14 +175,8 @@ function NationalDashboard() {
         )}
 
         <MilestonesPanel data={filtered} />
-        <TimelinePanel data={filtered} />
 
-        <div className="grid gap-6 lg:grid-cols-3">
-          <div className="lg:col-span-2">
-            <FundingPanel data={filtered} />
-          </div>
-          <DocumentsPanel data={filtered} />
-        </div>
+        <FundingPanel data={filtered} />
       </div>
 
       <StateDetailDrawer stateId={drawerId} onClose={() => setDrawerId(null)} />
