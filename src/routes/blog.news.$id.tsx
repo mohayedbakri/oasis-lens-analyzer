@@ -40,6 +40,7 @@ function NewsDetailPage() {
     <PageShell>
       <PostDetail
         kind="news"
+        id={item.id}
         date={item.date}
         title={item.title}
         body={item.body}
