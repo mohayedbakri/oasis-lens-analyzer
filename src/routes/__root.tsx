@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { site, siteI18n } from "../lib/site";
 import { I18nProvider } from "../lib/i18n";
+import { PageTransition } from "../components/motion/PageTransition";
 
 function NotFoundComponent() {
   return (
@@ -137,7 +138,9 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <I18nProvider>
-        <Outlet />
+        <PageTransition>
+          <Outlet />
+        </PageTransition>
       </I18nProvider>
     </QueryClientProvider>
   );

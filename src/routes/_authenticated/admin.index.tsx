@@ -40,7 +40,7 @@ function AdminDashboard() {
         <div className="mb-4 flex items-center justify-between">
           <h2 className="font-bold text-foreground">Recent posts</h2>
           <Link
-            to="/_authenticated/admin/posts"
+            to="/admin/posts"
             className="text-sm font-semibold text-primary hover:underline"
           >
             Manage all →

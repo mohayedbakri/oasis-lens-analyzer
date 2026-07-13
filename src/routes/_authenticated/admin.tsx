@@ -79,11 +79,11 @@ function AdminLayout() {
             <p className="mb-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">
               Admin
             </p>
-            <NavItem to="/_authenticated/admin" icon={<LayoutDashboard className="h-4 w-4" />}>
+            <NavItem to="/admin" icon={<LayoutDashboard className="h-4 w-4" />}>
               Dashboard
             </NavItem>
             <NavItem
-              to="/_authenticated/admin/posts"
+              to="/admin/posts"
               icon={<FileText className="h-4 w-4" />}
             >
               Posts

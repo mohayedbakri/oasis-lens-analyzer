@@ -7,7 +7,7 @@ export const Route = createFileRoute("/auth")({
   ssr: false,
   beforeLoad: async () => {
     const { data } = await supabase.auth.getSession();
-    if (data.session) throw redirect({ to: "/_authenticated/admin" as never });
+    if (data.session) throw redirect({ to: "/admin" as never });
   },
   head: () => ({
     meta: [
@@ -35,7 +35,7 @@ function AuthPage() {
       setError(err.message);
       return;
     }
-    navigate({ to: "/_authenticated/admin" as never, replace: true });
+    navigate({ to: "/admin" as never, replace: true });
   }
 
   return (
