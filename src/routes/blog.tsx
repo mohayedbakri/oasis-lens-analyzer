@@ -127,9 +127,12 @@ function BlogPage() {
                     {n.title}
                   </h3>
                   <p className="mt-2 text-sm leading-loose text-muted-foreground">{n.excerpt}</p>
-                  <span className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-accent">
-                    {t("blog.readMore")} <ReadIcon className="h-3 w-3" />
-                  </span>
+                  <div className="mt-3 flex items-center justify-between">
+                    <span className="inline-flex items-center gap-1 text-sm font-bold text-accent">
+                      {t("blog.readMore")} <ReadIcon className="h-3 w-3" />
+                    </span>
+                    <MetricChips kind="news" id={n.id} />
+                  </div>
                 </Link>
               ))}
             </div>
