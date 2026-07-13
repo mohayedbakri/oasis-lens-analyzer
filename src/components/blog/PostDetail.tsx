@@ -1,7 +1,11 @@
+import { useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, Calendar, User, ChevronLeft } from "lucide-react";
 import { PageBanner } from "@/components/layout/PageShell";
 import { useI18n } from "@/lib/i18n";
+import { MetricChips } from "@/components/blog/MetricChips";
+import { CommentsSection } from "@/components/blog/CommentsSection";
+import { useMetrics } from "@/lib/metrics";
 
 type Props = {
   kind: "news" | "articles";
