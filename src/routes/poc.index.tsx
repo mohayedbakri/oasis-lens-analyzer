@@ -88,9 +88,9 @@ function NationalDashboard() {
   const [drawerId, setDrawerId] = useState<string | null>(null);
 
   const setStage = (s: StageId | null) =>
-    navigate({ search: (p) => ({ ...p, stage: s ?? undefined }) });
+    navigate({ search: (p: z.infer<typeof searchSchema>) => ({ ...p, stage: s ?? undefined }) });
   const setState = (id: string | null) =>
-    navigate({ search: (p) => ({ ...p, state: id ?? undefined }) });
+    navigate({ search: (p: z.infer<typeof searchSchema>) => ({ ...p, state: id ?? undefined }) });
 
   const { data, refetch, isFetching, dataUpdatedAt } = useSuspenseQuery(pocQueryOptions);
   const q = search.q ?? "";
