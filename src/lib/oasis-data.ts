@@ -289,6 +289,113 @@ export const STATE_DATA: Record<string, StateData> = {
   },
 };
 
+// ─── Per-state indicator overrides (Data Complex Indicators) ───
+
+export type StateIndicators = {
+  selfSuff: { dietaryAr: string; dietaryEn: string; clothingAr: string; clothingEn: string; constructionAr: string; constructionEn: string };
+  global: { rawAr: string; rawEn: string; starterAr: string; starterEn: string };
+};
+
+const INDICATOR_OVERRIDES: Partial<Record<string, StateIndicators>> = {
+  northern: {
+    selfSuff: { dietaryAr: "تمور، قمح، فول", dietaryEn: "Dates, wheat, beans", clothingAr: "قطن مستورد جزئيًا", clothingEn: "Partially imported cotton", constructionAr: "طوب طيني وحجر نوبي", constructionEn: "Mud brick and Nubian stone" },
+    global: { rawAr: "زراعية: تمور، قمح · معدنية: ذهب", rawEn: "Agricultural: dates, wheat · Mineral: gold", starterAr: "معالجة تمور متكاملة، تكرير ذهب مجتمعي، صناعات جلدية", starterEn: "Integrated date processing, community gold refining, leather goods" },
+  },
+  river_nile: {
+    selfSuff: { dietaryAr: "قمح، فول، أعلاف", dietaryEn: "Wheat, beans, fodder", clothingAr: "منسوجات مستوردة", clothingEn: "Imported textiles", constructionAr: "أسمنت محلي وحديد بربر", constructionEn: "Local cement and Berber iron" },
+    global: { rawAr: "معدنية: حديد، أسمنت · زراعية: أعلاف", rawEn: "Mineral: iron, cement · Agricultural: fodder", starterAr: "صلب مسطح، مواد بناء مسبقة الصنع، لوجستيات لبورتسودان", starterEn: "Flat steel, prefab building materials, Port Sudan logistics" },
+  },
+  red_sea: {
+    selfSuff: { dietaryAr: "أسماك، حبوب مستوردة", dietaryEn: "Fish, imported grains", clothingAr: "أقمشة ساحلية مستوردة", clothingEn: "Imported coastal fabrics", constructionAr: "حجر مرجاني وأسمنت", constructionEn: "Coral stone and cement" },
+    global: { rawAr: "ساحلية: أسماك، ملح · معدنية: فوسفات", rawEn: "Coastal: fisheries, salt · Mineral: phosphate", starterAr: "تعليب أسماك، تكرير ملح، طاقة رياح ساحلية", starterEn: "Fish canning, salt refining, coastal wind energy" },
+  },
+  khartoum: {
+    selfSuff: { dietaryAr: "منتجات مصنّعة، خبز، ألبان", dietaryEn: "Processed foods, bread, dairy", clothingAr: "منسوجات محلية ومستوردة", clothingEn: "Local and imported textiles", constructionAr: "خرسانة وطوب أحمر", constructionEn: "Concrete and red brick" },
+    global: { rawAr: "خدمات وتصنيع خفيف", rawEn: "Services and light manufacturing", starterAr: "تصميم صناعي، إلكترونيات مجمّعة، مركز أبحاث تطبيقية", starterEn: "Industrial design, assembled electronics, applied R&D hub" },
+  },
+  kassala: {
+    selfSuff: { dietaryAr: "ذرة، سمسم، حبوب زيتية", dietaryEn: "Sorghum, sesame, oil seeds", clothingAr: "قطن وأنسجة تقليدية", clothingEn: "Cotton and traditional weaves", constructionAr: "طوب طيني وقش", constructionEn: "Mud brick and thatch" },
+    global: { rawAr: "زراعية: صمغ عربي، حبوب زيتية · حيوانية: ماشية", rawEn: "Agricultural: gum arabic, oil seeds · Animal: livestock", starterAr: "معاصر زيوت، مصانع صمغ متكاملة، دباغة", starterEn: "Oil pressing, integrated gum plants, tanneries" },
+  },
+  gedaref: {
+    selfSuff: { dietaryAr: "سمسم، ذرة، بقوليات", dietaryEn: "Sesame, sorghum, legumes", clothingAr: "قطن محلي", clothingEn: "Local cotton", constructionAr: "طوب أحمر", constructionEn: "Red brick" },
+    global: { rawAr: "زراعية: سمسم، ذرة، أعلاف", rawEn: "Agricultural: sesame, sorghum, feed", starterAr: "زيوت سمسم مكررة، صوامع، أعلاف مركزة", starterEn: "Refined sesame oil, silos, concentrated feed" },
+  },
+  gezira: {
+    selfSuff: { dietaryAr: "قمح، ذرة، خضروات", dietaryEn: "Wheat, sorghum, vegetables", clothingAr: "قطن الجزيرة", clothingEn: "Gezira cotton", constructionAr: "طوب أحمر وأسمنت", constructionEn: "Red brick and cement" },
+    global: { rawAr: "زراعية: قطن، قمح · نسيج تاريخي", rawEn: "Agricultural: cotton, wheat · Historic textile base", starterAr: "إحياء المنسوجات، تصنيع أغذية، ملابس جاهزة", starterEn: "Textile revival, food processing, ready-made garments" },
+  },
+  sennar: {
+    selfSuff: { dietaryAr: "سكر، ذرة، فواكه", dietaryEn: "Sugar, sorghum, fruits", clothingAr: "منسوجات مستوردة", clothingEn: "Imported textiles", constructionAr: "طوب وأسمنت", constructionEn: "Brick and cement" },
+    global: { rawAr: "زراعية: قصب السكر · طاقة: كهرباء مائية", rawEn: "Agricultural: sugar cane · Energy: hydropower", starterAr: "مشتقات السكر، إيثانول، ري ذكي", starterEn: "Sugar derivatives, ethanol, smart irrigation" },
+  },
+  blue_nile: {
+    selfSuff: { dietaryAr: "ذرة، بقوليات، لحوم", dietaryEn: "Sorghum, legumes, meat", clothingAr: "أقمشة تقليدية", clothingEn: "Traditional fabrics", constructionAr: "خشب وطين وقش", constructionEn: "Timber, mud and thatch" },
+    global: { rawAr: "زراعية: أخشاب · حيوانية: ماشية رعوية", rawEn: "Agricultural: timber · Animal: pastoral livestock", starterAr: "أثاث ريفي، منتجات ألبان، خشب مصنّع", starterEn: "Rural furniture, dairy products, engineered wood" },
+  },
+  white_nile: {
+    selfSuff: { dietaryAr: "ألبان، لحوم، فول سوداني", dietaryEn: "Dairy, meat, groundnuts", clothingAr: "قطن ومنسوجات مستوردة", clothingEn: "Cotton and imported textiles", constructionAr: "طوب طيني", constructionEn: "Mud brick" },
+    global: { rawAr: "حيوانية: ألبان ولحوم · زراعية: فول سوداني", rawEn: "Animal: dairy & meat · Agricultural: groundnuts", starterAr: "مصانع ألبان، زبدة فول سوداني، مسالخ حديثة", starterEn: "Dairy plants, peanut butter lines, modern abattoirs" },
+  },
+  north_kordofan: {
+    selfSuff: { dietaryAr: "دخن، ذرة، ألبان إبل", dietaryEn: "Millet, sorghum, camel milk", clothingAr: "جلود وأصواف", clothingEn: "Hides and wool", constructionAr: "طين وقش", constructionEn: "Mud and thatch" },
+    global: { rawAr: "زراعية: صمغ عربي · حيوانية: إبل", rawEn: "Agricultural: gum arabic · Animal: camels", starterAr: "مصنع صمغ متكامل، منتجات إبل، جلود مدبوغة", starterEn: "Integrated gum plant, camel-derived products, tanned leather" },
+  },
+  south_kordofan: {
+    selfSuff: { dietaryAr: "ذرة، فول سوداني", dietaryEn: "Sorghum, groundnuts", clothingAr: "أقمشة مستوردة", clothingEn: "Imported fabrics", constructionAr: "طوب طيني وحجر", constructionEn: "Mud brick and stone" },
+    global: { rawAr: "معدنية: كروم · زراعية: ذرة", rawEn: "Mineral: chromite · Agricultural: sorghum", starterAr: "تكرير كروم، مطاحن ذرة، معادن سبائكية", starterEn: "Chromite beneficiation, sorghum mills, alloy metals" },
+  },
+  west_kordofan: {
+    selfSuff: { dietaryAr: "ذرة، لحوم", dietaryEn: "Sorghum, meat", clothingAr: "مستورد", clothingEn: "Imported", constructionAr: "طين وقش", constructionEn: "Mud and thatch" },
+    global: { rawAr: "طاقة: نفط هجليج · زراعية: صمغ", rawEn: "Energy: Heglig oil · Agricultural: gum", starterAr: "بتروكيماويات صغيرة، مركز طاقة إقليمي", starterEn: "Small petrochemicals, regional energy hub" },
+  },
+  north_darfur: {
+    selfSuff: { dietaryAr: "دخن، ألبان، لحوم", dietaryEn: "Millet, dairy, meat", clothingAr: "جلود ومنسوجات مستوردة", clothingEn: "Hides and imported textiles", constructionAr: "طين وقش", constructionEn: "Mud and thatch" },
+    global: { rawAr: "معدنية: ذهب وملح · حيوانية: ماشية", rawEn: "Mineral: gold and salt · Animal: livestock", starterAr: "تكرير ذهب صغير النطاق، تجهيز ملح، منتجات لحوم", starterEn: "Small-scale gold refining, salt processing, meat products" },
+  },
+  south_darfur: {
+    selfSuff: { dietaryAr: "فول سوداني، ذرة، لحوم", dietaryEn: "Groundnuts, sorghum, meat", clothingAr: "أقمشة مستوردة", clothingEn: "Imported fabrics", constructionAr: "طين وقش", constructionEn: "Mud and thatch" },
+    global: { rawAr: "زراعية: فول سوداني · حيوانية: ماشية", rawEn: "Agricultural: groundnuts · Animal: livestock", starterAr: "معاصر زيوت، مسالخ، دباغة", starterEn: "Oil pressing, abattoirs, tanneries" },
+  },
+  east_darfur: {
+    selfSuff: { dietaryAr: "ألبان، لحوم، حبوب", dietaryEn: "Dairy, meat, grains", clothingAr: "مستورد", clothingEn: "Imported", constructionAr: "طين", constructionEn: "Mud" },
+    global: { rawAr: "حيوانية: أبقار · زراعية: حبوب", rawEn: "Animal: cattle · Agricultural: grains", starterAr: "ألبان مبستَرة، مطاحن حبوب", starterEn: "Pasteurised dairy, grain milling" },
+  },
+  west_darfur: {
+    selfSuff: { dietaryAr: "فواكه، حبوب، لحوم", dietaryEn: "Fruits, grains, meat", clothingAr: "أقمشة تقليدية", clothingEn: "Traditional fabrics", constructionAr: "طين وقش", constructionEn: "Mud and thatch" },
+    global: { rawAr: "زراعية: فواكه، حبوب", rawEn: "Agricultural: fruits, grains", starterAr: "تجفيف فواكه، عصائر، معالجة حبوب", starterEn: "Fruit drying, juice, grain processing" },
+  },
+  central_darfur: {
+    selfSuff: { dietaryAr: "حبوب، بقوليات", dietaryEn: "Grains, legumes", clothingAr: "أقمشة تقليدية", clothingEn: "Traditional fabrics", constructionAr: "طين وقش", constructionEn: "Mud and thatch" },
+    global: { rawAr: "زراعية: حبوب، بقوليات", rawEn: "Agricultural: grains, legumes", starterAr: "مطاحن مجتمعية، تعبئة بقوليات", starterEn: "Community mills, legume packaging" },
+  },
+  abyei_pca: {
+    selfSuff: { dietaryAr: "ألبان ولحوم رعوية", dietaryEn: "Pastoral dairy and meat", clothingAr: "مستورد", clothingEn: "Imported", constructionAr: "قش وطين", constructionEn: "Thatch and mud" },
+    global: { rawAr: "حيوانية: ماشية رعوية", rawEn: "Animal: pastoral livestock", starterAr: "دراسات جدوى أولية للمراعي", starterEn: "Initial pastoral feasibility studies" },
+  },
+};
+
+const RESOURCE_TO_RAW: Record<ResourceKind, { ar: string; en: string }> = {
+  agri: { ar: "زراعية", en: "Agricultural" },
+  livestock: { ar: "حيوانية", en: "Animal" },
+  mineral: { ar: "معدنية/محاجر", en: "Mineral/Quarry" },
+  energy: { ar: "طاقة", en: "Energy" },
+  coastal: { ar: "ساحلية", en: "Coastal" },
+};
+
+export function getStateIndicators(stateId: string): StateIndicators {
+  const override = INDICATOR_OVERRIDES[stateId];
+  if (override) return override;
+  const d = STATE_DATA[stateId];
+  const rawAr = d ? d.resources.map((r) => RESOURCE_TO_RAW[r].ar).join(" · ") : "—";
+  const rawEn = d ? d.resources.map((r) => RESOURCE_TO_RAW[r].en).join(" · ") : "—";
+  return {
+    selfSuff: { dietaryAr: "بيانات محلية قيد الإعداد", dietaryEn: "Local data pending", clothingAr: "بيانات محلية قيد الإعداد", clothingEn: "Local data pending", constructionAr: "طين وطوب وحجر", constructionEn: "Mud, brick and stone" },
+    global: { rawAr, rawEn, starterAr: d ? d.opportunitiesAr.join("، ") : "—", starterEn: d ? d.opportunitiesEn.join(", ") : "—" },
+  };
+}
+
+
 // ─── Tasks (measurable & running) ───
 
 export type Task = {
