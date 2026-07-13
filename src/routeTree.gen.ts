@@ -20,6 +20,8 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BlogNewsIdRouteImport } from './routes/blog.news.$id'
+import { Route as BlogArticlesIdRouteImport } from './routes/blog.articles.$id'
 
 const SupportRoute = SupportRouteImport.update({
   id: '/support',
@@ -76,11 +78,21 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogNewsIdRoute = BlogNewsIdRouteImport.update({
+  id: '/news/$id',
+  path: '/news/$id',
+  getParentRoute: () => BlogRoute,
+} as any)
+const BlogArticlesIdRoute = BlogArticlesIdRouteImport.update({
+  id: '/articles/$id',
+  path: '/articles/$id',
+  getParentRoute: () => BlogRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/blog': typeof BlogRoute
+  '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
   '/governance': typeof GovernanceRoute
@@ -89,11 +101,13 @@ export interface FileRoutesByFullPath {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/support': typeof SupportRoute
+  '/blog/articles/$id': typeof BlogArticlesIdRoute
+  '/blog/news/$id': typeof BlogNewsIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/blog': typeof BlogRoute
+  '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
   '/governance': typeof GovernanceRoute
@@ -102,12 +116,14 @@ export interface FileRoutesByTo {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/support': typeof SupportRoute
+  '/blog/articles/$id': typeof BlogArticlesIdRoute
+  '/blog/news/$id': typeof BlogNewsIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/blog': typeof BlogRoute
+  '/blog': typeof BlogRouteWithChildren
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
   '/governance': typeof GovernanceRoute
@@ -116,6 +132,8 @@ export interface FileRoutesById {
   '/projects': typeof ProjectsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/support': typeof SupportRoute
+  '/blog/articles/$id': typeof BlogArticlesIdRoute
+  '/blog/news/$id': typeof BlogNewsIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -131,6 +149,8 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/support'
+    | '/blog/articles/$id'
+    | '/blog/news/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -144,6 +164,8 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/support'
+    | '/blog/articles/$id'
+    | '/blog/news/$id'
   id:
     | '__root__'
     | '/'
@@ -157,12 +179,14 @@ export interface FileRouteTypes {
     | '/projects'
     | '/sitemap.xml'
     | '/support'
+    | '/blog/articles/$id'
+    | '/blog/news/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  BlogRoute: typeof BlogRoute
+  BlogRoute: typeof BlogRouteWithChildren
   ContactRoute: typeof ContactRoute
   DonateRoute: typeof DonateRoute
   GovernanceRoute: typeof GovernanceRoute
@@ -252,13 +276,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/news/$id': {
+      id: '/blog/news/$id'
+      path: '/news/$id'
+      fullPath: '/blog/news/$id'
+      preLoaderRoute: typeof BlogNewsIdRouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/blog/articles/$id': {
+      id: '/blog/articles/$id'
+      path: '/articles/$id'
+      fullPath: '/blog/articles/$id'
+      preLoaderRoute: typeof BlogArticlesIdRouteImport
+      parentRoute: typeof BlogRoute
+    }
   }
 }
+
+interface BlogRouteChildren {
+  BlogArticlesIdRoute: typeof BlogArticlesIdRoute
+  BlogNewsIdRoute: typeof BlogNewsIdRoute
+}
+
+const BlogRouteChildren: BlogRouteChildren = {
+  BlogArticlesIdRoute: BlogArticlesIdRoute,
+  BlogNewsIdRoute: BlogNewsIdRoute,
+}
+
+const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  BlogRoute: BlogRoute,
+  BlogRoute: BlogRouteWithChildren,
   ContactRoute: ContactRoute,
   DonateRoute: DonateRoute,
   GovernanceRoute: GovernanceRoute,

@@ -30,9 +30,8 @@ export function NewsFloating() {
             {news.map((n) => (
               <li key={n.id}>
                 <Link
-                  to="/blog"
-                  search={{ tab: "news" }}
-                  hash={`news-${n.id}`}
+                  to="/blog/news/$id"
+                  params={{ id: n.id }}
                   onClick={() => setOpen(false)}
                   className="block p-4 text-start transition-colors hover:bg-secondary/40"
                 >

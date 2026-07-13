@@ -203,6 +203,15 @@ const dict: Dict = {
   "blog.tab.news": { ar: "الأخبار", en: "News" },
   "blog.download": { ar: "تحميل PDF", en: "Download PDF" },
   "blog.pages": { ar: "صفحة", en: "pages" },
+  "blog.readMore": { ar: "اقرأ المزيد", en: "Read more" },
+  "blog.backToBlog": { ar: "العودة إلى المدونة", en: "Back to blog" },
+  "blog.publishedOn": { ar: "نُشر في", en: "Published on" },
+  "blog.by": { ar: "بقلم", en: "By" },
+  "blog.share": { ar: "شارك المقال", en: "Share" },
+  "blog.notFound.title": { ar: "المقال غير موجود", en: "Article not found" },
+  "blog.notFound.desc": { ar: "لم نعثر على هذا المحتوى، ربما تم نقله أو حذفه.", en: "We couldn't find this content — it may have been moved or removed." },
+  "blog.crumb.home": { ar: "الرئيسية", en: "Home" },
+  "blog.related": { ar: "محتوى ذو صلة", en: "Related content" },
 
   // Contact
   "contact.eyebrow": { ar: "تواصل", en: "Contact" },
