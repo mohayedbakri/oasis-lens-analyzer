@@ -96,9 +96,12 @@ function BlogPage() {
                     {a.title}
                   </h3>
                   <p className="mt-2 text-sm leading-loose text-muted-foreground">{a.excerpt}</p>
-                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-accent">
-                    {t("blog.readMore")} <ReadIcon className="h-3 w-3" />
-                  </span>
+                  <div className="mt-4 flex items-center justify-between">
+                    <span className="inline-flex items-center gap-1 text-sm font-bold text-accent">
+                      {t("blog.readMore")} <ReadIcon className="h-3 w-3" />
+                    </span>
+                    <MetricChips kind="articles" id={a.id} />
+                  </div>
                 </Link>
               ))}
             </div>
