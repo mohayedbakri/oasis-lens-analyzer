@@ -1,25 +1,15 @@
-# Add gradient overlay to page banners
+## Add dot pattern to banner gradient overlay
 
-## Goal
-Add a dark-to-teal gradient layer on top of the page banner image for all internal pages, with opacity ramping from 40% on the dark side to 60% on the teal side. The homepage banner remains unchanged.
+The reference banner has a faint dot grid layered over the dark-to-teal gradient. Currently `PageBanner` renders only the gradient — no dots.
 
-## Changes
+### Change
 
-### 1. `src/components/layout/PageShell.tsx`
-- Extend `PageBanner` with an optional `overlay` prop (default `false`).
-- When `overlay={true}`, render an absolutely positioned div over the `<img>` using a left-to-right `linear-gradient`:
-  - Left stop: `rgba(0,0,0,0.4)` (dark at 40% opacity)
-  - Right stop: `color-mix(in srgb, var(--primary) 60%, transparent)` (teal at 60% opacity)
-- Keep the existing image and alt text untouched.
+**`src/components/layout/PageShell.tsx`** — inside the `overlay` block, add a second absolutely-positioned layer above the gradient (below the logo) that paints a repeating dot pattern:
 
-### 2. Internal route pages
-- Update routes that currently render `<PageBanner />` or `<PageHeader banner />` to pass the overlay flag, e.g.:
-  - `/blog/articles/$id`
-  - `/blog/news/$id`
-  - `/about`, `/projects`, `/impact`, `/governance`, `/blog`, `/poc`, `/contact`, `/donate`, `/support`
-- Leave the homepage (`/`) banner as-is.
+- `background-image: radial-gradient(rgba(255,255,255,0.18) 1px, transparent 1px)`
+- `background-size: 14px 14px`
+- `opacity: ~0.5`, `mix-blend-mode: overlay` for a subtle etched look
+- `pointer-events-none`, covers `inset-0`
+- Stacking order: image → gradient → dot pattern → logo (logo stays crisp on top)
 
-## Notes
-- The gradient direction will follow the reference image: dark on the left, teal on the right.
-- Uses existing CSS tokens (`--primary`) so it stays consistent with the RSIC teal brand color.
-- No new dependencies required.
+No changes to routes, tokens, or the homepage banner. Direction/logo side logic stays as-is (dark+logo left in AR, right in EN).

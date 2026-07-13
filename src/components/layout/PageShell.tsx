@@ -44,6 +44,18 @@ export function PageBanner({ overlay = false }: { overlay?: boolean }) {
             aria-hidden="true"
           />
           <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              backgroundImage:
+                "radial-gradient(rgba(255,255,255,0.22) 1px, transparent 1px)",
+              backgroundSize: "14px 14px",
+              opacity: 0.5,
+              mixBlendMode: "overlay",
+            }}
+            aria-hidden="true"
+          />
+
+          <div
             className={`pointer-events-none absolute inset-y-0 flex items-center ${
               darkOnLeft ? "left-0 pl-6 sm:pl-10 lg:pl-16" : "right-0 pr-6 sm:pr-10 lg:pr-16"
             }`}
