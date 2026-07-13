@@ -1,20 +1,13 @@
-## Plan: Refine banner logo placement
+The user wants the related-news/articles sidebar on the right in Arabic and on the left in English on the blog/news detail page.
 
-### Goal
-Update the `PageBanner` logo so it sits cleanly in the page corner with adequate margin and a smaller, more balanced size, matching the reference banner aesthetic.
+Current behavior (in `src/components/blog/PostDetail.tsx`):
+- Article content is placed on the right in Arabic (`lg:col-start-2`) and on the left in English (`lg:col-start-1`).
+- Sidebar is placed on the left in Arabic (`lg:col-start-1`) and on the right in English (`lg:col-start-3`).
 
-### Changes
-1. **Read current state** — inspect `src/components/layout/PageShell.tsx` to confirm existing logo wrapper and sizing.
-2. **Reposition logo** — move the logo container to the top corner of the banner (top + left/right depending on language direction) with consistent margin (`m-4`/`sm:m-6`/`lg:m-8`).
-3. **Reduce size** — scale logo height down from current `h-20 sm:h-28 lg:h-36` to a smaller range (target `h-12 sm:h-16 lg:h-20`).
-4. **Preserve direction logic** — keep Arabic logo on the left, English logo on the right.
-5. **Verify** — check the preview on an internal page (e.g., `/about`) in both languages.
+Plan:
+1. In `src/components/blog/PostDetail.tsx`, swap the `lg:col-start-*` classes for the article and the sidebar.
+   - Article: `isRtl ? "lg:col-start-1" : "lg:col-start-2"`
+   - Sidebar: `isRtl ? "lg:col-start-3" : "lg:col-start-1"`
+2. Verify the change in the preview for both `/blog/articles/a2` and a news detail route.
 
-### Scope
-- Only `src/components/layout/PageShell.tsx`.
-- No changes to gradient, dot pattern, routes, or homepage banner.
-
-### Acceptance
-- Logo is visibly in the corner with margin.
-- Logo is smaller than current version.
-- Arabic and English layouts remain mirrored correctly.
+This is a single-file CSS-grid layout change with no data or logic modifications.

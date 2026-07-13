@@ -46,7 +46,7 @@ export function PostDetail({ kind, id, date, title, author, body, related = [] }
       <PageBanner overlay />
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-3">
-          <article className={`lg:col-span-2 lg:row-start-1 ${isRtl ? "lg:col-start-2" : "lg:col-start-1"}`}>
+          <article className={`lg:col-span-2 lg:row-start-1 ${isRtl ? "lg:col-start-1" : "lg:col-start-2"}`}>
             {/* Breadcrumb */}
             <nav
               className="mb-6 flex flex-wrap items-center gap-2 text-sm text-muted-foreground"
