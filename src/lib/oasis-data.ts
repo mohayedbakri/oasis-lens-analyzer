@@ -277,16 +277,6 @@ export const STATE_DATA: Record<string, StateData> = {
     opportunitiesEn: ["Community mills"],
     targetComplexes: 14, activeFactories: 0, smeIndex: 15,
   },
-  abyei_pca: {
-    stage: "feasibility",
-    maturity: 0.1,
-    resources: ["livestock"],
-    activitiesAr: ["الرعي"],
-    activitiesEn: ["Pastoralism"],
-    opportunitiesAr: ["دراسات أولية"],
-    opportunitiesEn: ["Initial assessments"],
-    targetComplexes: 4, activeFactories: 0, smeIndex: 10,
-  },
 };
 
 // ─── Per-state indicator overrides (Data Complex Indicators) ───
