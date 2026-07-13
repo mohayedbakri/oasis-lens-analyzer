@@ -10,7 +10,7 @@ function PocLayout() {
   const { t } = useI18n();
   return (
     <PageShell>
-      <PageBanner />
+      <PageBanner overlay />
       <div className="border-b border-border bg-secondary/50">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <p className="section-number mb-2 text-xs">{t("oasis.top.eyebrow")}</p>

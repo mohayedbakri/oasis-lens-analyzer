@@ -54,7 +54,7 @@ function ContactPage() {
 
   return (
     <PageShell>
-      <PageHeader eyebrow={t("contact.eyebrow")} title={t("contact.title")} />
+      <PageHeader eyebrow={t("contact.eyebrow")} title={t("contact.title")} overlay />
       <section className="mx-auto grid max-w-5xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-3 lg:px-8">
         <aside className="space-y-4 lg:col-span-1">
           <div>

@@ -89,7 +89,7 @@ function ImpactPage() {
 
   return (
     <PageShell>
-      <PageHeader eyebrow={t("impact.eyebrow")} title={t("impact.title")} description={t("impact.desc")} />
+      <PageHeader eyebrow={t("impact.eyebrow")} title={t("impact.title")} description={t("impact.desc")} overlay />
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-6 lg:grid-cols-3">
           {blocks.map((b, i) => (

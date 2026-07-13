@@ -20,7 +20,7 @@ function AboutPage() {
   const { t } = useI18n();
   return (
     <PageShell>
-      <PageHeader eyebrow={t("about.eyebrow")} title={t("about.title")} description={t("about.desc")} />
+      <PageHeader eyebrow={t("about.eyebrow")} title={t("about.title")} description={t("about.desc")} overlay />
 
       <section className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
         <p className="section-number text-sm">{t("about.pillars.eyebrow")}</p>

@@ -59,7 +59,7 @@ function BlogPage() {
 
   return (
     <PageShell>
-      <PageHeader eyebrow={t("blog.eyebrow")} title={t("blog.title")} description={t("blog.desc")} />
+      <PageHeader eyebrow={t("blog.eyebrow")} title={t("blog.title")} description={t("blog.desc")} overlay />
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <Tabs
           value={activeTab}
