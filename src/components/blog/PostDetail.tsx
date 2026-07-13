@@ -9,6 +9,7 @@ import { useMetrics } from "@/lib/metrics";
 
 type Props = {
   kind: "news" | "articles";
+  id: string;
   date: string;
   title: string;
   author?: string;
@@ -16,13 +17,25 @@ type Props = {
   related?: { id: string; title: string; date: string }[];
 };
 
-export function PostDetail({ kind, date, title, author, body, related = [] }: Props) {
+export function PostDetail({ kind, id, date, title, author, body, related = [] }: Props) {
   const { t, lang } = useI18n();
   const isRtl = lang === "ar";
   const BackIcon = isRtl ? ArrowRight : ArrowLeft;
 
   const tabKey = kind === "news" ? "news" : "articles";
   const crumbLabel = kind === "news" ? t("blog.tab.news") : t("blog.tab.articles");
+
+  const { registerView } = useMetrics(kind, id);
+  useEffect(() => {
+    registerView();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [kind, id]);
+
+  const commentsRef = useRef<HTMLDivElement>(null);
+  const scrollToComments = () => {
+    commentsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
 
   return (
     <>
