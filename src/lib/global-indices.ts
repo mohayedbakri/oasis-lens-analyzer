@@ -71,7 +71,7 @@ export const GLOBAL_INDICES: GlobalIndex[] = [
 export const SESRIC_CONTEXT = {
   url: "https://www.sesric.org/publications-detail.php?id=597",
   labelAr:
-    "سياق العالم الإسلامي: تقرير الآفاق الاقتصادية لمنظمة التعاون الإسلامي (SESRIC) — يُستخدم كمرجع سردي للمنظور الإسلامي وليس كمصدر ترتيب.",
+    "سياق العالم الإسلامي: تقرير الآفاق الاقتصادية لمنظمة التعاون الإسلامي (SESRIC)، يستخدم كمرجع سردي للمنظور الإسلامي وليس كمصدر ترتيب ",
   labelEn:
     "Islamic-world context: OIC/SESRIC Economic Outlook — used as a narrative reference for the Islamic lens, not as a ranking source.",
 };

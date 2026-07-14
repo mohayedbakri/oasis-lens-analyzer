@@ -34,7 +34,7 @@ export const ROADMAP_STAGES: StageMeta[] = [
     order: 1,
     ar: "دراسة الجدوى",
     en: "Feasibility",
-    descAr: "مسح الموارد والاحتياجات ودراسات الجدوى الأولية.",
+    descAr: "مسح الموارد والاحتياجات ودراسات الجدوى الأولية",
     descEn: "Resource and needs assessment, and preliminary feasibility studies.",
   },
   {
@@ -42,7 +42,7 @@ export const ROADMAP_STAGES: StageMeta[] = [
     order: 2,
     ar: "التخطيط",
     en: "Planning",
-    descAr: "التصميم الهندسي، اختيار المصانع، وخطط التشغيل.",
+    descAr: "التصميم الهندسي، اختيار المصانع، وخطط التشغيل",
     descEn: "Engineering design, factory mix selection, and operational plans.",
   },
   {
@@ -50,7 +50,7 @@ export const ROADMAP_STAGES: StageMeta[] = [
     order: 3,
     ar: "التمويل",
     en: "Financing",
-    descAr: "التمويل المختلط: النفير، المنح، والاستثمار المسؤول.",
+    descAr: "التمويل المختلط: النفير، المنح، والاستثمار المسؤول",
     descEn: "Blended finance: Nafeer, grants, and responsible investment.",
   },
   {
@@ -58,7 +58,7 @@ export const ROADMAP_STAGES: StageMeta[] = [
     order: 4,
     ar: "التنفيذ",
     en: "Build",
-    descAr: "الأعمال المدنية وتركيب المعدات والتشغيل التجريبي.",
+    descAr: "الأعمال المدنية وتركيب المعدات والتشغيل التجريبي",
     descEn: "Civil works, equipment installation, and commissioning.",
   },
   {
@@ -66,7 +66,7 @@ export const ROADMAP_STAGES: StageMeta[] = [
     order: 5,
     ar: "التشغيل",
     en: "Operate",
-    descAr: "الإنتاج الفعلي وإدارة المصانع من قبل الشركة المجتمعية.",
+    descAr: "الإنتاج الفعلي وإدارة المصانع من قبل الشركة المجتمعية",
     descEn: "Live production and factory operation by the Community Enterprise.",
   },
   {
@@ -74,7 +74,7 @@ export const ROADMAP_STAGES: StageMeta[] = [
     order: 6,
     ar: "التوسع",
     en: "Scale",
-    descAr: "توسعة الشبكة إلى محليات وولايات جديدة.",
+    descAr: "توسعة الشبكة إلى محليات وولايات جديدة",
     descEn: "Network expansion to new localities and states.",
   },
 ];
