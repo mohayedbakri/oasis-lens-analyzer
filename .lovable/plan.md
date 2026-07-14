@@ -1,20 +1,21 @@
-## Plan: Align sidebar top with article cover image
+## Plan
 
-### Current state
-On the blog/news detail page (`PostDetail.tsx`), the sticky "أحدث الأخبار" / "أحدث المقالات" sidebar currently starts at the top of the content row, aligned with the breadcrumb/title area. The article cover image sits below the title, so the sidebar and image tops are misaligned.
+### 1. Contact form — add phone number field
+- Add bilingual translation keys in `src/lib/i18n.tsx`:
+  - `contact.f.phone` ("الهاتف" / "Phone")
+  - `contact.f.err.phone` ("رقم هاتف غير صالح" / "Invalid phone number")
+- Update `src/routes/contact.tsx`:
+  - Add `phone` to the Zod schema with a phone regex validator.
+  - Add a `<Field name="phone" type="tel" dir="ltr" ... />` input between name and email.
+  - Include `phone` in the `FormData` parse object.
 
-### Goal
-Move the sidebar down so the top edge of its teal panel aligns horizontally with the top edge of the article cover image.
+### 2. Footer — update social media URLs
+- In `src/components/layout/Footer.tsx`, replace the placeholder `socials` links with the real RSIC accounts provided:
+  - Facebook: https://www.facebook.com/profile.php?id=61590154196700
+  - Instagram: https://www.instagram.com/rsicsd?igsh=ZWdtdzI2eGd5d2N3
+  - X: https://x.com/i/status/2066552560245170461
+  - LinkedIn: https://www.linkedin.com/company/...
+  - YouTube: https://youtube.com/@rsicsd?si=9U0_PF49j2Sxs6-G
+  - TikTok: https://www.tiktok.com/@rsicsd?is_from_webapp=1&sender_device=pc
 
-### Implementation
-1. In `src/components/blog/PostDetail.tsx`, add a top offset to the `<aside>` (or its inner panel) that accounts for the breadcrumb + title height.
-2. Keep the sticky behavior (`lg:sticky lg:top-24`) so it still follows on scroll.
-3. Ensure the offset works in both Arabic (RTL) and English (LTR) since the sidebar flips sides with the language direction.
-4. Verify visually on an article detail page and a news detail page.
-
-### Files to edit
-- `src/components/blog/PostDetail.tsx`
-
-### Verification
-- Open `/blog/articles/a2` and a news detail route.
-- Confirm the sidebar panel top sits at the same vertical level as the cover image top in both Arabic and English.
+No backend or database changes are required.

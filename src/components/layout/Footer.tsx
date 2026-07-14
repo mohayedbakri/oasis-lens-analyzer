@@ -5,12 +5,12 @@ import { useI18n } from "@/lib/i18n";
 import logoAsset from "@/assets/rsic-logo-white.png.asset.json";
 
 const socials = [
-  { name: "Facebook", href: "https://facebook.com", Icon: Facebook },
-  { name: "Instagram", href: "https://instagram.com", Icon: Instagram },
-  { name: "X", href: "https://x.com", Icon: XIcon },
-  { name: "LinkedIn", href: "https://linkedin.com", Icon: Linkedin },
-  { name: "TikTok", href: "https://tiktok.com", Icon: TikTokIcon },
-  { name: "YouTube", href: "https://youtube.com", Icon: Youtube },
+  { name: "Facebook", href: "https://www.facebook.com/profile.php?id=61590154196700", Icon: Facebook },
+  { name: "Instagram", href: "https://www.instagram.com/rsicsd?igsh=ZWdtdzI2eGd5d2N3", Icon: Instagram },
+  { name: "X", href: "https://x.com/i/status/2066552560245170461", Icon: XIcon },
+  { name: "LinkedIn", href: "https://www.linkedin.com/company/%D8%A7%D9%84%D9%85%D8%AC%D9%85%D8%B9%D8%A7%D8%AA-%D8%A7%D9%84%D8%B5%D9%86%D8%A7%D8%B9%D9%8A%D8%A9-%D8%A7%D9%84%D8%B1%D9%8A%D9%81%D9%8A%D8%A9-%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9%D9%8A%D8%A9/", Icon: Linkedin },
+  { name: "TikTok", href: "https://www.tiktok.com/@rsicsd?is_from_webapp=1&sender_device=pc", Icon: TikTokIcon },
+  { name: "YouTube", href: "https://youtube.com/@rsicsd?si=9U0_PF49j2Sxs6-G", Icon: Youtube },
 ];
 
 function XIcon(props: React.SVGProps<SVGSVGElement>) {
