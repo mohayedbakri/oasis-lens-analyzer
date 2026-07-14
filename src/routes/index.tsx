@@ -126,7 +126,7 @@ function Home() {
                   </span>
                 </div>
                 <h3 className="mt-5 text-xl font-bold text-foreground">{p.title}</h3>
-                <p className="mt-2 text-sm leading-loose text-muted-foreground">{p.body}</p>
+                <p className="mt-2 text-sm whitespace-pre-line leading-loose text-muted-foreground">{p.body}</p>
               </article>
             );
           })}
