@@ -1,21 +1,13 @@
-## Plan
+Apply the gradient banner style from the uploaded screenshot to the "رؤية وطنية بعيدة المدى" section at the bottom of `/impact`.
 
-### 1. Contact form — add phone number field
-- Add bilingual translation keys in `src/lib/i18n.tsx`:
-  - `contact.f.phone` ("الهاتف" / "Phone")
-  - `contact.f.err.phone` ("رقم هاتف غير صالح" / "Invalid phone number")
-- Update `src/routes/contact.tsx`:
-  - Add `phone` to the Zod schema with a phone regex validator.
-  - Add a `<Field name="phone" type="tel" dir="ltr" ... />` input between name and email.
-  - Include `phone` in the `FormData` parse object.
+What will change:
+1. Replace the plain `bg-secondary/40` section with a full-width banner using the RSIC teal (`#077a75`) base color.
+2. Add a dark-to-teal gradient overlay that runs from the left for Arabic (RTL) and from the right for English (LTR), matching the direction logic already used in `PageBanner`.
+3. Change the section text to light/cream (`primary-foreground`) so it reads clearly over the teal.
+4. Keep the existing gold eyebrow (`section-number`) and add a short gold underline beneath the title.
+5. Maintain vertical padding and max-width centering so the layout stays balanced.
 
-### 2. Footer — update social media URLs
-- In `src/components/layout/Footer.tsx`, replace the placeholder `socials` links with the real RSIC accounts provided:
-  - Facebook: https://www.facebook.com/profile.php?id=61590154196700
-  - Instagram: https://www.instagram.com/rsicsd?igsh=ZWdtdzI2eGd5d2N3
-  - X: https://x.com/i/status/2066552560245170461
-  - LinkedIn: https://www.linkedin.com/company/...
-  - YouTube: https://youtube.com/@rsicsd?si=9U0_PF49j2Sxs6-G
-  - TikTok: https://www.tiktok.com/@rsicsd?is_from_webapp=1&sender_device=pc
+Files to edit:
+- `src/routes/impact.tsx` — restyle the long-vision section and add direction-aware gradient classes/inline styles.
 
-No backend or database changes are required.
+No new dependencies or routes are required. The change is localized to the impact page's bottom banner.
