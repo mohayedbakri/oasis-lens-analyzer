@@ -16,7 +16,7 @@ export const siteI18n = {
   },
   tagline: {
     ar: "نهضة صناعية يقودها المجتمع، من الريف إلى الأمة",
-    en: "A community-led industrial renaissance, from the countryside to the nation",
+    en: "A Community-Led Industrial Renaissance, From The Countryside To The Nation",
   },
   description: {
     ar: "مبادرة وطنية لإنشاء 378 مجمعاً صناعياً ريفياً في 189 محلية بالسودان، بملكية مجتمعية وحوكمة شفافة",

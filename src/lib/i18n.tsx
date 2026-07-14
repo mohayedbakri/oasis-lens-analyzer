@@ -32,7 +32,7 @@ const dict: Dict = {
   "news.close": { ar: "إغلاق", en: "Close" },
 
   // Home
-  "home.hero.eyebrow": { ar: "مبادرة وطنية سودانية", en: "A Sudanese national initiative" },
+  "home.hero.eyebrow": { ar: "مبادرة وطنية سودانية", en: "A Sudanese National Initiative" },
   "home.hero.lede": {
     ar: "بدلاً من أن يهاجر الإنسان إلى الصناعة ننقل الصناعة إلى حيث الإنسان والأرض\nشبكة وطنية من 378 مجمعاً صناعياً ريفياً تُعيد بناء السودان من قاعدته المجتمعية",
     en: "Instead of people migrating to industry, we bring industry to where people and land already are, a national network of 378 rural industrial complexes rebuilding Sudan from its community base",
@@ -41,7 +41,7 @@ const dict: Dict = {
   "home.why.eyebrow": { ar: "لماذا الآن؟", en: "Why now?" },
   "home.why.title": {
     ar: "لحظة تاريخية فارقة لإعادة بناء السودان",
-    en: "A defining historical moment to rebuild Sudan",
+    en: "A Defining Historical Moment To Rebuild Sudan",
   },
   "home.why.s1.k": { ar: "220 مليون", en: "220 million" },
   "home.why.s1.v": {
@@ -61,15 +61,15 @@ const dict: Dict = {
   "home.pillars.eyebrow": { ar: "الأركان الستة", en: "The Six Pillars" },
   "home.pillars.title": {
     ar: "ستة أركان تبني مجمعاً صناعياً متكاملاً ومستقلاً",
-    en: "Six pillars that build an integrated, self-sufficient complex",
+    en: "Six Pillars That Build An Integrated, Self-Sufficient Complex",
   },
   "home.pillars.lede": {
     ar: "كل ركن يخدم المصانع الأساسية ويدعم استدامتها، لتكامل وظيفي واستقلالية تشغيلية حتى في ظل ضعف البنية التحتية",
     en: "Each pillar serves the core factories and sustains them, functional integration and operational independence even where infrastructure is weak",
   },
   "home.goals.eyebrow": { ar: "الأهداف العامة", en: "Strategic Goals" },
-  "home.goals.title": { ar: "ستة أهداف وطنية تقود التحول", en: "Six national goals driving the transformation" },
-  "home.cta.title": { ar: "هذا مشروع أمة... لا مشروع قطاع", en: "A nation-scale project, not a sector project" },
+  "home.goals.title": { ar: "ستة أهداف وطنية تقود التحول", en: "Six National Goals Driving The Transformation" },
+  "home.cta.title": { ar: "هذا مشروع أمة... لا مشروع قطاع", en: "A Nation-Scale Project, Not A Sector Project" },
   "home.cta.lede": {
     ar: "دعوة مفتوحة للمساهمين والمهندسين والجامعات والمجتمعات المحلية للمشاركة في النهضة",
     en: "An open invitation to shareholders, engineers, universities, and local communities to join the renaissance",
