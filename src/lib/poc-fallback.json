@@ -19,13 +19,13 @@
     { "id": "wp8", "unit_id": "energy",    "name_ar": "أعمال الطاقة الشمسية",            "name_en": "Solar Power Works",                   "category": "civil",        "status": "planned",     "progress_pct": 0,   "planned_start": "2026-08-01", "planned_end": "2026-10-15", "actual_start": null,          "actual_end": null,         "doc_url": "#" }
   ],
   "funding": [
-    { "work_package_id": "wp1", "allocated_usd":  15000, "received_usd":  15000 },
-    { "work_package_id": "wp2", "allocated_usd":  25000, "received_usd":  25000 },
-    { "work_package_id": "wp3", "allocated_usd":  10000, "received_usd":  10000 },
-    { "work_package_id": "wp4", "allocated_usd": 420000, "received_usd": 230000 },
-    { "work_package_id": "wp5", "allocated_usd": 180000, "received_usd": 180000 },
-    { "work_package_id": "wp6", "allocated_usd": 310000, "received_usd": 110000 },
-    { "work_package_id": "wp7", "allocated_usd":  45000, "received_usd":   8000 },
+    { "work_package_id": "wp1", "allocated_usd":  15000, "received_usd":      0 },
+    { "work_package_id": "wp2", "allocated_usd":  25000, "received_usd":      0 },
+    { "work_package_id": "wp3", "allocated_usd":  10000, "received_usd":      0 },
+    { "work_package_id": "wp4", "allocated_usd": 420000, "received_usd":      0 },
+    { "work_package_id": "wp5", "allocated_usd": 180000, "received_usd":      0 },
+    { "work_package_id": "wp6", "allocated_usd": 310000, "received_usd":      0 },
+    { "work_package_id": "wp7", "allocated_usd":  45000, "received_usd":      0 },
     { "work_package_id": "wp8", "allocated_usd": 220000, "received_usd":      0 }
   ],
   "documents": [
