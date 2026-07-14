@@ -24,9 +24,12 @@ function ContactPage() {
   const [status, setStatus] = useState<"idle" | "sent" | "error">("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  const phoneRegex = /^\+?[\d\s\-()]{7,25}$/;
+
   const schema = z.object({
     name: z.string().trim().min(2, t("contact.f.err.name")).max(100),
     email: z.string().trim().email(t("contact.f.err.email")).max(255),
+    phone: z.string().trim().regex(phoneRegex, t("contact.f.err.phone")).max(25),
     message: z.string().trim().min(10, t("contact.f.err.message")).max(2000),
   });
 
@@ -36,6 +39,7 @@ function ContactPage() {
     const parsed = schema.safeParse({
       name: form.get("name"),
       email: form.get("email"),
+      phone: form.get("phone"),
       message: form.get("message"),
     });
     if (!parsed.success) {
@@ -73,6 +77,7 @@ function ContactPage() {
         <form onSubmit={handleSubmit} className="space-y-4 lg:col-span-2" noValidate>
           <Field label={t("contact.f.name")} name="name" error={errors.name} />
           <Field label={t("contact.f.email")} name="email" type="email" error={errors.email} dir="ltr" />
+          <Field label={t("contact.f.phone")} name="phone" type="tel" error={errors.phone} dir="ltr" />
           <div>
             <label htmlFor="message" className="block text-sm font-semibold text-foreground">
               {t("contact.f.message")}

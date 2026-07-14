@@ -230,11 +230,13 @@ const dict: Dict = {
   "contact.email": { ar: "البريد", en: "Email" },
   "contact.f.name": { ar: "الاسم", en: "Name" },
   "contact.f.email": { ar: "البريد الإلكتروني", en: "Email address" },
+  "contact.f.phone": { ar: "الهاتف", en: "Phone" },
   "contact.f.message": { ar: "الرسالة", en: "Message" },
   "contact.f.submit": { ar: "إرسال", en: "Send" },
   "contact.f.sent": { ar: "تم استلام رسالتك، سنعود إليك قريباً.", en: "Message received — we'll get back to you soon." },
   "contact.f.err.name": { ar: "الاسم قصير جداً", en: "Name is too short" },
   "contact.f.err.email": { ar: "بريد إلكتروني غير صالح", en: "Invalid email address" },
+  "contact.f.err.phone": { ar: "رقم هاتف غير صالح", en: "Invalid phone number" },
   "contact.f.err.message": { ar: "الرسالة قصيرة جداً", en: "Message is too short" },
 
   // Donate — hero
