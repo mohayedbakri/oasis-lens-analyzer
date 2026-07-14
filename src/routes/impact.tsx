@@ -52,7 +52,7 @@ const blocksByLang: Record<Lang, { eyebrow: string; title: string; items: string
   en: [
     {
       eyebrow: "Economic",
-      title: "From a raw-materials economy to a value economy",
+      title: "From a Raw-Materials Economy to a Value Economy",
       items: [
         "Tens of thousands of direct rural jobs created.",
         "Local value added to rural products is multiplied.",
@@ -62,7 +62,7 @@ const blocksByLang: Record<Lang, { eyebrow: string; title: string; items: string
     },
     {
       eyebrow: "Social",
-      title: "Development that keeps people on their land",
+      title: "Development That Keeps People on Their Land",
       items: [
         "Anchors residents in their regions with dignified opportunity.",
         "Strengthens the rural middle class.",
@@ -72,7 +72,7 @@ const blocksByLang: Record<Lang, { eyebrow: string; title: string; items: string
     },
     {
       eyebrow: "Spatial & Geographic",
-      title: "A new balance between countryside and city",
+      title: "A New Balance Between Countryside and City",
       items: [
         "Relieves pressure on overcrowded cities.",
         "Creates geographically balanced growth hubs at the locality and state level.",
