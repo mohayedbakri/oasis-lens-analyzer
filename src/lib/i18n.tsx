@@ -82,7 +82,7 @@ const dict: Dict = {
     en: "A comprehensive, community-led industrial renaissance",
   },
   "about.desc": {
-    ar: "مبادرة وطنية رائدة لإحداث تحول صناعي شامل عبر إنشاء مجمعات صناعية متكاملة في الولايات والمحليات، تُحوّل الموارد المحلية إلى منتجات ذات قيمة مضافة عالية",
+    ar: "المجمعات الصناعية الريفية المجتمعية (RSIC) : هي مبادرة وطنية رائدة لإحداث تحول صناعي شامل عبر إنشاء مجمعات صناعية متكاملة في الولايات والمحليات، تُحوّل الموارد المحلية إلى منتجات ذات قيمة مضافة عالية",
     en: "A pioneering national initiative for comprehensive industrial transformation through integrated complexes across states and localities, turning local resources into high-value products.",
   },
   "about.pillars.eyebrow": { ar: "المرتكزات", en: "Foundations" },
