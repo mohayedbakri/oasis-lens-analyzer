@@ -174,7 +174,7 @@ const dict: Dict = {
   "gov.entity.eyebrow": { ar: "الكيان القانوني", en: "Legal Entity" },
   "gov.entity.title": { ar: "الشركة المجتمعية (Social Enterprise)", en: "The Social Enterprise" },
   "gov.entity.body": {
-    ar: "تدمج بين مبادئ الرأسمالية (الربحية والكفاءة) ومبادئ الاشتراكية (التركيز على مصلحة المجتمع والعدالة في التوزيع)، لتكون أفضل وسيلة قانونية لتمكين المجتمعات من امتلاك القوة المالية بطريقة مؤسسية مستدامة.",
+    ar: "تدمج بين مبادئ الشركات الخاصة(الربحية و الكفاءة ) و مبادئ المنظمات الغير ربحية(التركيز على مصلحة المجتمع و العدالة في التوزيع)، لتكون أفضل وسيلة قانونية لتمكين المجتمعات من امتلاك القوة المالية بطريقة مؤسسية مستدامة.",
     en: "Combines capitalist principles (profitability and efficiency) with social principles (community benefit and distributive justice) — the best legal vehicle for sustainable community ownership of financial power.",
   },
   "gov.member1": { ar: "المزارعون والمنتجون المحليون", en: "Local farmers and producers" },
