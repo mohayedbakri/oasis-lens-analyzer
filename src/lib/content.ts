@@ -5,7 +5,8 @@ import a1Img from "@/assets/blog/a1.jpg";
 import a2Img from "@/assets/blog/a2.jpg";
 import a3Img from "@/assets/blog/a3.jpg";
 import n1Img from "@/assets/blog/n1.jpg";
-import n2Img from "@/assets/blog/n2.jpg";
+import n2Asset from "@/assets/blog/n2.png.asset.json";
+const n2Img = n2Asset.url;
 import n3Img from "@/assets/blog/n3.jpg";
 
 export const postImages: Record<string, string> = {
