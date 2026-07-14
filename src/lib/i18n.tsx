@@ -151,8 +151,8 @@ const dict: Dict = {
     en: "Measurable results on three levels",
   },
   "impact.desc": {
-    ar: "من اقتصاد خام إلى اقتصاد قيمة، أثر اقتصادي واجتماعي وعمراني يمتد من المحلية إلى الأمة.",
-    en: "From a raw-materials economy to a value economy — economic, social, and spatial impact from locality to nation.",
+    ar: "من اقتصاد خام إلى اقتصاد قيمة، أثر اقتصادي واجتماعي وعمراني يمتد من المحلية إلى الأمة",
+    en: "From a raw-materials economy to a value economy — economic, social, and spatial impact from locality to nation",
   },
   "impact.long.eyebrow": { ar: "رؤية وطنية بعيدة المدى", en: "Long-range national vision" },
   "impact.long.title": {
