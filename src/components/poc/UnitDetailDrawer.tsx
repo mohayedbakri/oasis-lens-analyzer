@@ -1,6 +1,6 @@
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { Progress } from "@/components/ui/progress";
-import type { PocSnapshot, Unit } from "@/lib/poc-data";
+import { pickName, pickTitle, type PocSnapshot, type Unit } from "@/lib/poc-data";
 import { useStatusLabels } from "./status";
 import { useI18n } from "@/lib/i18n";
 import { FileText, ExternalLink } from "lucide-react";
@@ -15,7 +15,7 @@ export function UnitDetailDrawer({
   onOpenChange: (open: boolean) => void;
 }) {
   const { status, wpStatus, category } = useStatusLabels();
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const open = !!unit;
   const wps = unit ? data.work_packages.filter((w) => w.unit_id === unit.id) : [];
   const docs = unit
@@ -29,7 +29,7 @@ export function UnitDetailDrawer({
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent side="left" className="w-full overflow-y-auto sm:max-w-md">
         <SheetHeader className="text-start">
-          <SheetTitle className="text-primary">{unit?.name_ar}</SheetTitle>
+          <SheetTitle className="text-primary">{unit ? pickName(unit, lang) : ""}</SheetTitle>
           <SheetDescription>{unit ? status[unit.status] : ""}</SheetDescription>
         </SheetHeader>
 
@@ -55,7 +55,7 @@ export function UnitDetailDrawer({
                 {wps.map((wp) => (
                   <li key={wp.id} className="rounded-lg border border-border bg-card p-3">
                     <div className="flex items-baseline justify-between gap-2 text-sm">
-                      <span className="font-medium">{wp.name_ar}</span>
+                      <span className="font-medium">{pickName(wp, lang)}</span>
                       <span className="text-xs text-muted-foreground">
                         {wpStatus[wp.status]} · {wp.progress_pct}%
                       </span>
@@ -80,7 +80,7 @@ export function UnitDetailDrawer({
                         className="flex items-center gap-2 rounded border border-border px-3 py-2 text-sm hover:border-primary"
                       >
                         <FileText className="h-4 w-4 text-primary" />
-                        <span className="flex-1">{d.title_ar}</span>
+                        <span className="flex-1">{pickTitle(d, lang)}</span>
                         <ExternalLink className="h-3.5 w-3.5 text-muted-foreground" />
                       </a>
                     </li>

@@ -1,9 +1,11 @@
-import type { PocSnapshot } from "@/lib/poc-data";
+import { pickName, type PocSnapshot } from "@/lib/poc-data";
 import { Progress } from "@/components/ui/progress";
 import { useStatusLabels } from "./status";
+import { useI18n } from "@/lib/i18n";
 
 export function FundingPanel({ data }: { data: PocSnapshot }) {
   const { category } = useStatusLabels();
+  const { lang } = useI18n();
   const fundMap = new Map(data.funding.map((f) => [f.work_package_id, f]));
   const byCat = new Map<string, typeof data.work_packages>();
   for (const wp of data.work_packages) {
@@ -28,7 +30,7 @@ export function FundingPanel({ data }: { data: PocSnapshot }) {
               return (
                 <div key={wp.id}>
                   <div className="flex items-baseline justify-between gap-2 text-sm">
-                    <span className="font-medium text-foreground">{wp.name_ar}</span>
+                    <span className="font-medium text-foreground">{pickName(wp, lang)}</span>
                     <span className="text-muted-foreground" dir="ltr">
                       ${received.toLocaleString()} / ${allocated.toLocaleString()}
                     </span>
