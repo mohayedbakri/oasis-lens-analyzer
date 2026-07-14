@@ -16,11 +16,11 @@ export const siteI18n = {
   },
   tagline: {
     ar: "نهضة صناعية يقودها المجتمع، من الريف إلى الأمة",
-    en: "A community-led industrial renaissance — from the countryside to the nation",
+    en: "A community-led industrial renaissance, from the countryside to the nation",
   },
   description: {
     ar: "مبادرة وطنية لإنشاء 378 مجمعاً صناعياً ريفياً في 189 محلية بالسودان، بملكية مجتمعية وحوكمة شفافة",
-    en: "A national initiative to build 378 rural industrial complexes across 189 localities in Sudan, with community ownership and transparent governance.",
+    en: "A national initiative to build 378 rural industrial complexes across 189 localities in Sudan, with community ownership and transparent governance",
   },
   donateCta: { ar: "ادعم المبادرة", en: "Support the Initiative" },
 } as const;
@@ -63,12 +63,12 @@ export const pillarsByLang: Record<Lang, { n: string; title: string; body: strin
     { n: "06", title: "البيئة والاقتصاد الدائري", body: "إدارة النفايات الصناعية وإعادة تدويرها، أحزمة خضراء، وبيع فائض الطاقة للشبكة العامة" },
   ],
   en: [
-    { n: "01", title: "Core Industries", body: "Small (70%), medium (20%) and large (10%) factories that add value to local resources and serve both local markets and exports." },
-    { n: "02", title: "Utilities & Energy", body: "Renewable energy (solar & biomass), potable and industrial water, steam and compressed air — for full operational independence." },
-    { n: "03", title: "Logistics & Supply Chain", body: "Smart warehousing, internal and external transport, and specialized maintenance linking the complex to regional markets." },
-    { n: "04", title: "Central Support & Innovation", body: "Quality labs (GMP/HACCP), R&D center, industrial automation and AI, and IT/OT operations technology." },
-    { n: "05", title: "Community Services", body: "Worker housing, on-site clinic, training center, central canteen, mosque, and cultural & sports center for an attractive workplace." },
-    { n: "06", title: "Environment & Circular Economy", body: "Industrial waste management and recycling, green belts, and selling surplus energy back to the public grid." },
+    { n: "01", title: "Core Industries", body: "Small (70%), medium (20%) and large (10%) factories that add value to local resources and serve both local markets and exports" },
+    { n: "02", title: "Utilities & Energy", body: "Renewable energy (solar & biomass), potable and industrial water, steam and compressed air — for full operational independence" },
+    { n: "03", title: "Logistics & Supply Chain", body: "Smart warehousing, internal and external transport, and specialized maintenance linking the complex to regional markets" },
+    { n: "04", title: "Central Support & Innovation", body: "Quality labs (GMP/HACCP), R&D center, industrial automation and AI, and IT/OT operations technology" },
+    { n: "05", title: "Community Services", body: "Worker housing, on-site clinic, training center, central canteen, mosque, and cultural & sports center for an attractive workplace" },
+    { n: "06", title: "Environment & Circular Economy", body: "Industrial waste management and recycling, green belts, and selling surplus energy back to the public grid" },
   ],
 };
 
@@ -97,12 +97,12 @@ export const goalsByLang: Record<Lang, { title: string; body: string }[]> = {
     { title: "الاستدامة البيئية", body: "اعتماد الطاقة المتجددة وتطبيق مبادئ الاقتصاد الدائري (Circular Economy)" },
   ],
   en: [
-    { title: "Comprehensive Industrial Transformation", body: "Rebuild the economy around local manufacturing and real production instead of raw-material exports." },
-    { title: "Community Empowerment", body: "Transfer factory ownership and management to rural communities through fair, transparent community enterprises." },
-    { title: "Food Security & Self-Sufficiency", body: "Achieve self-sufficiency in the five essentials: food, water, clothing, shelter, and medicine." },
-    { title: "High Value Addition", body: "Turn each region's abundant raw materials into globally competitive industrial products meeting international quality standards." },
-    { title: "Productive Job Creation", body: "Employ youth and graduates in real industries within their communities, curbing migration to cities." },
-    { title: "Environmental Sustainability", body: "Adopt renewable energy and apply the principles of the Circular Economy." },
+    { title: "Comprehensive Industrial Transformation", body: "Rebuild the economy around local manufacturing and real production instead of raw-material exports" },
+    { title: "Community Empowerment", body: "Transfer factory ownership and management to rural communities through fair, transparent community enterprises" },
+    { title: "Food Security & Self-Sufficiency", body: "Achieve self-sufficiency in the five essentials: food, water, clothing, shelter, and medicine" },
+    { title: "High Value Addition", body: "Turn each region's abundant raw materials into globally competitive industrial products meeting international quality standards" },
+    { title: "Productive Job Creation", body: "Employ youth and graduates in real industries within their communities, curbing migration to cities" },
+    { title: "Environmental Sustainability", body: "Adopt renewable energy and apply the principles of the Circular Economy" },
   ],
 };
 
