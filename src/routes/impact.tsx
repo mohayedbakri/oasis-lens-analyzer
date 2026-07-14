@@ -86,6 +86,8 @@ const blocksByLang: Record<Lang, { eyebrow: string; title: string; items: string
 function ImpactPage() {
   const { lang, t } = useI18n();
   const blocks = blocksByLang[lang];
+  const isRtl = lang === "ar";
+  const darkOnLeft = isRtl;
 
   return (
     <PageShell>
@@ -109,10 +111,22 @@ function ImpactPage() {
         </div>
       </section>
 
-      <section className="border-t border-border bg-secondary/40">
-        <div className="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-[#077a75]">
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background: darkOnLeft
+              ? "linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 35%, color-mix(in srgb, #077a75 70%, transparent) 75%, color-mix(in srgb, #077a75 40%, transparent) 100%)"
+              : "linear-gradient(to left, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 35%, color-mix(in srgb, #077a75 70%, transparent) 75%, color-mix(in srgb, #077a75 40%, transparent) 100%)",
+          }}
+          aria-hidden="true"
+        />
+        <div className="relative mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 lg:px-8">
           <p className="section-number text-sm">{t("impact.long.eyebrow")}</p>
-          <h2 className="mt-4 text-2xl font-bold text-primary sm:text-3xl">{t("impact.long.title")}</h2>
+          <h2 className="mx-auto mt-4 max-w-3xl text-2xl font-bold text-primary-foreground sm:text-3xl">
+            {t("impact.long.title")}
+          </h2>
+          <div className="mx-auto mt-5 h-1 w-20 rounded-full bg-[#ca943f]" />
         </div>
       </section>
     </PageShell>
