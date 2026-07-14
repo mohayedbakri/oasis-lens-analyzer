@@ -92,14 +92,14 @@ export function GlobalIndicesStrip() {
       </div>
 
       <p className="rounded-md border border-dashed border-border bg-muted/40 p-3 text-xs text-muted-foreground">
-        {isAr ? SESRIC_CONTEXT.labelAr : SESRIC_CONTEXT.labelEn}{" "}
+        {isAr ? SESRIC_CONTEXT.labelAr : SESRIC_CONTEXT.labelEn}
         <a
           href={SESRIC_CONTEXT.url}
           target="_blank"
           rel="noopener noreferrer"
           className="text-primary hover:underline"
         >
-          SESRIC ↗
+          {isAr ? "\u00a0SESRIC ↗" : "SESRIC ↗"}
         </a>
       </p>
     </section>
