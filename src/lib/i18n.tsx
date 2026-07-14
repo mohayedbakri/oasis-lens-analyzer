@@ -379,9 +379,9 @@ const dict: Dict = {
 
   // Oasis Lens Analyzer (national dashboard)
   "oasis.top.eyebrow": { ar: "لوحة المشروع الوطنية", en: "National Project Dashboard" },
-  "oasis.top.title": { ar: "عدسة الواحة — اللوحة الوطنية", en: "Oasis Lens Analyzer" },
+  "oasis.top.title": { ar: " المجمعات الصناعية الريفية المجتمعية ( RSIC) اللوحة الوطنية", en: "Oasis Lens Analyzer" },
   "oasis.top.desc": {
-    ar: "خريطة السودان التفاعلية، خارطة طريق إنشاء المجمعات، والمهام القابلة للقياس — في مشهد واحد مترابط.",
+    ar: "خريطة السودان التفاعلية، خارطة طريق إنشاء المجمعات، والمهام القابلة للقياس، في مشهد واحد مترابط",
     en: "The interactive Sudan map, the RSIC roadmap, and measurable running tasks — in one linked view.",
   },
 
@@ -391,7 +391,7 @@ const dict: Dict = {
     en: "Sudan's Standing on Global Indices",
   },
   "oasis.indices.subtitle": {
-    ar: "ثلاثة مؤشرات مُحدَّثة تُنتج المناظير الأربعة (عالمي، عربي، أفريقي، إسلامي) عبر الترشيح.",
+    ar: "ثلاثة مؤشرات محدثة تنتج المناظير الأربعة (عالمي، عربي، أفريقي، إسلامي) عبر الترشيح",
     en: "Three current indices produce the four lenses (Global, Arab, African, Islamic) via filtering.",
   },
   "oasis.indices.rank": { ar: "الترتيب", en: "Rank" },
@@ -416,7 +416,7 @@ const dict: Dict = {
 
   "oasis.tasks.title": { ar: "المهام القابلة للقياس", en: "Measurable & Running Tasks" },
   "oasis.tasks.hint": {
-    ar: "المهام مرتبطة بالخريطة وخارطة الطريق — اختيار مرحلة أو ولاية يُصفّي القائمة تلقائياً.",
+    ar: "المهام مرتبطة بالخريطة وخارطة الطريق، اختيار مرحلة أو ولاية يُصفّي القائمة تلقائياً",
     en: "Tasks are linked to the map and roadmap — selecting a stage or state filters the list automatically.",
   },
   "oasis.tasks.search": { ar: "ابحث في المهام...", en: "Search tasks..." },
