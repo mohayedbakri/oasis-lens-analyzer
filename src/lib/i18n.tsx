@@ -34,7 +34,7 @@ const dict: Dict = {
   // Home
   "home.hero.eyebrow": { ar: "مبادرة وطنية سودانية", en: "A Sudanese national initiative" },
   "home.hero.lede": {
-    ar: "بدلاً من أن يهاجر الإنسان إلى الصناعة\nننقل الصناعة إلى حيث الإنسان والأرض — شبكة وطنية من 378 مجمعاً صناعياً ريفياً تُعيد بناء السودان من قاعدته المجتمعية.",
+    ar: "بدلاً من أن يهاجر الإنسان إلى الصناعة ننقل الصناعة إلى حيث الإنسان والأرض\nشبكة وطنية من 378 مجمعاً صناعياً ريفياً تُعيد بناء السودان من قاعدته المجتمعية",
     en: "Instead of people migrating to industry, we bring industry to where people and land already are — a national network of 378 rural industrial complexes rebuilding Sudan from its community base.",
   },
   "home.hero.cta2": { ar: "النموذج والمصانع الرائدة", en: "The model & flagship factories" },
@@ -50,7 +50,7 @@ const dict: Dict = {
   },
   "home.why.s2.k": { ar: "+60%", en: "+60%" },
   "home.why.s2.v": {
-    ar: "من السكان من الشباب — قوة بشرية متعلمة ومستعدة للعمل الصناعي",
+    ar: "من السكان من الشباب، قوة بشرية متعلمة ومستعدة للعمل الصناعي",
     en: "of the population are youth — an educated workforce ready for industry",
   },
   "home.why.s3.k": { ar: "<7%", en: "<7%" },
@@ -64,14 +64,14 @@ const dict: Dict = {
     en: "Six pillars that build an integrated, self-sufficient complex",
   },
   "home.pillars.lede": {
-    ar: "كل ركن يخدم المصانع الأساسية ويدعم استدامتها — لتكامل وظيفي واستقلالية تشغيلية حتى في ظل ضعف البنية التحتية.",
+    ar: "كل ركن يخدم المصانع الأساسية ويدعم استدامتها، لتكامل وظيفي واستقلالية تشغيلية حتى في ظل ضعف البنية التحتية",
     en: "Each pillar serves the core factories and sustains them — functional integration and operational independence even where infrastructure is weak.",
   },
   "home.goals.eyebrow": { ar: "الأهداف العامة", en: "Strategic Goals" },
   "home.goals.title": { ar: "ستة أهداف وطنية تقود التحول", en: "Six national goals driving the transformation" },
   "home.cta.title": { ar: "هذا مشروع أمة... لا مشروع قطاع", en: "A nation-scale project — not a sector project" },
   "home.cta.lede": {
-    ar: "دعوة مفتوحة للمساهمين والمهندسين والجامعات والمجتمعات المحلية للمشاركة في النهضة.",
+    ar: "دعوة مفتوحة للمساهمين والمهندسين والجامعات والمجتمعات المحلية للمشاركة في النهضة",
     en: "An open invitation to shareholders, engineers, universities, and local communities to join the renaissance.",
   },
 
