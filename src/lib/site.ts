@@ -19,7 +19,7 @@ export const siteI18n = {
     en: "A community-led industrial renaissance — from the countryside to the nation",
   },
   description: {
-    ar: "مبادرة وطنية لإنشاء 378 مجمعاً صناعياً ريفياً في 189 محلية بالسودان، بملكية مجتمعية وحوكمة شفافة.",
+    ar: "مبادرة وطنية لإنشاء 378 مجمعاً صناعياً ريفياً في 189 محلية بالسودان، بملكية مجتمعية وحوكمة شفافة",
     en: "A national initiative to build 378 rural industrial complexes across 189 localities in Sudan, with community ownership and transparent governance.",
   },
   donateCta: { ar: "ادعم المبادرة", en: "Support the Initiative" },

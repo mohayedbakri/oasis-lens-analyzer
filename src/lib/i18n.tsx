@@ -34,7 +34,7 @@ const dict: Dict = {
   // Home
   "home.hero.eyebrow": { ar: "مبادرة وطنية سودانية", en: "A Sudanese national initiative" },
   "home.hero.lede": {
-    ar: "بدلاً من أن يهاجر الإنسان إلى الصناعة، ننقل الصناعة إلى حيث الإنسان والأرض — شبكة وطنية من 378 مجمعاً صناعياً ريفياً تُعيد بناء السودان من قاعدته المجتمعية.",
+    ar: "بدلاً من أن يهاجر الإنسان إلى الصناعة\nننقل الصناعة إلى حيث الإنسان والأرض — شبكة وطنية من 378 مجمعاً صناعياً ريفياً تُعيد بناء السودان من قاعدته المجتمعية.",
     en: "Instead of people migrating to industry, we bring industry to where people and land already are — a national network of 378 rural industrial complexes rebuilding Sudan from its community base.",
   },
   "home.hero.cta2": { ar: "النموذج والمصانع الرائدة", en: "The model & flagship factories" },
@@ -82,7 +82,7 @@ const dict: Dict = {
     en: "A comprehensive, community-led industrial renaissance",
   },
   "about.desc": {
-    ar: "مبادرة وطنية رائدة لإحداث تحول صناعي شامل عبر إنشاء مجمعات صناعية متكاملة في الولايات والمحليات، تُحوّل الموارد المحلية إلى منتجات ذات قيمة مضافة عالية.",
+    ar: "مبادرة وطنية رائدة لإحداث تحول صناعي شامل عبر إنشاء مجمعات صناعية متكاملة في الولايات والمحليات، تُحوّل الموارد المحلية إلى منتجات ذات قيمة مضافة عالية",
     en: "A pioneering national initiative for comprehensive industrial transformation through integrated complexes across states and localities, turning local resources into high-value products.",
   },
   "about.pillars.eyebrow": { ar: "المرتكزات", en: "Foundations" },
@@ -91,21 +91,21 @@ const dict: Dict = {
     en: "A new vision for building Sudan's economy",
   },
   "about.found1.k": { ar: "الاعتماد على الذات", en: "Self-reliance" },
-  "about.found1.v": { ar: " بدلاً من التبعية للاستيراد والمساعدات.", en: " instead of dependence on imports and aid." },
+  "about.found1.v": { ar: " بدلاً من التبعية للاستيراد والمساعدات", en: " instead of dependence on imports and aid." },
   "about.found2.k": { ar: "الملكية المجتمعية", en: "Community ownership" },
-  "about.found2.v": { ar: " بدلاً من الاحتكار الفردي أو النخبوي.", en: " instead of individual or elite monopolies." },
+  "about.found2.v": { ar: " بدلاً من الاحتكار الفردي أو النخبوي", en: " instead of individual or elite monopolies." },
   "about.found3.k": { ar: "تكامل العلم والتقنية مع الإنتاج المحلي والإرث المعرفي", en: "Integrating science and technology with local production and heritage knowledge" },
-  "about.found3.v": { ar: " بدلاً من الفصل بينهما.", en: " instead of separating them." },
+  "about.found3.v": { ar: " بدلاً من الفصل بينهما", en: " instead of separating them." },
   "about.vision.eyebrow": { ar: "الرؤية", en: "Vision" },
-  "about.vision.title": { ar: "سودانٌ مزدهر", en: "A prosperous Sudan" },
+  "about.vision.title": { ar: "سودان مزدهر", en: "A prosperous Sudan" },
   "about.vision.body": {
-    ar: "«سودانٌ مزدهر، قائمٌ على اقتصادٍ صناعي متين تراحمي ومسؤول ومستدام، تقوده المجتمعات المحلية بالمعرفة والتكافل والإبداع، ويرتكز على الأخلاق الفضيلة وحب الخير.»",
+    ar: "«سودان مزدهر، قائم على اقتصاد صناعي متين تراحمي ومسؤول ومستدام، تقوده المجتمعات المحلية بالمعرفة والتكافل والإبداع، ويرتكز على الأخلاق الفضيلة وحب الخير»",
     en: "“A prosperous Sudan, built on a resilient, compassionate, responsible, and sustainable industrial economy led by local communities through knowledge, solidarity, and creativity — anchored in virtuous ethics and a love of doing good.”",
   },
   "about.mission.eyebrow": { ar: "الرسالة", en: "Mission" },
   "about.mission.title": { ar: "تمكين المجتمعات", en: "Empowering communities" },
   "about.mission.body": {
-    ar: "«تمكين المجتمعات السودانية من بناء وتشغيل مجمعات صناعية ريفية مجتمعية (RSICs) تستخدم وتطور مواردها المحلية بكفاءة وتميز تنافسي عالمي، وتحقق الأمن الغذائي والاكتفاء الذاتي، وتخلق فرص عمل حقيقية ونوعية، وتعيد الثقة بين المواطن والدولة من خلال نموذج اقتصادي عادل وشفاف ومستدام.»",
+    ar: "«تمكين المجتمعات السودانية من بناء وتشغيل مجمعات صناعية ريفية مجتمعية (RSICs) تستخدم وتطور مواردها المحلية بكفاءة وتميز تنافسي عالمي، وتحقق الأمن الغذائي والاكتفاء الذاتي، وتخلق فرص عمل حقيقية ونوعية، وتعيد الثقة بين المواطن والدولة من خلال نموذج اقتصادي عادل وشفاف ومستدام»",
     en: "“Empowering Sudanese communities to build and operate Rural Social Industrial Complexes (RSICs) that use and develop local resources with efficiency and globally competitive excellence — achieving food security and self-sufficiency, creating real and high-quality jobs, and restoring trust between citizen and state through a fair, transparent, and sustainable economic model.”",
   },
   "about.core.eyebrow": { ar: "الفكرة الجوهرية", en: "Core Idea" },
@@ -113,7 +113,7 @@ const dict: Dict = {
   "about.core.l1": { ar: "بدلاً من أن يهاجر الإنسان إلى الصناعة،", en: "Instead of people migrating to industry," },
   "about.core.l2": { ar: "ننقل الصناعة إلى حيث الإنسان والأرض.", en: "we bring industry to where people and land already are." },
   "about.core.body": {
-    ar: "كل مجمع صناعي ريفي هو منظومة إنتاج متكاملة تتكون من 40–50 مصنعاً متخصصاً، وخدمات مركزية مشتركة (طاقة – مياه – مختبرات – لوجستيات – تدريب – صيانة)، وإدارة تشغيل احترافية موحدة، وشراكة مجتمعية تعزز الملكية المحلية والمساءلة.",
+    ar: "كل مجمع صناعي ريفي هو منظومة إنتاج متكاملة تتكون من 40–50 مصنعاً متخصصاً، وخدمات مركزية مشتركة (طاقة – مياه – مختبرات – لوجستيات – تدريب – صيانة)، وإدارة تشغيل احترافية موحدة، وشراكة مجتمعية تعزز الملكية المحلية والمساءلة",
     en: "Each rural complex is an integrated production system of 40–50 specialized factories with shared central services (energy, water, labs, logistics, training, maintenance), unified professional operations, and a community partnership that reinforces local ownership and accountability.",
   },
 
