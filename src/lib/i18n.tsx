@@ -120,7 +120,7 @@ const dict: Dict = {
   // Projects
   "projects.eyebrow": { ar: "النموذج والمصانع", en: "Model & Factories" },
   "projects.title": {
-    ar: "النموذج الأولي — محلية البرقيق، الشمالية",
+    ar: "النموذج الأولي،\u00a0محلية البرقيق، الشمالية\n",
     en: "The pilot model — Al-Burgig Locality, Northern State",
   },
   "projects.desc": {
