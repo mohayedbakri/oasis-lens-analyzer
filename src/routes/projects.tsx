@@ -60,10 +60,10 @@ const rolloutByLang: Record<Lang, { n: string; t: string; d: string }[]> = {
     { n: "04", t: "التوسع على مستوى الأمة", d: "نقل النموذج إلى دول الجنوب المماثلة في الموارد والتحديات." },
   ],
   en: [
-    { n: "01", t: "Pilot phase", d: "Launch the pilot complex in Al-Burgig and validate the technical and financial proposal." },
-    { n: "02", t: "State-level diversification", d: "Roll out complexes across other states based on lessons from the pilot." },
-    { n: "03", t: "National rollout", d: "Establish 378 complexes (2–3 per locality across the 189 localities), ~17,010 factories total." },
-    { n: "04", t: "Nation-scale expansion", d: "Transfer the model to Global South countries with similar resources and challenges." },
+    { n: "01", t: "Pilot Phase", d: "Launch the pilot complex in Al-Burgig and validate the technical and financial proposal." },
+    { n: "02", t: "State-Level Diversification", d: "Roll out complexes across other states based on lessons from the pilot." },
+    { n: "03", t: "National Rollout", d: "Establish 378 complexes (2–3 per locality across the 189 localities), ~17,010 factories total." },
+    { n: "04", t: "Nation-Scale Expansion", d: "Transfer the model to Global South countries with similar resources and challenges." },
   ],
 };
 

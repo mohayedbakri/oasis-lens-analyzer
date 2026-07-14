@@ -62,7 +62,7 @@ export const newsByLang: Record<Lang, News[]> = {
     {
       id: "n1",
       date: "2026-08-15",
-      title: "Pilot phase launched in Al-Burgig — Northern State",
+      title: "Pilot Phase Launched in Al-Burgig — Northern State",
       excerpt: "Groundbreaking for the flagship complex and the dates products factory as the first operational unit.",
       body: [
         "The Rural Social Industrial Complexes initiative has officially launched its pilot phase in Al-Burgig locality, Northern State, breaking ground on the flagship complex that will serve as the first model of community-led industrial transformation in Sudan.",
@@ -73,7 +73,7 @@ export const newsByLang: Record<Lang, News[]> = {
     {
       id: "n2",
       date: "2026-05-22",
-      title: "MoU signed with Wadi El-Neel University",
+      title: "MoU Signed With Wadi El-Neel University",
       excerpt: "A research partnership to develop quality labs and industrial training centers.",
       body: [
         "The initiative has signed a memorandum of understanding with Wadi El-Neel University to establish a long-term research partnership focused on quality-control labs and specialized industrial training centers.",
@@ -83,7 +83,7 @@ export const newsByLang: Record<Lang, News[]> = {
     {
       id: "n3",
       date: "2026-05-01",
-      title: "Workshop with local community councils",
+      title: "Workshop With Local Community Councils",
       excerpt: "Discussion of the community-enterprise model and transparent governance mechanisms.",
       body: [
         "The initiative held an extended workshop with local community councils in Al-Burgig to discuss the community-enterprise model and its transparent governance mechanisms in detail.",
@@ -137,7 +137,7 @@ export const articlesByLang: Record<Lang, Article[]> = {
       id: "a1",
       date: "2026-06-01",
       author: "Initiative team",
-      title: "Why community-led rural industry, now?",
+      title: "Why Community-Led Rural Industry, Now?",
       excerpt: "A reading of Sudan's historic moment and the chance to rebuild the economy from its rural base.",
       body: [
         "Sudan is passing through a defining historical moment that demands rethinking the development model from its roots. The legacy model of centralizing industry in the capital has failed to deliver equitable, sustainable growth.",
@@ -149,7 +149,7 @@ export const articlesByLang: Record<Lang, Article[]> = {
       id: "a2",
       date: "2026-05-15",
       author: "Dr. Al-Amin",
-      title: "The circular economy inside rural industrial complexes",
+      title: "The Circular Economy Inside Rural Industrial Complexes",
       excerpt: "How industrial by-products become inputs and added value in the proposed model.",
       body: [
         "The circular economy is a core pillar of RSIC's design. Factories inside each complex are engineered to exchange outputs and inputs in an integrated production loop.",
@@ -161,7 +161,7 @@ export const articlesByLang: Record<Lang, Article[]> = {
       id: "a3",
       date: "2026-04-28",
       author: "Eng. Khaled",
-      title: "The community-enterprise model: ownership and governance",
+      title: "The Community-Enterprise Model: Ownership and Governance",
       excerpt: "A breakdown of community ownership structure, decision-making, and profit distribution.",
       body: [
         "The community enterprise is the legal form the initiative adopts for every complex. It combines the discipline of the private sector with collective ownership by the surrounding community.",

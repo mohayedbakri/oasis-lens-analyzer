@@ -34,8 +34,8 @@ export const catalog: CatalogPiece[] = [
   {
     id: "brick-50",
     work_package_id: "wp5",
-    code: { ar: "A19 · مصنع الطوب", en: "A19 · Brick factory" },
-    name: { ar: "٥٠ طابوقة مجتمعية", en: "50 community bricks" },
+    code: { ar: "A19 · مصنع الطوب", en: "A19 · Brick Factory" },
+    name: { ar: "٥٠ طابوقة مجتمعية", en: "50 Community Bricks" },
     price_usd: 50,
     category: "infrastructure",
     quote: {
@@ -47,8 +47,8 @@ export const catalog: CatalogPiece[] = [
   {
     id: "floor-1m",
     work_package_id: "wp5",
-    code: { ar: "أعمال مدنية", en: "Civil works" },
-    name: { ar: "متر مربع أرضية مصنع", en: "Factory floor — 1 square meter" },
+    code: { ar: "أعمال مدنية", en: "Civil Works" },
+    name: { ar: "متر مربع أرضية مصنع", en: "Factory Floor — 1 Square Meter" },
     price_usd: 25,
     category: "infrastructure",
     quote: {
@@ -60,8 +60,8 @@ export const catalog: CatalogPiece[] = [
   {
     id: "door",
     work_package_id: "wp1",
-    code: { ar: "أعمال مدنية", en: "Civil works" },
-    name: { ar: "باب مدخل المصنع", en: "Factory entrance door" },
+    code: { ar: "أعمال مدنية", en: "Civil Works" },
+    name: { ar: "باب مدخل المصنع", en: "Factory Entrance Door" },
     price_usd: 300,
     category: "infrastructure",
     quote: {
@@ -73,8 +73,8 @@ export const catalog: CatalogPiece[] = [
   {
     id: "mill-roller",
     work_package_id: "wp4",
-    code: { ar: "A01 · طاحونة القمح والدقيق", en: "A01 · Wheat & flour mill" },
-    name: { ar: "قطعة أسطوانة طاحونة", en: "Flour mill roller segment" },
+    code: { ar: "A01 · طاحونة القمح والدقيق", en: "A01 · Wheat & Flour Mill" },
+    name: { ar: "قطعة أسطوانة طاحونة", en: "Flour Mill Roller Segment" },
     price_usd: 800,
     category: "equipment",
     quote: {
@@ -86,8 +86,8 @@ export const catalog: CatalogPiece[] = [
   {
     id: "mill-sieve",
     work_package_id: "wp4",
-    code: { ar: "A01 · طاحونة القمح والدقيق", en: "A01 · Wheat & flour mill" },
-    name: { ar: "طقم مناخل الدقيق", en: "Flour sieve mesh set" },
+    code: { ar: "A01 · طاحونة القمح والدقيق", en: "A01 · Wheat & Flour Mill" },
+    name: { ar: "طقم مناخل الدقيق", en: "Flour Sieve Mesh Set" },
     price_usd: 250,
     category: "equipment",
     quote: {
@@ -100,7 +100,7 @@ export const catalog: CatalogPiece[] = [
     id: "silo-panel",
     work_package_id: "wp5",
     code: { ar: "تخزين", en: "Storage" },
-    name: { ar: "قطاع لوحة صومعة", en: "Silo panel section" },
+    name: { ar: "قطاع لوحة صومعة", en: "Silo Panel Section" },
     price_usd: 600,
     category: "equipment",
     quote: {
@@ -113,7 +113,7 @@ export const catalog: CatalogPiece[] = [
     id: "film-roll",
     work_package_id: "wp6",
     code: { ar: "A23 · التعبئة والتغليف", en: "A23 · Packaging" },
-    name: { ar: "بكرة فيلم الختم الحراري (٥٠٠م)", en: "Heat-seal film roll (500m)" },
+    name: { ar: "بكرة فيلم الختم الحراري (٥٠٠م)", en: "Heat-Seal Film Roll (500m)" },
     price_usd: 75,
     category: "equipment",
     quote: {
@@ -126,7 +126,7 @@ export const catalog: CatalogPiece[] = [
     id: "sealer-jaws",
     work_package_id: "wp6",
     code: { ar: "A23 · التعبئة والتغليف", en: "A23 · Packaging" },
-    name: { ar: "فكوك ماكينة الختم", en: "Heat sealer jaw set" },
+    name: { ar: "فكوك ماكينة الختم", en: "Heat Sealer Jaw Set" },
     price_usd: 400,
     category: "equipment",
     quote: {
@@ -139,7 +139,7 @@ export const catalog: CatalogPiece[] = [
     id: "conveyor-motor",
     work_package_id: "wp6",
     code: { ar: "A23 · التعبئة والتغليف", en: "A23 · Packaging" },
-    name: { ar: "محرك سير التعبئة", en: "Bag conveyor motor" },
+    name: { ar: "محرك سير التعبئة", en: "Bag Conveyor Motor" },
     price_usd: 1200,
     category: "equipment",
     quote: {
@@ -151,8 +151,8 @@ export const catalog: CatalogPiece[] = [
   {
     id: "solar-400",
     work_package_id: "wp8",
-    code: { ar: "بنية تحتية للطاقة", en: "Utilities infrastructure" },
-    name: { ar: "لوح طاقة شمسية (٤٠٠ وات)", en: "Solar panel (400W)" },
+    code: { ar: "بنية تحتية للطاقة", en: "Utilities Infrastructure" },
+    name: { ar: "لوح طاقة شمسية (٤٠٠ وات)", en: "Solar Panel (400W)" },
     price_usd: 1200,
     category: "equipment",
     quote: {
@@ -164,8 +164,8 @@ export const catalog: CatalogPiece[] = [
   {
     id: "battery-mod",
     work_package_id: "wp8",
-    code: { ar: "بنية تحتية للطاقة", en: "Utilities infrastructure" },
-    name: { ar: "وحدة تخزين البطاريات", en: "Battery storage module" },
+    code: { ar: "بنية تحتية للطاقة", en: "Utilities Infrastructure" },
+    name: { ar: "وحدة تخزين البطاريات", en: "Battery Storage Module" },
     price_usd: 2500,
     category: "equipment",
     quote: {
@@ -177,8 +177,8 @@ export const catalog: CatalogPiece[] = [
   {
     id: "training-room",
     work_package_id: "wp7",
-    code: { ar: "مركز التدريب", en: "Training center" },
-    name: { ar: "غرفة تدريب ١٠ مقاعد", en: "Training room — 10-seat setup" },
+    code: { ar: "مركز التدريب", en: "Training Center" },
+    name: { ar: "غرفة تدريب ١٠ مقاعد", en: "Training Room — 10-Seat Setup" },
     price_usd: 2000,
     category: "training",
     quote: {
@@ -190,8 +190,8 @@ export const catalog: CatalogPiece[] = [
   {
     id: "toolkit",
     work_package_id: "wp7",
-    code: { ar: "مركز التدريب", en: "Training center" },
-    name: { ar: "طقم أدوات متدرب", en: "Trainee toolkit" },
+    code: { ar: "مركز التدريب", en: "Training Center" },
+    name: { ar: "طقم أدوات متدرب", en: "Trainee Toolkit" },
     price_usd: 150,
     category: "training",
     quote: {
@@ -203,8 +203,8 @@ export const catalog: CatalogPiece[] = [
   {
     id: "named-wing",
     work_package_id: "wp3",
-    code: { ar: "شراكة باسمك", en: "Named partnership" },
-    name: { ar: "جناح مصنع باسمك", en: "Named factory wing" },
+    code: { ar: "شراكة باسمك", en: "Named Partnership" },
+    name: { ar: "جناح مصنع باسمك", en: "Named Factory Wing" },
     price_usd: 25000,
     category: "named",
     quote: {
@@ -216,8 +216,8 @@ export const catalog: CatalogPiece[] = [
   {
     id: "cofounder",
     work_package_id: "wp2",
-    code: { ar: "شراكة باسمك", en: "Named partnership" },
-    name: { ar: "مؤسس مشارك لكيان الخدمات المركزية", en: "Central service entity co-founder" },
+    code: { ar: "شراكة باسمك", en: "Named Partnership" },
+    name: { ar: "مؤسس مشارك لكيان الخدمات المركزية", en: "Central Service Entity Co-Founder" },
     price_usd: 50000,
     category: "named",
     quote: {
