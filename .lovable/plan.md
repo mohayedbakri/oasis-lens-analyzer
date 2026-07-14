@@ -1,51 +1,48 @@
 ## Goal
-Polish the English side of the bilingual site so every page reads naturally, and standardize every English title and subtitle to Title Case (capitalize each significant word).
 
-## Scope of review
-Bilingual copy lives in these files. I'll audit the `en:` value on every key/entry:
+Make the English version work end-to-end on **Model & Factories** (`/projects`), **Blog** index + **News/Articles** detail pages (`/blog`, `/blog/news/$id`, `/blog/articles/$id`), the **Project Dashboard** (`/poc`), and **Contact** (`/contact`).
 
-- `src/lib/i18n.tsx` — nav, home, about, projects, impact, governance, blog, contact, donate, PoC, Oasis dashboard, common
-- `src/lib/site.ts` — tagline, description, pillars (`pillarsByLang`), goals (`goalsByLang`), impact stats, pilot factories
-- `src/lib/content.ts` — blog articles, news, reports (titles, excerpts, bodies)
-- `src/lib/catalog.ts` — donate catalog items (names, descriptions)
-- `src/lib/oasis-data.ts` — states, resources, activities, opportunities, roadmap steps, tasks, global indices
-- `src/lib/posts.functions.ts` — any hard-coded English strings
-- Route files under `src/routes/` — only where English strings are hard-coded (headings, labels) rather than pulled from `t(...)`
+## What's actually broken
 
-## Title Case rule
-Applied to every English heading/subheading/eyebrow/card title/section label/CTA:
-- Capitalize the first and last word and every significant word in between.
-- Keep lowercase: articles (a, an, the), short conjunctions (and, but, or, nor, so, yet), short prepositions (in, on, at, to, of, for, by, from, with), and `is/as` when unstressed.
-- Always capitalize the first word after a colon or dash.
-- Preserve acronyms (RSIC, GDP, PoC, SME, GMP/HACCP, AI, IT/OT, MoUs).
-- Leave body paragraphs, list descriptions, and form helper text in normal sentence case — Title Case is for titles/subtitles/labels only, not prose.
+The page files themselves already call `useI18n()` and pull `byLang[lang]` data, so at first glance they look bilingual. The English fails because a handful of shared building blocks always render Arabic regardless of language:
 
-## What I will change
-1. **Titles/subtitles → Title Case** across:
-   - Home: hero eyebrow/headline, why-now title, pillars title, goals title, CTA title, all card titles.
-   - About: page title, foundations title, vision/mission/core titles, all card headers.
-   - Projects: page title, pilot title, sizing title, rollout title, table column headers.
-   - Impact: page title, long-vision title, stat labels.
-   - Governance: page title, entity title, council title, profits title, finance title.
-   - Blog: page title, tab labels, "Latest News/Articles" sidebar, related content.
-   - Contact: page title, field labels.
-   - Donate: hero title, tier titles, filter labels, section headers.
-   - PoC + Oasis: page titles, panel titles ("Key Milestones", "Documents & Agreements", "Interactive Sudan Map", "RSIC Roadmap", "Measurable & Running Tasks", "Data Complex Indicators", drawer labels, KPI labels, column headers, index names).
-   - Footer: section headings ("Links", "Contact").
-   - Nav: menu items ("Home", "About", "Model & Factories", "Impact", "Governance & Funding", "Blog", "Project Dashboard", "Contact").
+1. **`src/components/layout/PageShell.tsx` → `PageBanner`** — banner `<img alt>` uses an Arabic string when `lang === "ar"` but the branch flip only affects the alt. Fine. But the overlay logo `alt="RSIC"` is fine. This one is actually OK — leaving as is.
+2. **`src/components/layout/Header.tsx`** — logo `alt` is hardcoded Arabic.
+3. **Project Dashboard data** — `src/lib/poc-fallback.json` only carries `name_ar` / `title_ar` for units, work packages, and documents. Every panel (`KpiStrip`, `MilestonesPanel`, `FundingPanel`, `TimelinePanel`, `DocumentsPanel`, `UnitDetailDrawer`, `Complex3D`) renders those `_ar` fields directly, so the dashboard shows Arabic text in English mode.
+4. **Model & Factories** — the route file already has Arabic + English tables via `sizingByLang` / `rolloutByLang` / `pilotFactoriesByLang`, so once the shared bits above are fixed this page is fully bilingual. Nothing further needed inside the route.
+5. **Blog index and detail** — already read `articlesByLang[lang]`, `newsByLang[lang]`, `reportsByLang[lang]` and use `t()` for chrome. Content is bilingual. No route-file changes required.
+6. **Contact** — already fully `t()`-driven. No route-file changes required.
 
-2. **English quality pass** on the same files:
-   - Fix awkward phrasing, stray em-dashes replaced with commas where the Arabic already switched, remove trailing periods from titles (keep in body copy), fix "on-site"/"on site" and similar inconsistencies, straighten mixed quote styles.
-   - Verify pilot factory notes, catalog item names/descriptions, roadmap step names, state resources/activities/opportunities, blog post titles, and news headlines all read fluently in English.
-   - Cross-check every `t("…")` used in a route renders sensible English (no stray Arabic-only phrasing left behind).
+## Changes
 
-3. **No structural changes** — only English string edits. Arabic text, keys, layout, components, and logic stay untouched.
+### 1. Header logo alt (bilingual)
+`src/components/layout/Header.tsx`: replace the Arabic-only `alt` with a language-aware string via `useI18n()` (add a new `header.logoAlt` key to `src/lib/i18n.tsx` with `ar` / `en` variants).
 
-## Verification
-- Grep for any remaining lowercase-first-word or dash-separated English titles.
-- Load `/`, `/about`, `/projects`, `/impact`, `/governance`, `/blog`, `/donate`, `/poc`, `/contact` in EN via a Playwright pass, screenshot each hero + section headings, and confirm Title Case + readable copy.
+### 2. Project Dashboard — add English fields to fallback data
+`src/lib/poc-fallback.json`: for each `units[]`, `work_packages[]`, and `documents[]` entry, add a sibling `name_en` (or `title_en` for documents) with an accurate English translation of the existing Arabic label. Keep Arabic fields intact.
+
+### 3. Project Dashboard — type + accessor helper
+`src/lib/poc-data.ts`: extend `Unit`, `WorkPackage`, and `PocDocument` types with optional `name_en` / `title_en`. Export a tiny helper `pickName(item, lang)` that returns `item.name_en ?? item.name_ar` when `lang === "en"` and `item.name_ar` otherwise (same for `title`). This keeps the Google Sheets ingest path safe when the sheet has no English column.
+
+### 4. Swap `name_ar` / `title_ar` reads to the helper
+In each of the following, import `useI18n` (already imported in most) and `pickName`, then replace `wp.name_ar` / `unit.name_ar` / `d.title_ar` with `pickName(wp, lang)` etc.:
+- `src/components/poc/KpiStrip.tsx`
+- `src/components/poc/MilestonesPanel.tsx`
+- `src/components/poc/FundingPanel.tsx`
+- `src/components/poc/TimelinePanel.tsx`
+- `src/components/poc/DocumentsPanel.tsx`
+- `src/components/poc/UnitDetailDrawer.tsx`
+- `src/components/poc/Complex3D.tsx` (already computes an `ar` status label — reuse `useStatusLabels()` from `status.ts` so it becomes bilingual too)
+
+`src/components/poc/status.ts` already ships bilingual labels via `useStatusLabels()` — no change needed there.
+
+### 5. Verification
+- Toggle the language switcher on `/projects`, `/blog`, `/blog/news/n1`, `/blog/articles/a1`, `/poc`, `/contact`.
+- Confirm titles, subtitles, cards, tables, work-package rows, unit drawers, and PDF/report labels all render in English when English is active.
+- Confirm Arabic remains identical to today.
 
 ## Out of scope
-- Arabic copy.
-- Visual/layout changes.
-- New features or content additions.
+
+- Nav labels (already bilingual via `t("nav.<path>")`).
+- Home / About / Governance / Impact / Donate — user's request lists only the four pages above.
+- Translating the live Google-Sheet data source (only the offline fallback is translated; sheet rows continue to fall back to their Arabic name if no English column exists).

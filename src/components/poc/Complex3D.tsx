@@ -2,8 +2,9 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Html } from "@react-three/drei";
 import type { Mesh } from "three";
-import type { Unit, UnitType } from "@/lib/poc-data";
-import { statusColor, statusLabelAr } from "./status";
+import { pickName, type Unit, type UnitType } from "@/lib/poc-data";
+import { statusColor, useStatusLabels } from "./status";
+import { useI18n } from "@/lib/i18n";
 
 // Procedural per-type geometry. Designed to be swapped later for AI-generated
 // GLB models (loaded with useGLTF) without changing the call sites.
@@ -38,6 +39,8 @@ function unitHeight(type: UnitType) {
 function UnitMesh({ unit, onClick }: { unit: Unit; onClick: (u: Unit) => void }) {
   const ref = useRef<Mesh>(null);
   const [hover, setHover] = useState(false);
+  const { lang } = useI18n();
+  const { status: statusLabels } = useStatusLabels();
   const color = statusColor[unit.status];
 
   useFrame((_, dt) => {
@@ -77,7 +80,7 @@ function UnitMesh({ unit, onClick }: { unit: Unit; onClick: (u: Unit) => void })
       {hover && (
         <Html distanceFactor={10} center>
           <div className="pointer-events-none whitespace-nowrap rounded-md bg-background/95 px-2 py-1 text-xs font-medium text-foreground shadow-lg ring-1 ring-border">
-            {unit.name_ar} · {statusLabelAr[unit.status]}
+            {pickName(unit, lang)} · {statusLabels[unit.status]}
           </div>
         </Html>
       )}
@@ -95,6 +98,7 @@ function Ground() {
 }
 
 function Fallback2D({ units, onClick }: { units: Unit[]; onClick: (u: Unit) => void }) {
+  const { lang } = useI18n();
   return (
     <div className="flex h-full items-center justify-center">
       <svg viewBox="-10 -10 20 20" className="h-full w-full max-w-md">
@@ -103,7 +107,7 @@ function Fallback2D({ units, onClick }: { units: Unit[]; onClick: (u: Unit) => v
           <g key={u.id} onClick={() => onClick(u)} style={{ cursor: "pointer" }}>
             <circle cx={u.x} cy={u.z} r="1.2" fill={statusColor[u.status]} />
             <text x={u.x} y={u.z + 2.2} textAnchor="middle" fontSize="0.9" fill="#333">
-              {u.name_ar}
+              {pickName(u, lang)}
             </text>
           </g>
         ))}
@@ -120,6 +124,7 @@ export function Complex3D({
   onSelect: (u: Unit) => void;
 }) {
   const [mounted, setMounted] = useState(false);
+  const { status: statusLabels } = useStatusLabels();
   useEffect(() => setMounted(true), []);
   return (
     <div className="relative h-[480px] w-full overflow-hidden rounded-xl border border-border bg-card">
@@ -157,7 +162,7 @@ export function Complex3D({
             className="flex items-center gap-1.5 rounded-full bg-background/90 px-2 py-1 shadow-sm ring-1 ring-border"
           >
             <span className="h-2.5 w-2.5 rounded-full" style={{ background: statusColor[s] }} />
-            {statusLabelAr[s]}
+            {statusLabels[s]}
           </span>
         ))}
       </div>

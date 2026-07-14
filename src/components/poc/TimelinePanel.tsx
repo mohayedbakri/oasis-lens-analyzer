@@ -1,8 +1,8 @@
-import type { PocSnapshot } from "@/lib/poc-data";
+import { pickName, type PocSnapshot } from "@/lib/poc-data";
 import { useI18n } from "@/lib/i18n";
 
 export function TimelinePanel({ data }: { data: PocSnapshot }) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const all = data.work_packages.flatMap((w) => [
     new Date(w.planned_start).getTime(),
     new Date(w.planned_end).getTime(),
@@ -27,7 +27,7 @@ export function TimelinePanel({ data }: { data: PocSnapshot }) {
           return (
             <div key={wp.id}>
               <div className="mb-1 flex items-baseline justify-between gap-2 text-xs">
-                <span className="font-medium text-foreground">{wp.name_ar}</span>
+                <span className="font-medium text-foreground">{pickName(wp, lang)}</span>
                 <span className="text-muted-foreground" dir="ltr">
                   {wp.planned_start} → {wp.planned_end}
                 </span>

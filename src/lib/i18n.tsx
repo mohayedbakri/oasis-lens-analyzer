@@ -20,6 +20,10 @@ const dict: Dict = {
   "lang.aria": { ar: "Switch to English", en: "التبديل إلى العربية" },
   "menu.open": { ar: "فتح القائمة", en: "Open menu" },
   "menu.close": { ar: "إغلاق القائمة", en: "Close menu" },
+  "header.logoAlt": {
+    ar: "RSIC — شعار المجمعات الصناعية الريفية المجتمعية",
+    en: "RSIC — Rural Social Industrial Complexes logo",
+  },
 
   // Footer
   "footer.links": { ar: "روابط", en: "Links" },
