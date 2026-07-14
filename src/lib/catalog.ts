@@ -16,7 +16,8 @@ import trainingRoom from "@/assets/catalog/training-room.jpg";
 import toolkit from "@/assets/catalog/toolkit.jpg";
 import namedWingAsset from "@/assets/catalog/named-wing.png.asset.json";
 const namedWing = namedWingAsset.url;
-import cofounder from "@/assets/catalog/cofounder.jpg";
+import cofounderAsset from "@/assets/catalog/cofounder.png.asset.json";
+const cofounder = cofounderAsset.url;
 
 export type CatalogCategory = "equipment" | "infrastructure" | "training" | "named";
 
