@@ -6,7 +6,7 @@ import type { Lang } from "./i18n";
 export const site = {
   nameShort: "RSIC",
   phone: "+249112560828",
-  email: "info@rsic.sd",
+  email: "rsicsd@itics.org",
 } as const;
 
 export const siteI18n = {
