@@ -61,7 +61,7 @@ export const newsByLang: Record<Lang, News[]> = {
   en: [
     {
       id: "n1",
-      date: "2026-06-10",
+      date: "2026-08-15",
       title: "Pilot phase launched in Al-Burgig — Northern State",
       excerpt: "Groundbreaking for the flagship complex and the dates products factory as the first operational unit.",
       body: [
