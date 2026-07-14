@@ -168,14 +168,14 @@ const dict: Dict = {
     en: "Community ownership is the philosophical safety valve — moving financial power from individuals into a sustainable institutional community entity.",
   },
   "gov.entity.eyebrow": { ar: "الكيان القانوني", en: "Legal entity" },
-  "gov.entity.title": { ar: "الشركة المجتمعية (Community Enterprise)", en: "The Community Enterprise" },
+  "gov.entity.title": { ar: "الشركة المجتمعية (Social Enterprise)", en: "The Social Enterprise" },
   "gov.entity.body": {
     ar: "تدمج بين مبادئ الرأسمالية (الربحية والكفاءة) ومبادئ الاشتراكية (التركيز على مصلحة المجتمع والعدالة في التوزيع)، لتكون أفضل وسيلة قانونية لتمكين المجتمعات من امتلاك القوة المالية بطريقة مؤسسية مستدامة.",
     en: "Combines capitalist principles (profitability and efficiency) with social principles (community benefit and distributive justice) — the best legal vehicle for sustainable community ownership of financial power.",
   },
   "gov.member1": { ar: "المزارعون والمنتجون المحليون", en: "Local farmers and producers" },
   "gov.member2": { ar: "الشباب والخريجون", en: "Youth and graduates" },
-  "gov.member3": { ar: "الجهات الشريكة والمساهمون الاجتماعيون", en: "Partner organizations and social shareholders" },
+  "gov.member3": { ar: "الجهات الشريكة والمساهمون المجتمعيون", en: "Partner organizations and social shareholders" },
   "gov.council.eyebrow": { ar: "آلية الحوكمة", en: "Governance mechanism" },
   "gov.council.title": { ar: "مجلس مجتمعي متخصص", en: "A specialized community council" },
   "gov.council.body": {
@@ -190,7 +190,7 @@ const dict: Dict = {
   "gov.finance.eyebrow": { ar: "استراتيجية التمويل", en: "Funding strategy" },
   "gov.finance.title": { ar: "التمويل المختلط (Blended Finance)", en: "Blended Finance" },
   "gov.finance.body": {
-    ar: "مزيج من المساهمة المجتمعية (النفير)، والمنح، والتمويل الاجتماعي، والاستثمار المسؤول — مع إعادة استثمار الأرباح داخل المجتمع وفق مبدأ «الدورة المغلقة» لتمويل التوسعات الصناعية وتحديث المعدات (CapEx) ودعم الخدمات المجتمعية.",
+    ar: "مزيج من المساهمة المجتمعية (النفير)، والمنح، والتمويل الاجتماعي، مع إعادة استثمار الأرباح داخل المجتمع وفق مبدأ «الدورة المغلقة» لتمويل التوسعات الصناعية وتحديث المعدات (CapEx) ودعم الخدمات المجتمعية",
     en: "A mix of community contribution (Nafeer), grants, social finance, and responsible investment — with profits reinvested locally under a “closed-loop” principle to fund expansions, CapEx upgrades, and community services.",
   },
 
