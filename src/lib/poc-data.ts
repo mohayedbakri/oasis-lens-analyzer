@@ -22,6 +22,7 @@ export type WpStatus = "planned" | "in_progress" | "done" | "blocked";
 export interface Unit {
   id: string;
   name_ar: string;
+  name_en?: string;
   type: UnitType;
   status: UnitStatus;
   x: number;
@@ -33,6 +34,7 @@ export interface WorkPackage {
   id: string;
   unit_id: string;
   name_ar: string;
+  name_en?: string;
   category: WpCategory;
   status: WpStatus;
   progress_pct: number;
@@ -52,9 +54,18 @@ export interface Funding {
 export interface PocDocument {
   id: string;
   title_ar: string;
+  title_en?: string;
   type: string;
   url: string;
   work_package_id: string;
+}
+
+export function pickName(item: { name_ar: string; name_en?: string }, lang: "ar" | "en"): string {
+  return lang === "en" ? (item.name_en || item.name_ar) : item.name_ar;
+}
+
+export function pickTitle(item: { title_ar: string; title_en?: string }, lang: "ar" | "en"): string {
+  return lang === "en" ? (item.title_en || item.title_ar) : item.title_ar;
 }
 
 export interface PocSnapshot {
@@ -115,6 +126,7 @@ async function fetchSheet(url: string): Promise<PocSnapshot | null> {
         units.push({
           id: r.id,
           name_ar: r.name_ar,
+          name_en: r.name_en || undefined,
           type: r.type as UnitType,
           status: r.status as UnitStatus,
           x: Number(r.x) || 0,
@@ -126,6 +138,7 @@ async function fetchSheet(url: string): Promise<PocSnapshot | null> {
           id: r.id,
           unit_id: r.unit_id,
           name_ar: r.name_ar,
+          name_en: r.name_en || undefined,
           category: r.category as WpCategory,
           status: r.status as WpStatus,
           progress_pct: Number(r.progress_pct) || 0,
@@ -145,6 +158,7 @@ async function fetchSheet(url: string): Promise<PocSnapshot | null> {
         docs.push({
           id: r.id,
           title_ar: r.title_ar,
+          title_en: r.title_en || undefined,
           type: r.type,
           url: r.url || "#",
           work_package_id: r.work_package_id,

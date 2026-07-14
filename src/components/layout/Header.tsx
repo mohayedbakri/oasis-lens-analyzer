@@ -17,7 +17,7 @@ export function Header() {
         <Link to="/" className="flex items-center gap-2 font-display text-lg font-bold text-primary">
           <img
             src={logoAsset.url}
-            alt="RSIC — شعار المجمعات الصناعية الريفية المجتمعية"
+            alt={t("header.logoAlt")}
             className="h-10 w-auto"
           />
           <span className="hidden sm:inline">{site.nameShort}</span>
